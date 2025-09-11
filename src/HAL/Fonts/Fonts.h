@@ -23,5 +23,6 @@ typedef struct {
 extern FontDef Font_16x26;
 extern  FontDef Arial28x28;
 extern  FontDef Arial12x12;
+extern FontDef Font_8x13;
 
 #endif /* HAL_FONTS_FONTS_H_ */

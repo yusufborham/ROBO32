@@ -28,6 +28,7 @@ CPP_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 src/APP \
+src/Examples \
 src/HAL/Button \
 src/HAL/DAC_8bit \
 src/HAL/ESP_WIFI \
