@@ -36,13 +36,16 @@ src/HAL/IR \
 src/HAL/LEDMATRIX \
 src/HAL/RGB_LED \
 src/HAL/S2P \
+src/HAL/SERMUX \
 src/HAL/Seven_Segment \
 src/HAL/TFT \
 src/LIB \
+src/MCAL/ADC \
 src/MCAL/DMA \
 src/MCAL/EXTI \
 src/MCAL/GPIO \
 src/MCAL/NVIC \
+src/MCAL/PWM \
 src/MCAL/RCC \
 src/MCAL/RTC \
 src/MCAL/SPI \

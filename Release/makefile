@@ -20,13 +20,16 @@ RM := rm -rf
 -include src/MCAL/SPI/subdir.mk
 -include src/MCAL/RTC/subdir.mk
 -include src/MCAL/RCC/subdir.mk
+-include src/MCAL/PWM/subdir.mk
 -include src/MCAL/NVIC/subdir.mk
 -include src/MCAL/GPIO/subdir.mk
 -include src/MCAL/EXTI/subdir.mk
 -include src/MCAL/DMA/subdir.mk
+-include src/MCAL/ADC/subdir.mk
 -include src/LIB/subdir.mk
 -include src/HAL/TFT/subdir.mk
 -include src/HAL/Seven_Segment/subdir.mk
+-include src/HAL/SERMUX/subdir.mk
 -include src/HAL/S2P/subdir.mk
 -include src/HAL/RGB_LED/subdir.mk
 -include src/HAL/LEDMATRIX/subdir.mk
@@ -71,38 +74,38 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 SECONDARY_FLASH += \
-TEST.hex \
+ROBO32.hex \
 
 SECONDARY_SIZE += \
-TEST.siz \
+ROBO32.siz \
 
 
 # All Target
-all: TEST.elf secondary-outputs
+all: ROBO32.elf secondary-outputs
 
 # Tool invocations
-TEST.elf: $(OBJS) $(USER_OBJS)
+ROBO32.elf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: Cross ARM GNU C++ Linker'
-	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -Wall -Wextra  -g -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"TEST.map" --specs=nano.specs -o "TEST.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-g++ -mcpu=cortex-m4 -mthumb -mfloat-abi=soft -Os -fmessage-length=0 -fsigned-char -ffunction-sections -fdata-sections -ffreestanding -Wall -Wextra  -g -T mem.ld -T libs.ld -T sections.ld -nostartfiles -Xlinker --gc-sections -L"../ldscripts" -Wl,-Map,"ROBO32.map" --specs=nano.specs -o "ROBO32.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-TEST.hex: TEST.elf
+ROBO32.hex: ROBO32.elf
 	@echo 'Invoking: Cross ARM GNU Create Flash Image'
-	arm-none-eabi-objcopy -O ihex "TEST.elf"  "TEST.hex"
+	arm-none-eabi-objcopy -O ihex "ROBO32.elf"  "ROBO32.hex"
 	@echo 'Finished building: $@'
 	@echo ' '
 
-TEST.siz: TEST.elf
+ROBO32.siz: ROBO32.elf
 	@echo 'Invoking: Cross ARM GNU Print Size'
-	arm-none-eabi-size --format=berkeley "TEST.elf"
+	arm-none-eabi-size --format=berkeley "ROBO32.elf"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) TEST.elf
+	-$(RM) $(CC_DEPS)$(C++_DEPS)$(OBJS)$(C_UPPER_DEPS)$(CXX_DEPS)$(SECONDARY_FLASH)$(SECONDARY_SIZE)$(ASM_DEPS)$(S_UPPER_DEPS)$(C_DEPS)$(CPP_DEPS) ROBO32.elf
 	-@echo ' '
 
 secondary-outputs: $(SECONDARY_FLASH) $(SECONDARY_SIZE)

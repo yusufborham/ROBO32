@@ -1,49 +1,55 @@
 src/HAL/ESP_WIFI/ESP_WIFI_prg.o: ../src/HAL/ESP_WIFI/ESP_WIFI_prg.c \
  ../src/HAL/ESP_WIFI/ESP_WIFI_int.h \
- a:\arm\ projects\test\src\lib\std_types.h \
- a:\arm\ projects\test\src\mcal\usart\usart_int.h \
- a:\arm\ projects\test\src\lib\std_types.h \
- a:\arm\ projects\test\src\lib\bit_math.h \
- a:\arm\ projects\test\src\lib\delay.c \
- a:\arm\ projects\test\src\lib\math_fn.h \
- a:\arm\ projects\test\src\lib\STD_TYPES.h \
- a:\arm\ projects\test\src\mcal\usart\usart_cfg.h \
- a:\arm\ projects\test\src\mcal\usart\usart_prv.h \
+ ../src/HAL/ESP_WIFI/../../LIB/STD_TYPES.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/USART_int.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/BIT_MATH.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.c \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/MATH_Fn.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_cfg.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_prv.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../../LIB/STD_TYPES.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../USART/USART_cfg.h \
  ../src/HAL/ESP_WIFI/../TFT/TFT_int.h \
- a:\arm\ projects\test\src\hal\fonts\fonts.h \
- a:\arm\ projects\test\src\lib\std_types.h \
- a:\arm\ projects\test\src\lib\std_types.h \
- a:\arm\ projects\test\src\mcal\gpio\gpio_int.h \
- a:\arm\ projects\test\src\lib\std_types.h
+ ../src/HAL/ESP_WIFI/../TFT/../Fonts/Fonts.h \
+ ../src/HAL/ESP_WIFI/../TFT/../Fonts/../../LIB/STD_TYPES.h \
+ ../src/HAL/ESP_WIFI/../TFT/../../LIB/STD_TYPES.h \
+ ../src/HAL/ESP_WIFI/../TFT/../../MCAL/GPIO/GPIO_int.h \
+ ../src/HAL/ESP_WIFI/../TFT/../../MCAL/GPIO/../../LIB/STD_TYPES.h
 
 ../src/HAL/ESP_WIFI/ESP_WIFI_int.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/ESP_WIFI/../../LIB/STD_TYPES.h:
 
-a:\arm\ projects\test\src\mcal\usart\usart_int.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/USART_int.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h:
 
-a:\arm\ projects\test\src\lib\bit_math.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/BIT_MATH.h:
 
-a:\arm\ projects\test\src\lib\delay.c:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.c:
 
-a:\arm\ projects\test\src\lib\math_fn.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/MATH_Fn.h:
 
-a:\arm\ projects\test\src\lib\STD_TYPES.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h:
 
-a:\arm\ projects\test\src\mcal\usart\usart_cfg.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_cfg.h:
 
-a:\arm\ projects\test\src\mcal\usart\usart_prv.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_prv.h:
+
+../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../../LIB/STD_TYPES.h:
+
+../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../USART/USART_cfg.h:
 
 ../src/HAL/ESP_WIFI/../TFT/TFT_int.h:
 
-a:\arm\ projects\test\src\hal\fonts\fonts.h:
+../src/HAL/ESP_WIFI/../TFT/../Fonts/Fonts.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/ESP_WIFI/../TFT/../Fonts/../../LIB/STD_TYPES.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/ESP_WIFI/../TFT/../../LIB/STD_TYPES.h:
 
-a:\arm\ projects\test\src\mcal\gpio\gpio_int.h:
+../src/HAL/ESP_WIFI/../TFT/../../MCAL/GPIO/GPIO_int.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/ESP_WIFI/../TFT/../../MCAL/GPIO/../../LIB/STD_TYPES.h:

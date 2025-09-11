@@ -139,7 +139,7 @@ typedef struct {
 #define HDSEL   3
 #define NACK    4
 #define SCEN    5
-#define DMAR    6
+//#define DMAR    6
 #define DMAT    7
 #define RTSE    8
 #define CTSE    9

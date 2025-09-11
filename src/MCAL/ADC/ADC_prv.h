@@ -1,0 +1,82 @@
+/*
+ * ADC_prv.h
+ *
+ *  Created on: Sep 9, 2025
+ *      Author: Koshok
+ */
+
+#ifndef MCAL_ADC_ADC_PRV_H_
+#define MCAL_ADC_ADC_PRV_H_
+#include "../../LIB/STD_TYPES.h"
+#include "../../LIB/BIT_MATH.h" 
+
+
+#define ADC1_BASE_ADDR 0x40012000U
+
+typedef struct {
+    volatile u32 ADC_SR;
+    volatile u32 ADC_CR1;
+    volatile u32 ADC_CR2;
+    volatile u32 ADC_SMPR1;
+    volatile u32 ADC_SMPR2;
+    volatile u32 ADC_JOFR1;
+    volatile u32 ADC_JOFR2;
+    volatile u32 ADC_JOFR3;
+    volatile u32 ADC_JOFR4;
+    volatile u32 ADC_HTR;
+    volatile u32 ADC_LTR;
+    volatile u32 ADC_SQR1;
+    volatile u32 ADC_SQR2;
+    volatile u32 ADC_SQR3;
+    volatile u32 ADC_JSQR;
+    volatile u32 ADC_JDR1;
+    volatile u32 ADC_JDR2;
+    volatile u32 ADC_JDR3;
+    volatile u32 ADC_JDR4;
+    volatile u32 ADC_DR;
+} ADC_MemMap_t;
+
+#define ADC1 ((volatile ADC_MemMap_t *)ADC1_BASE_ADDR)
+
+#define ADC_RESOLUTION_12BIT 0b00U  
+#define ADC_RESOLUTION_10BIT 0b01U
+#define ADC_RESOLUTION_8BIT  0b10U
+#define ADC_RESOLUTION_6BIT  0b11U
+
+#define ADC_SAMPLE_TIME_3CYCLES   0b000U
+#define ADC_SAMPLE_TIME_15CYCLES  0b001U
+#define ADC_SAMPLE_TIME_28CYCLES  0b010U
+#define ADC_SAMPLE_TIME_56CYCLES  0b011U
+#define ADC_SAMPLE_TIME_84CYCLES  0b100U
+#define ADC_SAMPLE_TIME_112CYCLES 0b101U
+#define ADC_SAMPLE_TIME_144CYCLES 0b110U
+#define ADC_SAMPLE_TIME_480CYCLES 0b111U
+
+#define ADC_CONVERSION_SINGLE     0b0U
+#define ADC_CONVERSION_CONTINUOUS 0b1U  
+
+#define ADC_TRIGGER_SOURCE_SW      0b0000U
+#define ADC_TRIGGER_SOURCE_TIMER1  0b0001U
+#define ADC_TRIGGER_SOURCE_TIMER2  0b0010U
+#define ADC_TRIGGER_SOURCE_TIMER3  0b0011U
+#define ADC_TRIGGER_SOURCE_TIMER4  0b0100U
+#define ADC_TRIGGER_SOURCE_EXTI11  0b0101U
+#define ADC_TRIGGER_SOURCE_TIMER8  0b0110U
+#define ADC_TRIGGER_SOURCE_TIMER5  0b0111U
+#define ADC_TRIGGER_SOURCE_TIMER6  0b1000U
+#define ADC_TRIGGER_SOURCE_TIMER7  0b1001U
+#define ADC_TRIGGER_SOURCE_EXTI15  0b1010U
+#define ADC_TRIGGER_SOURCE_EXTI9   0b1011U
+#define ADC_TRIGGER_SOURCE_EXTI13  0b1100U
+#define ADC_TRIGGER_SOURCE_EXTI1   0b1101U
+#define ADC_TRIGGER_SOURCE_EXTI3   0b1110U
+#define ADC_TRIGGER_SOURCE_EXTI5   0b1111U
+
+#define ADC_VOLTAGE_REF_VDD       0b00U
+#define ADC_VOLTAGE_REF_INTERNAL  0b01U
+
+#define ADC_DATA_ALIGN_RIGHT      0b0U
+#define ADC_DATA_ALIGN_LEFT       0b1U
+
+
+#endif /* MCAL_ADC_ADC_PRV_H_ */

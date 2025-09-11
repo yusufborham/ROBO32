@@ -36,8 +36,13 @@
 #include "../HAL/TFT/TFT_int.h"
 
 #include "../MCAL/RTC/RTC_int.h"
-#include "../MCAL/USART/USART_int.h"
 #include "../HAL/ESP_WIFI/ESP_WIFI_int.h"
+
+#include "../HAL/SERMUX/SerMux_int.h"
+
+#include "../MCAL/PWM/PWM_prv.h"
+#include "../MCAL/PWM/PWM_cfg.h"
+#include "../MCAL/PWM/PWM_int.h"
 
 
 

@@ -1,34 +1,34 @@
 src/HAL/LEDMATRIX/LEDMATRIX_prg.o: ../src/HAL/LEDMATRIX/LEDMATRIX_prg.c \
  ../src/HAL/LEDMATRIX/LEDMATRIX_int.h \
- a:\arm\ projects\test\src\lib\std_types.h \
+ ../src/HAL/LEDMATRIX/../../LIB/STD_TYPES.h \
  ../src/HAL/LEDMATRIX/LEDMATRIX_cfg.h \
- a:\arm\ projects\test\src\hal\s2p\s2p_int.h \
- a:\arm\ projects\test\src\lib\std_types.h \
- a:\arm\ projects\test\src\lib\bit_math.h \
- a:\arm\ projects\test\src\mcal\gpio\gpio_int.h \
- a:\arm\ projects\test\src\lib\std_types.h \
- a:\arm\ projects\test\src\mcal\systick\systick_int.h \
+ ../src/HAL/LEDMATRIX/../../HAL/S2P/S2P_int.h \
+ ../src/HAL/LEDMATRIX/../../HAL/S2P/../../LIB/STD_TYPES.h \
+ ../src/HAL/LEDMATRIX/../../HAL/S2P/../../LIB/BIT_MATH.h \
+ ../src/HAL/LEDMATRIX/../../HAL/S2P/../../MCAL/GPIO/GPIO_int.h \
+ c:\users\koshok\desktop\arm\ tools\robo32\robo32\src\lib\std_types.h \
+ ../src/HAL/LEDMATRIX/../../HAL/S2P/../../MCAL/SYSTICK/SYSTICK_int.h \
  ../src/HAL/LEDMATRIX/LEDMATRIX_prv.h \
- a:\arm\ projects\test\src\mcal\systick\systick_int.h
+ ../src/HAL/LEDMATRIX/../../MCAL/SYSTICK/SYSTICK_int.h
 
 ../src/HAL/LEDMATRIX/LEDMATRIX_int.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/LEDMATRIX/../../LIB/STD_TYPES.h:
 
 ../src/HAL/LEDMATRIX/LEDMATRIX_cfg.h:
 
-a:\arm\ projects\test\src\hal\s2p\s2p_int.h:
+../src/HAL/LEDMATRIX/../../HAL/S2P/S2P_int.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+../src/HAL/LEDMATRIX/../../HAL/S2P/../../LIB/STD_TYPES.h:
 
-a:\arm\ projects\test\src\lib\bit_math.h:
+../src/HAL/LEDMATRIX/../../HAL/S2P/../../LIB/BIT_MATH.h:
 
-a:\arm\ projects\test\src\mcal\gpio\gpio_int.h:
+../src/HAL/LEDMATRIX/../../HAL/S2P/../../MCAL/GPIO/GPIO_int.h:
 
-a:\arm\ projects\test\src\lib\std_types.h:
+c:\users\koshok\desktop\arm\ tools\robo32\robo32\src\lib\std_types.h:
 
-a:\arm\ projects\test\src\mcal\systick\systick_int.h:
+../src/HAL/LEDMATRIX/../../HAL/S2P/../../MCAL/SYSTICK/SYSTICK_int.h:
 
 ../src/HAL/LEDMATRIX/LEDMATRIX_prv.h:
 
-a:\arm\ projects\test\src\mcal\systick\systick_int.h:
+../src/HAL/LEDMATRIX/../../MCAL/SYSTICK/SYSTICK_int.h:

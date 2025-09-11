@@ -1,0 +1,17 @@
+
+
+Configure the ADC peripheral:
+    Set resolution (12-bit, 10-bit, 8-bit, or 6-bit)
+    Configure sampling time for each channel
+    Set conversion mode (single, continuous, scan)
+    Configure trigger source (software, timer, external)
+    Set data alignment (left or right justified)
+
+adc init:
+    setting the ADON bit in the ADC_CR2 register
+    Conversion starts when either the SWSTART or the JSWSTART bit is set.
+    (RCC) clock---> ADCCLK  from the APB2 and cfg the prescaler enable register (RCC_APB2ENR).
+    
+
+
+
