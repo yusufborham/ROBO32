@@ -20,6 +20,7 @@ RM := rm -rf
 -include src/MCAL/SPI/subdir.mk
 -include src/MCAL/RTC/subdir.mk
 -include src/MCAL/RCC/subdir.mk
+-include src/MCAL/PWM/subdir.mk
 -include src/MCAL/NVIC/subdir.mk
 -include src/MCAL/GPIO/subdir.mk
 -include src/MCAL/EXTI/subdir.mk
@@ -37,6 +38,7 @@ RM := rm -rf
 -include src/HAL/ESP_WIFI/subdir.mk
 -include src/HAL/DAC_8bit/subdir.mk
 -include src/HAL/Button/subdir.mk
+-include src/Examples/subdir.mk
 -include src/APP/subdir.mk
 -include src/subdir.mk
 -include subdir.mk

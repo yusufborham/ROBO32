@@ -14,6 +14,11 @@ typedef struct{
 	u8 CLK_SRC;					// CLK_SRC_AHB or CLK_SRC_AHB_8
 } MSYSTICK_Config_t;
 
+typedef enum {
+    SYSTICK_CLK_SOURCE_AHB_DIV_8 = 0, /**< SysTick clock source = AHB/8 */
+    SYSTICK_CLK_SOURCE_AHB_DIV_1 = 1  /**< SysTick clock source = AHB */
+} SYSTICK_clkSource_t ;
+
 void MSYSTICK_vInit(MSYSTICK_Config_t *A_xCfg);
 
 void MSYSTICK_vStartTimer(u32 A_u32LoadValue);
@@ -29,6 +34,9 @@ u32 MSYSTICK_u32GetRemainingTime_SingleShot(void);
 void MSYSTICK_vSetInterval_Single(u32 A_u32Delay_ms, void(*A_xFptr)(void));
 void MSYSTICK_vSetInterval_Multi(u32 A_u32Delay_ms, void(*A_xFptr)(void));
 void MSYSTICK_vSetInterval_Multi_Tick(u32 A_u32Delay_ms, void(*A_xFptr)(void));
+void MSYSTICK_vHandlerRoutine(void);
+void MSYSTICK_vEnableBackgroundMillis(void);
+u32 micros(void);
 
 #define INT_ENABLE	1
 #define INT_DISABLE	0

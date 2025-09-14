@@ -66,7 +66,12 @@ src/APP/main.o: ../src/APP/main.c ../src/APP/Includes_int.h \
  ../src/APP/../MCAL/PWM/../NVIC/NVIC_int.h \
  ../src/APP/../MCAL/PWM/../NVIC/../../LIB/STD_TYPES.h \
  ../src/APP/../MCAL/PWM/../NVIC/../../LIB/BIT_MATH.h \
- ../src/APP/../MCAL/PWM/../GPIO/GPIO_int.h
+ ../src/APP/../MCAL/PWM/../GPIO/GPIO_int.h \
+ ../src/APP/../Robo_int/Motor_cmd.h \
+ ../src/APP/../Robo_int/../lib/BIT_MATH.h \
+ ../src/APP/../Robo_int/../lib/STD_TYPES.h \
+ ../src/APP/../Robo_int/includes_int.h \
+ ../src/APP/../Robo_int/Servos_cmd.h
 
 ../src/APP/Includes_int.h:
 
@@ -219,3 +224,13 @@ c:\users\koshok\desktop\arm\ tools\robo32\robo32\src\lib\std_types.h:
 ../src/APP/../MCAL/PWM/../NVIC/../../LIB/BIT_MATH.h:
 
 ../src/APP/../MCAL/PWM/../GPIO/GPIO_int.h:
+
+../src/APP/../Robo_int/Motor_cmd.h:
+
+../src/APP/../Robo_int/../lib/BIT_MATH.h:
+
+../src/APP/../Robo_int/../lib/STD_TYPES.h:
+
+../src/APP/../Robo_int/includes_int.h:
+
+../src/APP/../Robo_int/Servos_cmd.h:
