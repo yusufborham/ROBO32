@@ -33,7 +33,7 @@ typedef struct
     u32 CCR4;
     u32 BDTR;
     u32 DCR;
-    u32 DMAR;   
+   // u32 DMAR ;
 }TIM1_MemMap_t;
 
 #define TIM1 ((TIM1_MemMap_t *)TIM1_BASE_ADDRESS)

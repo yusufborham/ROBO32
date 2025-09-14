@@ -9,5 +9,6 @@ f64 MATH_f64GetDecimalPart(f64 num);
 void itoa(s32 number , u8* buffer );
 s32 atoi(const char* str) ;
 void ftoa(f32 number, u8* buffer);
+f32 abs(f32 num);
 
 #endif /* MATH_FN_H */

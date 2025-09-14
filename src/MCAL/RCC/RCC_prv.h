@@ -78,7 +78,7 @@ typedef struct
 #define GPIOFEN 5
 #define GPIOGEN 6
 #define GPIOHEN 7
-#define CRCEN   12
+#define CRCEN_RCC   12
 #define DMA1EN  21
 #define DMA2EN  22
 

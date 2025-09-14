@@ -1,13 +1,18 @@
+#include "USART_prv.h"
+#include "USART_int.h"
+#include "USART_cfg.h"
+
 #include "../NVIC/NVIC_int.h"
 #include "../SYSTICK/SYSTICK_int.h"
-#include "../USART/USART_cfg.h"
-#include "../USART/USART_int.h"
-#include "../USART/USART_prv.h"
 
 
-static USART_parsingIntStatus_t G_aUSART_parsingStates[USART_NUMBER] = {{0}};
-static USART_Buffer_t G_aUSART_Buffer_data[USART_NUMBER] = {{0}};
-static USART_InterruptStatus_t G_aUSART_InterruptStatus[USART_NUMBER] = {{0}};
+static USART_parsingIntStatus_t G_aUSART_parsingStates[USART_NUMBER] = {0};
+static USART_Buffer_t G_aUSART_Buffer_data[USART_NUMBER] = {0};
+static USART_InterruptStatus_t G_aUSART_InterruptStatus[USART_NUMBER] = {0};
+static USART_StringFunctionStatus_t G_aUSART_StringFunStatus[USART_NUMBER] = {0} ;
+
+// ... Other static variables and functions from your driver ...
+static USART_StringParseStatus_t G_aUSART_StringParseStatus[USART_NUMBER] = {{0}};
 
 USART_Status_t USART_vHandlerRoutine(USART_Peripheral_t thisID);
 void MUSART_vBaudRateCalculations(u32 A_u32BaudRateValue ,u8 A_u8SampleRate ,u32 A_u32USART_Fclk,USART_BaudRate_cfg_t* A_sBaudRateCfg);
@@ -56,13 +61,13 @@ void MUSART_vBaudRateCalculations(u32 A_u32BaudRateValue ,u8 A_u8SampleRate ,u32
 static inline void MUSART_vEnableNVIC(USART_Peripheral_t peripheral){
     switch (peripheral) {
         case USART_PERIPH_1:
-            MNVIC_vEnableInterrupt(37);
+            MNVIC_vEnableInterrupt(USART1_IRQn);
             break;
         case USART_PERIPH_2:
-            MNVIC_vEnableInterrupt(38);
+            MNVIC_vEnableInterrupt(USART2_IRQn);
             break;
         case USART_PERIPH_6:
-            MNVIC_vEnableInterrupt(71);
+            MNVIC_vEnableInterrupt(USART6_IRQn);
             break;
         default:
             // Invalid peripheral, do nothing or handle error
@@ -73,13 +78,13 @@ static inline void MUSART_vEnableNVIC(USART_Peripheral_t peripheral){
 static inline void MUSART_vDisableNVIC(USART_Peripheral_t peripheral){
     switch (peripheral) {
         case USART_PERIPH_1:
-            MNVIC_vDisableInterrupt(37);
+            MNVIC_vDisableInterrupt(USART1_IRQn);
             break;
         case USART_PERIPH_2:
-            MNVIC_vDisableInterrupt(38);
+            MNVIC_vDisableInterrupt(USART2_IRQn);
             break;
         case USART_PERIPH_6:
-            MNVIC_vDisableInterrupt(71);
+            MNVIC_vDisableInterrupt(USART6_IRQn);
             break;
         default:
             // Invalid peripheral, do nothing or handle error
@@ -87,11 +92,11 @@ static inline void MUSART_vDisableNVIC(USART_Peripheral_t peripheral){
     }
 }
 
-
+ 
 
 USART_Status_t MUSART_Init(USART_Config_t* cfg){
     // ############# Future Note ###############
-    // I must enable the interrupt from the NVIC driver also //
+    // I must enable the interrupt from the NVIC driver also // 
     // maybe set a priorty also ///
     if (cfg == NULL) return USART_ERR_NULLCFG;
 
@@ -111,7 +116,7 @@ USART_Status_t MUSART_Init(USART_Config_t* cfg){
 
     MUSART_vEnableNVIC(cfg->peripheral);
 
-    MSYSTICK_vEnableBackgroundMillis();
+//    MSYSTICK_vEnableBckgroundMillis();
     // ENABLE USART
     SET_BIT(USARTx->CR1 , UE);
 
@@ -200,25 +205,25 @@ u8 MUSART_u8ReadByte(USART_Peripheral_t A_thisID){
 
     USART_Buffer_t* L_spUSART_buffData = &G_aUSART_Buffer_data[A_thisID] ;
     u8 L_u8readData = 0 ;
-
+    
     if (L_spUSART_buffData->rxGetPtr == L_spUSART_buffData->rxPutPtr )
         return 0 ;
-
+    
     else {
         MUSART_vDisableNVIC(A_thisID);
          // critical section: disable RXNE interrupt only
         L_u8readData = L_spUSART_buffData->USART_RX_BUFFER[L_spUSART_buffData->rxGetPtr++];
-        L_spUSART_buffData->rxGetPtr =(L_spUSART_buffData->rxGetPtr ) % MAX_RX_BUFFER_SIZE ;
+        L_spUSART_buffData->rxGetPtr =(L_spUSART_buffData->rxGetPtr ) % USART_MAX_RX_BUFFER_SIZE ;
         MUSART_vEnableNVIC(A_thisID);
          // re-enable RXNE interrupt
         return L_u8readData ;
-    }
+    }            
 }
 u8 MUSART_u8BytesAvailable(USART_Peripheral_t A_thisID){
     if (A_thisID < USART_PERIPH_1 || A_thisID > USART_PERIPH_6) return USART_ERR_BAD_PERIPH ;
     USART_Buffer_t* L_spUSART_buffData = &G_aUSART_Buffer_data[A_thisID] ;
 
-    return (L_spUSART_buffData->rxPutPtr - L_spUSART_buffData->rxGetPtr + MAX_RX_BUFFER_SIZE) % MAX_RX_BUFFER_SIZE;
+    return (L_spUSART_buffData->rxPutPtr - L_spUSART_buffData->rxGetPtr + USART_MAX_RX_BUFFER_SIZE) % USART_MAX_RX_BUFFER_SIZE;
 }
 
 USART_Status_t MUSART_u8WriteByte(USART_Peripheral_t A_thisID , u8 A_u8ByteToPush) {
@@ -227,7 +232,7 @@ USART_Status_t MUSART_u8WriteByte(USART_Peripheral_t A_thisID , u8 A_u8ByteToPus
 
     USART_Buffer_t* L_spUSART_buffData = &G_aUSART_Buffer_data[A_thisID];
 
-    u16 nextPtr = (L_spUSART_buffData->txPutPtr + 1) % MAX_TX_BUFFER_SIZE;
+    u16 nextPtr = (L_spUSART_buffData->txPutPtr + 1) % USART_MAX_TX_BUFFER_SIZE;
     if (nextPtr == L_spUSART_buffData->txGetPtr) {
         return USART_ERR_BUFFER_FULL; // no space
     }
@@ -246,7 +251,6 @@ USART_Status_t MUSART_u8WriteByte(USART_Peripheral_t A_thisID , u8 A_u8ByteToPus
     return USART_OK;
 }
 
-
 USART_Status_t MUSART_u8WriteString(USART_Peripheral_t A_thisID ,const u8* A_u8StringToPush){
     while (*A_u8StringToPush != '\0'){
     	USART_Status_t status = MUSART_u8WriteByte(A_thisID , *(A_u8StringToPush++)) ;
@@ -254,84 +258,233 @@ USART_Status_t MUSART_u8WriteString(USART_Peripheral_t A_thisID ,const u8* A_u8S
             if (status == USART_ERR_BUFFER_FULL ) {
                 #if OVERWRITE_OLD_DATA_TX
                     continue;
-                #else
+                #else 
                     return USART_ERR_BUFFER_FULL ;
                 #endif
             }
-            else
+            else 
                 return status ;
         }
     }
     return USART_OK ;
 }
 
-USART_Status_t MUSART_u8ReadStringUntil(USART_Peripheral_t A_thisID, u8 *A_u8pStringBuffer,u32 A_u32BufferSize ,u8 A_u8TerminatingChar){
-    static u32 idx = 0 ;
-    while (MUSART_u8BytesAvailable(A_thisID)){
-       A_u8pStringBuffer[idx] = MUSART_u8ReadByte(A_thisID) ;
-       if ( (A_u8pStringBuffer[idx] == A_u8TerminatingChar) || idx >= A_u32BufferSize - 1 ){
-            A_u8pStringBuffer[idx] = '\0' ;
-            idx = 0 ;
-            if (idx >= A_u32BufferSize - 1)
-                return USART_STRING_BUFFER_OVF ;
-            break ;
-       }
-       idx++;
+USART_Status_t MUSART_u8ReadStringUntil(USART_Peripheral_t A_thisID, u8 *A_u8pStringBuffer, u32 A_u32BufferSize, u8 A_u8TerminatingChar) {
+    // --- Precondition Checks (Safety) ---
+    if (A_u8pStringBuffer == NULL || A_u32BufferSize == 0) {
+        return INVALID_ARGUMENT;
     }
-    return USART_OK  ;
-}
+    if (A_thisID >= USART_NUMBER) { // Use zero-indexed check
+        return INVALID_ARGUMENT;
+    }
 
-USART_Status_t MUSART_u32ParseIntBlocking(USART_Peripheral_t A_thisID,  s32* A_ps32Result,  u32 timeout_ms) {
+    // Use a dedicated, persistent state for this function
+    USART_StringParseStatus_t* state = &G_aUSART_StringParseStatus[A_thisID];
 
-    if (A_thisID < USART_PERIPH_1 || A_thisID > USART_PERIPH_6) return USART_ERR_BAD_PERIPH ;
-    if (A_ps32Result == NULL) return INVALID_ARGUMENT ;
-
-    USART_parsingIntStatus_t* L_spUSART_parsingStatus = &G_aUSART_parsingStates[A_thisID] ;
-
-
-    L_spUSART_parsingStatus->result = 0;
-    L_spUSART_parsingStatus->sign = 1;
-    L_spUSART_parsingStatus->isFirstByte = 1;
-
-    // Scale timeout to something based on your system tick
-    L_spUSART_parsingStatus->entryTime = MSYSTICK_millis(); // if you treat loop ~1µs
-
-    while (MSYSTICK_millis() - L_spUSART_parsingStatus->entryTime < timeout_ms) {
-        if (!MUSART_u8BytesAvailable(A_thisID))
-            continue; // wait until data arrives
+    // --- Non-Blocking Read Loop (Processes available data only) ---
+    while (MUSART_u8BytesAvailable(A_thisID)) {
+        // Check for buffer overflow BEFORE reading a new byte
+        if (state->idx >= A_u32BufferSize - 1) {
+            // Buffer is full. Discard further data until reset.
+            state->overflow = 1; // Mark overflow state
+            (void)MUSART_u8ReadByte(A_thisID); // Read byte to discard it
+            continue; // Get next byte
+        }
 
         u8 byte = MUSART_u8ReadByte(A_thisID);
 
-        if (L_spUSART_parsingStatus->isFirstByte) {
-            if (byte == '-') {
-                L_spUSART_parsingStatus->sign = -1;
-                L_spUSART_parsingStatus->isFirstByte = 0;
-                continue;
-            } else if (byte >= '0' && byte <= '9') {
-                L_spUSART_parsingStatus->result = (byte - '0');
-                L_spUSART_parsingStatus->isFirstByte = 0;
-                continue;
-            } else {
-                // Ignore other leading chars
-                continue;
+        if (byte == A_u8TerminatingChar) {
+            // End of line found.
+            A_u8pStringBuffer[state->idx] = '\0'; // Null-terminate the string
+
+            // Store the final status before resetting the state
+            USART_Status_t final_status = state->overflow ? USART_STRING_BUFFER_OVF : DONE_PARSING;
+
+            // Reset state for the next call
+            state->idx = 0;
+            state->overflow = 0;
+            
+            return final_status;
+        } else {
+            // Regular character, add it to the buffer
+            A_u8pStringBuffer[state->idx++] = byte;
+        }
+    }
+
+    // If we exit the loop, it means no more bytes are available right now.
+    return STILL_PARSING;
+}
+
+/* the serial read till terminal pattern was inspred from this C code i have written 
+
+#include <stdio.h>
+
+int main(void){
+    char c = 0 ;
+    char comp[] = "OK" ;
+    char buffer[50];
+    int idx = 0 ;
+    int jdx = 0 ;
+    int entered = 0 ;
+    int startIdx = 0 ;
+    int exit = 0 ;
+    while ( (c = getchar() ) != '\n' ){
+        if (c == comp[jdx]) {
+            if (!entered){
+                startIdx = idx ;
+                entered = 1 ;
+            }   
+            jdx++ ;
+            if (comp[jdx] == '\0') 
+                exit = 1 ;
+        }
+        else {
+            if (entered) {
+                if (c == comp[0]) {
+                    jdx = 1 ;
+                    startIdx = idx ;
+                }
+                else {
+                    jdx = 0 ;
+                    entered = 0 ;
+                    startIdx = 0 ;
+                }
             }
         }
 
-        if (byte >= '0' && byte <= '9') {
-            L_spUSART_parsingStatus->result = L_spUSART_parsingStatus->result * 10 + (byte - '0');
-        } else {
-            break; // stop on non-digit
+        buffer[idx++] = c ; 
+
+        if (exit){
+            buffer[startIdx] = '\0' ;
+            break ;
+        }           
+    }
+
+    printf("String: %s\n", buffer) ;
+
+    return 0 ;
+}
+*/
+USART_Status_t MUSART_u8ReadStringUntilBufferPatern(USART_Peripheral_t A_thisID, u8 *A_u8pStringBuffer, u32 A_u32BufferSize ,const u8 *A_u8pTerminatingBuffer){
+    if (A_thisID < USART_PERIPH_1 || A_thisID > USART_PERIPH_6) return USART_ERR_BAD_PERIPH ;
+    if (A_u8pStringBuffer == NULL || A_u8pTerminatingBuffer == NULL) return INVALID_ARGUMENT ;
+    if (A_u32BufferSize == 0 || A_u32BufferSize > STRING_BUFFER_MAX_SIZE) return INVALID_BUFFER_SIZE ;
+    
+    volatile USART_StringFunctionStatus_t* L_spUSART_stringFunStatus = &G_aUSART_StringFunStatus[A_thisID] ;
+    while (MUSART_u8BytesAvailable(A_thisID)){
+        u8 L_u8ByteRead = MUSART_u8ReadByte(A_thisID) ;
+        if (L_u8ByteRead == A_u8pTerminatingBuffer[L_spUSART_stringFunStatus->jdx] ){
+            // for the first iteration we check if the read character equals the first element in the terminating string buffered
+            if (!L_spUSART_stringFunStatus->entered){                                               // if we did not enter a part of a string ( first time or maybe a wrong start )
+                L_spUSART_stringFunStatus->startIdx = L_spUSART_stringFunStatus->idx ;      // register the begining of the pattern in the main sent buffer
+                L_spUSART_stringFunStatus->entered = 1 ;
+            }
+            // update the index
+            L_spUSART_stringFunStatus->jdx++ ;
+            // if the next character in the array is \0 m3naha eno 5las n exit b2a
+            if (A_u8pTerminatingBuffer[L_spUSART_stringFunStatus->jdx] == '\0')
+                L_spUSART_stringFunStatus->exit = 1 ;
+        }
+        
+        // if not equal first check if we were inside a pattern thus it was a false beginning we reset the values 
+        else {
+            if (L_spUSART_stringFunStatus->entered){
+                if (L_u8ByteRead == A_u8pTerminatingBuffer[0]) {
+                    // if the current character equals the first character in the pattern we consider it as a new begining
+                    L_spUSART_stringFunStatus->startIdx = L_spUSART_stringFunStatus->idx ;
+                    L_spUSART_stringFunStatus->jdx = 1 ; // we set it to one because we already matched the first character
+                }
+                else {
+                    // if not we just reset all the values
+                    L_spUSART_stringFunStatus->entered = 0 ;
+                    L_spUSART_stringFunStatus->jdx = 0 ;
+                    L_spUSART_stringFunStatus->startIdx = 0 ;
+                }
+            }
+        }
+        
+        // check for buffer overflow
+        if (L_spUSART_stringFunStatus->idx >= A_u32BufferSize - 1){
+            L_spUSART_stringFunStatus->idx = 0 ;
+            L_spUSART_stringFunStatus->jdx = 0 ;
+            L_spUSART_stringFunStatus->entered = 0 ;
+            L_spUSART_stringFunStatus->startIdx = 0 ;
+            L_spUSART_stringFunStatus->exit = 0 ;
+
+            return USART_STRING_BUFFER_OVF ;
+        }
+
+        // after all push the byte value in the buffer
+        A_u8pStringBuffer[L_spUSART_stringFunStatus->idx++] = L_u8ByteRead;
+
+        // if we are to exit ( we found the pattern )
+        if (G_aUSART_StringFunStatus[A_thisID].exit){
+            // reset all the values for the next call
+            A_u8pStringBuffer[L_spUSART_stringFunStatus->startIdx] = '\0' ;
+            L_spUSART_stringFunStatus->idx = 0 ;
+            L_spUSART_stringFunStatus->jdx = 0 ;
+            L_spUSART_stringFunStatus->entered = 0 ;
+            L_spUSART_stringFunStatus->startIdx = 0 ;
+            L_spUSART_stringFunStatus->exit = 0 ;
+
+            return DONE_PARSING ;
         }
     }
-    if ((MSYSTICK_millis() - L_spUSART_parsingStatus->entryTime + timeout_ms ) >= 0)
-        return USART_ERR_TIMEOUT; // timeout occurred
 
-    *A_ps32Result = L_spUSART_parsingStatus->result * L_spUSART_parsingStatus->sign;
-
-    return USART_OK ;
+    return STILL_PARSING ;
 }
 
-USART_ParsingStatus_t MUSART_u8ParseInt(USART_Peripheral_t A_thisID , s32* A_ps32Result) {
+//USART_Status_t MUSART_u32ParseIntBlocking(USART_Peripheral_t A_thisID,  s32* A_ps32Result,  u32 timeout_ms) {
+//
+//    if (A_thisID < USART_PERIPH_1 || A_thisID > USART_PERIPH_6) return USART_ERR_BAD_PERIPH ;
+//    if (A_ps32Result == NULL) return INVALID_ARGUMENT ;
+//
+//    USART_parsingIntStatus_t* L_spUSART_parsingStatus = &G_aUSART_parsingStates[A_thisID] ;
+//
+//
+//    L_spUSART_parsingStatus->result = 0;
+//    L_spUSART_parsingStatus->sign = 1;
+//    L_spUSART_parsingStatus->isFirstByte = 1;
+//
+//    // Scale timeout to something based on your system tick
+//    L_spUSART_parsingStatus->entryTime = MSYSTICK_millis(); // if you treat loop ~1Âµs
+//
+//    while (MSYSTICK_millis() - L_spUSART_parsingStatus->entryTime < timeout_ms) {
+//        if (!MUSART_u8BytesAvailable(A_thisID))
+//            continue; // wait until data arrives
+//
+//        u8 byte = MUSART_u8ReadByte(A_thisID);
+//
+//        if (L_spUSART_parsingStatus->isFirstByte) {
+//            if (byte == '-') {
+//                L_spUSART_parsingStatus->sign = -1;
+//                L_spUSART_parsingStatus->isFirstByte = 0;
+//                continue;
+//            } else if (byte >= '0' && byte <= '9') {
+//                L_spUSART_parsingStatus->result = (byte - '0');
+//                L_spUSART_parsingStatus->isFirstByte = 0;
+//                continue;
+//            } else {
+//                // Ignore other leading chars
+//                continue;
+//            }
+//        }
+//
+//        if (byte >= '0' && byte <= '9') {
+//            L_spUSART_parsingStatus->result = L_spUSART_parsingStatus->result * 10 + (byte - '0');
+//        } else {
+//            break; // stop on non-digit
+//        }
+//    }
+//    if ((MSYSTICK_millis() - L_spUSART_parsingStatus->entryTime + timeout_ms ) >= 0)
+//        return USART_ERR_TIMEOUT; // timeout occurred
+//
+//    *A_ps32Result = L_spUSART_parsingStatus->result * L_spUSART_parsingStatus->sign;
+//
+//    return USART_OK ;
+//}
+
+USART_Status_t MUSART_u8ParseInt(USART_Peripheral_t A_thisID , s32* A_ps32Result) {
     if (A_thisID < USART_PERIPH_1 || A_thisID > USART_PERIPH_6) return USART_ERR_BAD_PERIPH ;
 
     if (A_ps32Result == NULL) return INVALID_ARGUMENT ;
@@ -386,7 +539,7 @@ USART_ParsingStatus_t MUSART_u8ParseInt(USART_Peripheral_t A_thisID , s32* A_ps3
 //     u8 inDecimalPart = 0;
 
 //     // Scale timeout to something based on your system tick
-//     u32 countdown = timeout_ms * 1000; // if you treat loop ~1µs
+//     u32 countdown = timeout_ms * 1000; // if you treat loop ~1Âµs
 
 //     while (countdown--) {
 //         if (!MUSART_u8BytesAvailable(A_thisID))
@@ -427,7 +580,7 @@ USART_ParsingStatus_t MUSART_u8ParseInt(USART_Peripheral_t A_thisID , s32* A_ps3
 // }
 
 USART_Status_t MUSART_vFlush(USART_Peripheral_t A_thisID){
-
+    
      if (A_thisID < USART_PERIPH_1 || A_thisID > USART_PERIPH_6) return USART_ERR_BAD_PERIPH ;
     USART_Buffer_t* L_spUSART_buffData = &G_aUSART_Buffer_data[A_thisID] ;
 
@@ -459,7 +612,7 @@ USART_Status_t USART_vHandlerRoutine(USART_Peripheral_t thisID){
      if (MUSART_GetFlagStatus(thisID , USART_FLAG_READ_DATA_READY)){                   // if there is data to read
         G_aUSART_Buffer_data[thisID].USART_RX_BUFFER[G_aUSART_Buffer_data[thisID].rxPutPtr] = USARTx->DR  ;       // reading from the data register clears the flag
         G_aUSART_Buffer_data[thisID].rxPutPtr++ ;
-        G_aUSART_Buffer_data[thisID].rxPutPtr = G_aUSART_Buffer_data[thisID].rxPutPtr % MAX_RX_BUFFER_SIZE ;       // constrain to the range of the buffer
+        G_aUSART_Buffer_data[thisID].rxPutPtr = G_aUSART_Buffer_data[thisID].rxPutPtr % USART_MAX_RX_BUFFER_SIZE ;       // constrain to the range of the buffer
     }
 
     if (MUSART_GetFlagStatus(thisID , USART_FLAG_TRANSMIT_DATA_REG_EMPTY)){
@@ -472,18 +625,18 @@ USART_Status_t USART_vHandlerRoutine(USART_Peripheral_t thisID){
 
         else {
             USARTx->DR = G_aUSART_Buffer_data[thisID].USART_TX_BUFFER[G_aUSART_Buffer_data[thisID].txGetPtr++] ;
-            G_aUSART_Buffer_data[thisID].txGetPtr = (G_aUSART_Buffer_data[thisID].txGetPtr) % MAX_TX_BUFFER_SIZE ;
+            G_aUSART_Buffer_data[thisID].txGetPtr = (G_aUSART_Buffer_data[thisID].txGetPtr) % USART_MAX_TX_BUFFER_SIZE ;
         }
     }
     return USART_OK ;
 }
 
 void USART1_IRQHandler(void){
-    USART_vHandlerRoutine(USART_PERIPH_1) ;
+    USART_vHandlerRoutine(USART_PERIPH_1) ;    
 }
 
 void USART2_IRQHandler(void){
-    USART_vHandlerRoutine(USART_PERIPH_2) ;
+    USART_vHandlerRoutine(USART_PERIPH_2) ;   
 }
 
 void USART6_IRQHandler(void){

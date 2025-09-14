@@ -1,13 +1,3 @@
-/*
- * MATH_Fn.c
- *
- *  Created on: Sep 6, 2025
- *      Author: drago
- */
-
-
-
-
 #include "MATH_Fn.h"
 
 // u32 MATH_u32floor(f64 num) {
@@ -22,6 +12,13 @@
 //     f64 decimalPart = num - (f64)MATH_u32floor(num);
 //     return decimalPart;
 // }
+
+f32 abs(f32 num){
+    if (num < 0)
+        return -num ;
+    else 
+        return num ;
+}
 
 s32 atoi(const char* str) {
     s32 result = 0;
@@ -68,23 +65,31 @@ void itoa(s32 number , u8* buffer ){
 }
 
 void ftoa(f32 number, u8* buffer) {
-    s32 integerPart = (s32)number;
-    f32 decimalPart = number - (f32)integerPart;
+    // Handle negative numbers
+    if (number < 0) {
+        *buffer++ = '-';   // add '-' to buffer and advance pointer
+        number = -number;  // work with positive equivalent
+    }
 
+    // Extract integer part
+    int integerPart = (int)number;
+    float decimalPart = number - (float)integerPart;
+
+    // Convert integer part
     itoa(integerPart, buffer);
 
-    // Find the end of the integer part
-    u8 i = 0;
+    // Find end of integer string
+    int i = 0;
     while (buffer[i] != '\0') {
         i++;
     }
 
-    buffer[i++] = '.';  // Add decimal point
+    buffer[i++] = '.';  // add decimal point
 
-    // Convert decimal part to string
-    for (u8 j = 0; j < 6; j++) {  // Limit to 6 decimal places
-        decimalPart *= 10;
-        s32 digit = (s32)decimalPart;
+    // Convert fractional part (up to 6 digits)
+    for (int j = 0; j < 6; j++) {
+        decimalPart *= 10.0f;
+        int digit = (int)decimalPart;
         buffer[i++] = digit + '0';
         decimalPart -= digit;
     }

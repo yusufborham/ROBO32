@@ -4,13 +4,11 @@ src/HAL/ESP_WIFI/ESP_WIFI_prg.o: ../src/HAL/ESP_WIFI/ESP_WIFI_prg.c \
  ../src/HAL/ESP_WIFI/../../MCAL/USART/USART_int.h \
  ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h \
  ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/BIT_MATH.h \
- ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.c \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.h \
  ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/MATH_Fn.h \
  ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h \
- ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_cfg.h \
- ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_prv.h \
- ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../../LIB/STD_TYPES.h \
- ../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../USART/USART_cfg.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/USART_prv.h \
+ ../src/HAL/ESP_WIFI/../../MCAL/USART/USART_cfg.h \
  ../src/HAL/ESP_WIFI/../TFT/TFT_int.h \
  ../src/HAL/ESP_WIFI/../TFT/../Fonts/Fonts.h \
  ../src/HAL/ESP_WIFI/../TFT/../Fonts/../../LIB/STD_TYPES.h \
@@ -28,19 +26,15 @@ src/HAL/ESP_WIFI/ESP_WIFI_prg.o: ../src/HAL/ESP_WIFI/ESP_WIFI_prg.c \
 
 ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/BIT_MATH.h:
 
-../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.c:
+../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.h:
 
 ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/MATH_Fn.h:
 
 ../src/HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h:
 
-../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_cfg.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/USART_prv.h:
 
-../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_prv.h:
-
-../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../../LIB/STD_TYPES.h:
-
-../src/HAL/ESP_WIFI/../../MCAL/USART/../USART/../USART/USART_cfg.h:
+../src/HAL/ESP_WIFI/../../MCAL/USART/USART_cfg.h:
 
 ../src/HAL/ESP_WIFI/../TFT/TFT_int.h:
 

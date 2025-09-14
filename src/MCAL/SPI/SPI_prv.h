@@ -48,7 +48,7 @@ typedef struct
 #define RXONLY          10
 #define DFF             11
 #define CRCNEXT         12
-#define CRCEN           13
+#define CRCEN_SPI           13
 #define BIDIOE          14
 #define BIDIMODE        15
 
@@ -58,14 +58,14 @@ typedef struct
 #define SSOE    2
 #define FRF     4
 #define ERRIE   5
-#define RXNEIE  6
-#define TXEIE   7
+#define RXNEIE_SPI  6
+#define TXEIE_SPI   7
 
 /* SR Bits */
-#define RXNE 0
-#define TXE  1
+#define RXNE_SPI 0
+#define TXE_SPI  1
 #define CHSIDE 2
-#define UDR  3
+#define UDR_SPI  3
 #define CRCERR 4
 #define MODF 5
 #define OVR  6

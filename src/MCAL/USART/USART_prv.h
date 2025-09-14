@@ -2,7 +2,7 @@
 #define USART_PRV_H
 
 #include "../../LIB/STD_TYPES.h"
-#include "../USART/USART_cfg.h"
+#include "USART_cfg.h"
 
 #define MEGA(x)   ((x) * 1000000UL)
 
@@ -35,9 +35,18 @@ typedef struct {
     u8 DIV_Fraction ;
 } USART_BaudRate_cfg_t;
 
+/**
+ * @brief Holds the persistent state for the non-blocking ReadString function.
+ * @note One instance of this exists for each USART peripheral.
+ */
 typedef struct {
-    volatile u8 USART_TX_BUFFER[MAX_TX_BUFFER_SIZE] ;
-    volatile u8 USART_RX_BUFFER[MAX_RX_BUFFER_SIZE] ;
+    volatile u32 idx;      /**< Current write index into the destination buffer. */
+    volatile u8 overflow;  /**< Flag to indicate if the buffer overflowed during reception. */
+} USART_StringParseStatus_t;
+
+typedef struct {
+    volatile u8 USART_TX_BUFFER[USART_MAX_TX_BUFFER_SIZE] ;
+    volatile u8 USART_RX_BUFFER[USART_MAX_RX_BUFFER_SIZE] ;
     volatile u8 txPutPtr ;
     volatile u8 txGetPtr ;
     volatile u8 rxPutPtr ;
@@ -57,6 +66,14 @@ typedef struct {
     u8 Rx_enabled ;
 } USART_InterruptStatus_t;
 
+typedef struct {
+    u32 idx ;
+    u32 jdx  ;
+    u8  entered  ;
+    u32 startIdx  ;
+    u8  exit  ;
+}USART_StringFunctionStatus_t ;
+
 typedef enum {
     USART_CLK_8MHZ  = 8,
     USART_CLK_16MHZ = 16,
@@ -74,7 +91,7 @@ typedef enum {
 }USART_Peripheral_t;
 
 
-
+    
 typedef struct {
     volatile u32 SR ;
     volatile u32 DR ;
@@ -90,7 +107,7 @@ typedef struct {
 #define USART2 ((USART_RegDef_t *)USART2_BASE_ADDRESS)
 #define USART6 ((USART_RegDef_t *)USART6_BASE_ADDRESS)
 
-// SR Bits
+// SR Bits 
 
 #define PE      0
 #define FE      1
@@ -121,7 +138,7 @@ typedef struct {
 #define UE      13
 #define OVER8   15
 
-// CR2 bits
+// CR2 bits 
 
 #define LBDL    5
 #define LBDIE   6
@@ -132,14 +149,14 @@ typedef struct {
 #define STOP    12
 #define LINEN   14
 
-// CR3 bits
+// CR3 bits 
 #define EIE     0
 #define IREN    1
 #define IRLP    2
 #define HDSEL   3
 #define NACK    4
 #define SCEN    5
-//#define DMAR    6
+#define DMAR_USART    6
 #define DMAT    7
 #define RTSE    8
 #define CTSE    9
@@ -147,13 +164,12 @@ typedef struct {
 #define ONEBIT  11
 
 
-// stop bits macros
+// stop bits macros 
 
 #define USART_CR2_STOP_Msk  0b11
 #define USART_0_5_STOP_BIT   0b01
 #define USART_1_STOP_BIT     0b00
 #define USART_1_5_STOP_BIT   0b11
 #define USART_2_STOP_BIT     0b10
-
 
 #endif /* USART_PRV_H */

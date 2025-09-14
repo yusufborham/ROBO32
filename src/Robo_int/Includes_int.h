@@ -14,7 +14,7 @@
 #include "../MCAL/GPIO/GPIO_int.h"
 #include "../HAL/Button/BTN_int.h"
 #include "../HAL/RGB_LED/RGB_int.h"
-#include "../LIB/Delay.c"
+#include "../LIB/Delay.h"
 #include "../MCAL/EXTI/EXTI_int.h"
 #include "../MCAL/NVIC/NVIC_int.h"
 #include "../MCAL/SYSCFG/SYSCFG_int.h"

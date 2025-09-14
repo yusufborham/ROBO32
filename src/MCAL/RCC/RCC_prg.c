@@ -68,7 +68,7 @@ void MRCC_vEnableClk(u8 A_u8BusID, u8 A_u8PeriphID) {
         case RCC_GPIOF: SET_BIT(RCC->AHB1ENR, GPIOFEN); break;
         case RCC_GPIOG: SET_BIT(RCC->AHB1ENR, GPIOGEN); break;
         case RCC_GPIOH: SET_BIT(RCC->AHB1ENR, GPIOHEN); break;
-        case RCC_CRC:   SET_BIT(RCC->AHB1ENR, CRCEN);   break;
+        case RCC_CRC:   SET_BIT(RCC->AHB1ENR, CRCEN_RCC);   break;
         case RCC_DMA1:  SET_BIT(RCC->AHB1ENR, DMA1EN);  break;
         case RCC_DMA2:  SET_BIT(RCC->AHB1ENR, DMA2EN);  break;
         }
@@ -129,7 +129,7 @@ void MRCC_vDisableClk(u8 A_u8BusID, u8 A_u8PeriphID) {
         case RCC_GPIOF: CLR_BIT(RCC->AHB1ENR, GPIOFEN); break;
         case RCC_GPIOG: CLR_BIT(RCC->AHB1ENR, GPIOGEN); break;
         case RCC_GPIOH: CLR_BIT(RCC->AHB1ENR, GPIOHEN); break;
-        case RCC_CRC:   CLR_BIT(RCC->AHB1ENR, CRCEN);   break;
+        case RCC_CRC:   CLR_BIT(RCC->AHB1ENR, CRCEN_RCC);   break;
         case RCC_DMA1:  CLR_BIT(RCC->AHB1ENR, DMA1EN);  break;
         case RCC_DMA2:  CLR_BIT(RCC->AHB1ENR, DMA2EN);  break;
         }

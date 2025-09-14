@@ -42,13 +42,13 @@ u8 MSPI_u8Transceive(volatile SPIx_MemMap_t* SPIx, u8 data)
 {
     u32 timeout = 100000;
 
-    while(GET_BIT(SPIx->SR, TXE) == 0 && timeout--) ;
+    while(GET_BIT(SPIx->SR, TXE_SPI) == 0 && timeout--) ;
     if(timeout == 0) return 0xFF; // error
 
     SPIx->DR = data;
 
     timeout = 100000;
-    while(GET_BIT(SPIx->SR, RXNE) == 0 && timeout--) ;
+    while(GET_BIT(SPIx->SR, RXNE_SPI) == 0 && timeout--) ;
     if(timeout == 0) return 0xFF; // error
 
     return SPIx->DR;

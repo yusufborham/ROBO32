@@ -3,10 +3,10 @@
 
 #include "../../LIB/STD_TYPES.h"
 #include "../../LIB/BIT_MATH.h"
-#include "../../LIB/Delay.c"
-#include "../../LIB/MATH_Fn.h"
-#include "../USART/USART_cfg.h"
-#include "../USART/USART_prv.h"
+#include "../../LIB/Delay.h"
+#include "../../LIB/MATH_Fn.h" 
+#include "USART_prv.h"
+#include "USART_cfg.h"
 
 #define USART_BAUDRATE_9600     9600
 #define USART_BAUDRATE_19200   19200
@@ -53,17 +53,23 @@ typedef enum {
     USART_OK,
     USART_ERR_NULLCFG,
     USART_ERR_BAD_PERIPH,
-    USART_ERR_TIMEOUT ,
+    USART_ERR_TIMEOUT , 
     USART_STRING_BUFFER_OVF,
-    USART_ERR_BUFFER_FULL
-} USART_Status_t;
-
-typedef enum {
+    USART_ERR_BUFFER_FULL ,
     STILL_PARSING ,
     DONE_PARSING ,
-    INVALID_ARGUMENT ,
-    TIMEOUT_OCCURRED
-} USART_ParsingStatus_t ;
+    INVALID_ARGUMENT,
+    TIMEOUT_OCCURRED,
+    INVALID_BUFFER_SIZE
+
+} USART_Status_t;
+
+// typedef enum {
+//     STILL_PARSING ,
+//     DONE_PARSING ,
+//     INVALID_ARGUMENT ,
+//     TIMEOUT_OCCURRED 
+// } USART_ParsingStatus_t ;
 
 
 /*
@@ -107,7 +113,7 @@ typedef enum {
     *mode is the operation mode (TX only, RX only, or TX/RX)
         ** USART_MODE_TX_ONLY
         ** USART_MODE_RX_ONLY
-        ** USART_MODE_TX_RX
+        ** USART_MODE_TX_RX 
 */
 
 typedef struct {
@@ -136,7 +142,7 @@ typedef struct {
          If cfg is NULL, it returns USART_ERR_NULLCFG.
          If an invalid peripheral is specified, it returns USART_ERR_BAD_PERIPH.
          Default values are set for any configuration parameters not explicitly provided.
-@Note
+@Note 
     - This function does not enable the NVIC interrupt for USART; it must be done separately if needed.
     - Ensure that the GPIO pins for TX and RX are configured appropriately before calling this function.
 
@@ -150,7 +156,7 @@ typedef struct {
     -GPIOx_PinConfig_t _xPin = {
 		.Port = GPIO_p,
 		.Pin = GPIO_PIN_y,
-		.Mode = GPIO_MODE_ALTERNATE,
+		.Mode = GPIO_MODE_ALTERNATE,	
 		.AltFunc = GPIO_AF7             check the datasheet for the correct AF number
 	};
 
@@ -191,20 +197,33 @@ USART_Status_t MUSART_u8WriteByte(USART_Peripheral_t A_thisID, u8 A_u8ByteToPush
 */
 USART_Status_t MUSART_u8WriteString(USART_Peripheral_t A_thisID, const u8* A_u8StringToPush);
 
+/**
+ * @brief Reads a string from the USART receive buffer until a terminating character is found.
+ * @note  This function is NON-BLOCKING and STATEFUL. It is designed to be called
+ * repeatedly from the application's main loop. It processes one byte at a time.
+ * @param A_thisID The USART peripheral to read from.
+ * @param A_u8pStringBuffer Pointer to the buffer where the resulting string will be stored.
+ * @param A_u32BufferSize The total size of the destination buffer.
+ * @param A_u8TerminatingChar The character that signals the end of a line (e.g., '\n').
+ * @return USART_ParsingStatus_t
+ * - DONE_PARSING: A complete line has been received and the buffer is ready.
+ * - STILL_PARSING: No new data or the line is not yet complete.
+ * - USART_STRING_BUFFER_OVF: The buffer filled up before the terminator was found.
+ */
+USART_Status_t MUSART_u8ReadStringUntil(USART_Peripheral_t A_thisID, u8 *A_u8pStringBuffer, u32 A_u32BufferSize, u8 A_u8TerminatingChar);
 /*
-@brief: Reads a string from the USART receive buffer until a specified terminating character is encountered or the buffer limit is reached.
+@brief: Reads a string from the USART receive buffer until a specified terminating pattern is encountered or the buffer limit is reached.
 @param: A_thisID - The USART peripheral identifier (USART_PERIPH_1, USART_PERIPH_2, or USART_PERIPH_6).
 @param: A_u8pStringBuffer - Pointer to the buffer where the received string will be stored.
 @param: A_u32BufferSize - The size of the buffer pointed to by A_u8pStringBuffer.
-@param: A_u8TerminatingChar - The character that indicates the end of the string.
+@param: A_u8pTerminatingBuffer - Pointer to the buffer containing the terminating pattern.
 @return: USART_Status_t indicating success or error code.
-@note: The function reads characters from the receive buffer and stores them in A_u8pStringBuffer until A_u8TerminatingChar is encountered or the buffer limit (STRING_BUFFER_MAX_SIZE) is reached.
+@note: The function reads characters from the receive buffer and stores them in A_u8pStringBuffer until the terminating pattern is encountered or the buffer limit (STRING_BUFFER_MAX_SIZE) is reached.
        The resulting string in A_u8pStringBuffer is null-terminated.
-       If the buffer limit is reached before encountering the terminating character, it returns USART_STRING_BUFFER_OVF.
+       If the buffer limit is reached before encountering the terminating pattern, it returns USART_STRING_BUFFER_OVF.
        Ensure that A_u8pStringBuffer has enough space to hold the incoming string and the null terminator.
 */
-USART_Status_t MUSART_u8ReadStringUntil(USART_Peripheral_t A_thisID, u8 *A_u8pStringBuffer,u32 A_u32BufferSize ,u8 A_u8TerminatingChar);
-
+USART_Status_t MUSART_u8ReadStringUntilBufferPatern(USART_Peripheral_t A_thisID, u8 *A_u8pStringBuffer, u32 A_u32BufferSize ,const u8 *A_u8pTerminatingBuffer);
 /*
 @brief: Flushes the USART transmit and receive buffers.
 @param: A_thisID - The USART peripheral identifier (USART_PERIPH_1, USART_PERIPH_2, or USART_PERIPH_6).
@@ -213,7 +232,7 @@ USART_Status_t MUSART_u8ReadStringUntil(USART_Peripheral_t A_thisID, u8 *A_u8pSt
 USART_Status_t MUSART_vFlush(USART_Peripheral_t A_thisID);
 
 USART_Status_t MUSART_u32ParseIntBlocking(USART_Peripheral_t A_thisID,  s32* A_ps32Result,  u32 timeout_ms);
-USART_ParsingStatus_t MUSART_u8ParseInt(USART_Peripheral_t A_thisID , s32* A_ps32Result) ;
+USART_Status_t MUSART_u8ParseInt(USART_Peripheral_t A_thisID , s32* A_ps32Result) ;
 // f32 MUSART_f32ParseFloatBlocking(USART_Peripheral_t A_thisID, u32 timeout_ms);
 
 #endif /* USART_INT_H */
