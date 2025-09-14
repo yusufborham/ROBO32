@@ -9,7 +9,7 @@
 #include "PWM_cfg.h"
 
 void PWM_vInit(PWM_Config_t* Config){
-
+	MRCC_vEnableClk(RCC_APB2, TIM1EN); // Enable clock for TIM1
     // Timer configuration
     TIM1->PSC = 24;  // Prescaler = 24 (assuming 25 MHz input)
     TIM1->ARR = 999; // ARR = 999 (1 kHz PWM frequency)

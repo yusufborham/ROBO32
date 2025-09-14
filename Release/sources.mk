@@ -54,6 +54,7 @@ src/MCAL/SYSCFG \
 src/MCAL/SYSTICK \
 src/MCAL/USART \
 src/RTOS/scheduler \
+src/Robo_int \
 src \
 system/src/cmsis \
 system/src/cortexm \

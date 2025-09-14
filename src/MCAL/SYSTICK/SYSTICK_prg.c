@@ -177,3 +177,16 @@ void MSYSTICK_vEnableBackgroundMillis(void) {
     return;
 #endif
 }
+
+u32 micros(void) {
+    u32 m, ticks, reload;
+    reload = SYSTICK->LOAD;
+
+    do {
+        m = G_u32Millis;
+        ticks = SYSTICK->VAL;
+    } while (m != G_u32Millis);  // Re-read if an interrupt updated G_u32Millis
+
+    return (m * 1000U) + ((reload - ticks) / (reload / 1000U));
+}
+

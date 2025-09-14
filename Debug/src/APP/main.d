@@ -42,19 +42,31 @@ src/APP/main.o: ../src/APP/main.c ../src/APP/Includes_int.h \
  ../src/APP/../HAL/TFT/../../MCAL/GPIO/GPIO_int.h \
  ../src/APP/../MCAL/RTC/RTC_int.h \
  ../src/APP/../MCAL/RTC/../../LIB/STD_TYPES.h \
- ../src/APP/../MCAL/USART/USART_int.h \
- ../src/APP/../MCAL/USART/../../LIB/STD_TYPES.h \
- ../src/APP/../MCAL/USART/../../LIB/BIT_MATH.h \
- ../src/APP/../MCAL/USART/../../LIB/Delay.c \
- ../src/APP/../MCAL/USART/../../LIB/MATH_Fn.h \
- ../src/APP/../MCAL/USART/../../LIB/STD_TYPES.h \
- ../src/APP/../MCAL/USART/../USART/USART_cfg.h \
- ../src/APP/../MCAL/USART/../USART/USART_prv.h \
- ../src/APP/../MCAL/USART/../USART/../../LIB/STD_TYPES.h \
- ../src/APP/../MCAL/USART/../USART/../USART/USART_cfg.h \
  ../src/APP/../HAL/ESP_WIFI/ESP_WIFI_int.h \
  ../src/APP/../HAL/ESP_WIFI/../../LIB/STD_TYPES.h \
- ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/USART_int.h
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/USART_int.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/BIT_MATH.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.c \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/MATH_Fn.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_cfg.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_prv.h \
+ c:\users\koshok\desktop\arm\ tools\robo32\robo32\src\lib\std_types.h \
+ ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../USART/../USART/USART_cfg.h \
+ ../src/APP/../HAL/SERMUX/SerMux_int.h \
+ ../src/APP/../HAL/SERMUX/../../LIB/STD_TYPES.h \
+ ../src/APP/../MCAL/PWM/PWM_prv.h \
+ ../src/APP/../MCAL/PWM/../../LIB/STD_TYPES.h \
+ ../src/APP/../MCAL/PWM/../../LIB/BIT_MATH.h \
+ ../src/APP/../MCAL/PWM/PWM_cfg.h ../src/APP/../MCAL/PWM/PWM_int.h \
+ ../src/APP/../MCAL/PWM/PWM_cfg.h ../src/APP/../MCAL/PWM/PWM_prv.h \
+ ../src/APP/../MCAL/PWM/../RCC/RCC_int.h \
+ ../src/APP/../MCAL/PWM/../RCC/RCC_prv.h \
+ ../src/APP/../MCAL/PWM/../NVIC/NVIC_int.h \
+ ../src/APP/../MCAL/PWM/../NVIC/../../LIB/STD_TYPES.h \
+ ../src/APP/../MCAL/PWM/../NVIC/../../LIB/BIT_MATH.h \
+ ../src/APP/../MCAL/PWM/../GPIO/GPIO_int.h
 
 ../src/APP/Includes_int.h:
 
@@ -154,28 +166,56 @@ src/APP/main.o: ../src/APP/main.c ../src/APP/Includes_int.h \
 
 ../src/APP/../MCAL/RTC/../../LIB/STD_TYPES.h:
 
-../src/APP/../MCAL/USART/USART_int.h:
-
-../src/APP/../MCAL/USART/../../LIB/STD_TYPES.h:
-
-../src/APP/../MCAL/USART/../../LIB/BIT_MATH.h:
-
-../src/APP/../MCAL/USART/../../LIB/Delay.c:
-
-../src/APP/../MCAL/USART/../../LIB/MATH_Fn.h:
-
-../src/APP/../MCAL/USART/../../LIB/STD_TYPES.h:
-
-../src/APP/../MCAL/USART/../USART/USART_cfg.h:
-
-../src/APP/../MCAL/USART/../USART/USART_prv.h:
-
-../src/APP/../MCAL/USART/../USART/../../LIB/STD_TYPES.h:
-
-../src/APP/../MCAL/USART/../USART/../USART/USART_cfg.h:
-
 ../src/APP/../HAL/ESP_WIFI/ESP_WIFI_int.h:
 
 ../src/APP/../HAL/ESP_WIFI/../../LIB/STD_TYPES.h:
 
 ../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/USART_int.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/BIT_MATH.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/Delay.c:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/MATH_Fn.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../../LIB/STD_TYPES.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_cfg.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../USART/USART_prv.h:
+
+c:\users\koshok\desktop\arm\ tools\robo32\robo32\src\lib\std_types.h:
+
+../src/APP/../HAL/ESP_WIFI/../../MCAL/USART/../USART/../USART/USART_cfg.h:
+
+../src/APP/../HAL/SERMUX/SerMux_int.h:
+
+../src/APP/../HAL/SERMUX/../../LIB/STD_TYPES.h:
+
+../src/APP/../MCAL/PWM/PWM_prv.h:
+
+../src/APP/../MCAL/PWM/../../LIB/STD_TYPES.h:
+
+../src/APP/../MCAL/PWM/../../LIB/BIT_MATH.h:
+
+../src/APP/../MCAL/PWM/PWM_cfg.h:
+
+../src/APP/../MCAL/PWM/PWM_int.h:
+
+../src/APP/../MCAL/PWM/PWM_cfg.h:
+
+../src/APP/../MCAL/PWM/PWM_prv.h:
+
+../src/APP/../MCAL/PWM/../RCC/RCC_int.h:
+
+../src/APP/../MCAL/PWM/../RCC/RCC_prv.h:
+
+../src/APP/../MCAL/PWM/../NVIC/NVIC_int.h:
+
+../src/APP/../MCAL/PWM/../NVIC/../../LIB/STD_TYPES.h:
+
+../src/APP/../MCAL/PWM/../NVIC/../../LIB/BIT_MATH.h:
+
+../src/APP/../MCAL/PWM/../GPIO/GPIO_int.h:
