@@ -22,7 +22,6 @@ static u8 CurrentPage = 0;       // 0=First, 1=Clock, 2=Battery, 3=Mode, 4=Ultra
 static u8 CurrentMode = 0;       // 0=Normal, 1=Tank
 static float current_distance = 0.0f;
 static u8 esp_status = 0;        // 0=Disconnected, 1=Connected
-static char esp_buffer[300];
 
 // ---------------- Configuration-based Helper Functions ----------------
 
