@@ -172,7 +172,7 @@ void MSYSTICK_vHandlerRoutine(void) {
 void MSYSTICK_vEnableBackgroundMillis(void) {
 #if SYSTICK_RUN_MILLIS_FUNCTION == 1
     MSYSTICK_vChooseClockSource(SYSTICK_CLK_SOURCE_AHB_DIV_8);
-    MSYSTICK_vSetIntervalMulti(1, MSYSTICK_vHandlerRoutine);
+    MSYSTICK_vSetInterval_Multi_Tick(1, MSYSTICK_vHandlerRoutine);
 #else
     return;
 #endif
