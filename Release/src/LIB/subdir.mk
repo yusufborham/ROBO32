@@ -4,15 +4,12 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
-../src/LIB/Delay.c \
 ../src/LIB/MATH_Fn.c 
 
 OBJS += \
-./src/LIB/Delay.o \
 ./src/LIB/MATH_Fn.o 
 
 C_DEPS += \
-./src/LIB/Delay.d \
 ./src/LIB/MATH_Fn.d 
 
 

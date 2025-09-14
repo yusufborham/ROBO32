@@ -12,6 +12,7 @@
 #include "../LIB/BIT_MATH.h"
 #include "../MCAL/RCC/RCC_int.h"
 #include "../MCAL/GPIO/GPIO_int.h"
+
 #include "../HAL/Button/BTN_int.h"
 #include "../HAL/RGB_LED/RGB_int.h"
 #include "../LIB/Delay.h"
@@ -39,6 +40,10 @@
 #include "../HAL/ESP_WIFI/ESP_WIFI_int.h"
 
 #include "../HAL/SERMUX/SerMux_int.h"
+
+#include "../MCAL/ADC/ADC_int.h"
+#include "../MCAL/ADC/ADC_prv.h"
+
 
 #include "../MCAL/PWM/PWM_prv.h"
 #include "../MCAL/PWM/PWM_cfg.h"

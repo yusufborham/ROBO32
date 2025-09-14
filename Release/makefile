@@ -28,12 +28,14 @@ RM := rm -rf
 -include src/MCAL/DMA/subdir.mk
 -include src/MCAL/ADC/subdir.mk
 -include src/LIB/subdir.mk
+-include src/HAL/Ultasonic/subdir.mk
 -include src/HAL/TFT/subdir.mk
 -include src/HAL/Seven_Segment/subdir.mk
 -include src/HAL/SERMUX/subdir.mk
 -include src/HAL/S2P/subdir.mk
 -include src/HAL/RGB_LED/subdir.mk
 -include src/HAL/LEDMATRIX/subdir.mk
+-include src/HAL/IR_LineFollowing/subdir.mk
 -include src/HAL/IR/subdir.mk
 -include src/HAL/Fonts/subdir.mk
 -include src/HAL/ESP_WIFI/subdir.mk

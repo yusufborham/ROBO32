@@ -34,12 +34,14 @@ src/HAL/DAC_8bit \
 src/HAL/ESP_WIFI \
 src/HAL/Fonts \
 src/HAL/IR \
+src/HAL/IR_LineFollowing \
 src/HAL/LEDMATRIX \
 src/HAL/RGB_LED \
 src/HAL/S2P \
 src/HAL/SERMUX \
 src/HAL/Seven_Segment \
 src/HAL/TFT \
+src/HAL/Ultasonic \
 src/LIB \
 src/MCAL/ADC \
 src/MCAL/DMA \

@@ -44,107 +44,69 @@
 // }
 
 #include "Includes_int.h"
-#include "../Robo_int/Motor_cmd.h"
-#include "../Robo_int/Servos_cmd.h"
-#include "../HAL/IR_LineFollowing/IR_LineFollowing_int.h"
+#include "../MCAL/USART/USART_int.h"
 
-#define BASE_SPEED 28
-
-u8 Range = 100 - BASE_SPEED ;
-
-// range is from -2 to 2 --> 2 * 15= 30
-void move(s8 dir);
-void moveLeft(s8 vel);
-void moveRight(s8 vel);
-
-void move(s8 dir){
-
-    moveLeft((s8)BASE_SPEED + dir);
-    moveRight((s8)BASE_SPEED - dir);
-}
-
-void moveLeft(s8 vel){
-    vel >= 0 ?  Motor_Left_FWD((u8)abs(vel)) : Motor_Left_BWD((u8)2.5*abs(vel)) ;
-}
-
-void moveRight(s8 vel){
-    vel >= 0 ?  Motor_Right_FWD((u8)abs(vel)) : Motor_Right_BWD((u8)2.5*abs(vel)) ;
-}
-
-int main(){
-
+int main(void) {
     MRCC_vInit();
+    Battery_Level_Init();
+
+    // USART1 TX (PA9) config for printing
     MRCC_vEnableClk(RCC_APB2, RCC_USART1);
     MRCC_vEnableClk(RCC_AHB1, RCC_GPIOA);
-    MRCC_vEnableClk(RCC_AHB1, RCC_GPIOB);
 
-    Motor_Init();
-    Servo_Init();
-
-    Servo_Steer(90);
-
-    IR_LineFollowing_cfg_t ir_cfg = {
-        .IR_ports = {GPIO_PORTB, GPIO_PORTB, GPIO_PORTB, GPIO_PORTB, GPIO_PORTB},
-        .IR_pins = {PIN0, PIN6, PIN7, PIN8, PIN9},
-        .sensorType = HIGH_WHEN_LINE_DETECTED
+    GPIOx_PinConfig_t USART1_TX_Pin = {
+        .port = GPIO_PORTA,
+        .pin = PIN9,
+        .mode = GPIO_MODE_ALTFUNC,
+        .speed = GPIO_VHIGH_SPEED,
+        .outputType = GPIO_PUSHPULL,
+        .pull = GPIO_NOPULL,
+        .altFunc = GPIO_AF7_USART1_USART2
     };
+    MGPIO_vPinInit(&USART1_TX_Pin);
 
-    HIR_vInit(&ir_cfg);
+    USART_Config_t myUsart = {
+        .fclk = USART_CLK_25MHZ,
+        .peripheral = USART_PERIPH_1,
+        .baudRate = USART_BAUDRATE_115200,
+        .wordLength = USART_WORD_LENGTH_8BITS,
+        .stopBits = USART_STOP_BITS_1,
+        .parity = USART_PARITY_NONE,
+        .sampleRate = USART_SAMPLE_16_TIMES,
+        .sampleMethod = USART_SAMPLE_METHOD_THREE_BITS,
+        .mode = USART_MODE_TX_ONLY
+    };
+    MUSART_Init(&myUsart);
 
-        // enable tx pin for usart 1
-    // GPIOx_PinConfig_t USART1_TX_Pin = {
-    //    .port = GPIO_PORTA,
-    //    .pin = PIN9,
-    //    .mode = GPIO_MODE_ALTFUNC,
-    //    .speed = GPIO_VHIGH_SPEED,
-    //    .altFunc = GPIO_AF7_USART1_USART2  // AF7 for USART1
-    // };
-    // MGPIO_vPinInit(&USART1_TX_Pin);
+    char buffer[16];
 
-    // USART_Config_t myUsart = {
-    //    .fclk = USART_CLK_25MHZ ,
-    //    .peripheral = USART_PERIPH_1,
-    //    .baudRate = USART_BAUDRATE_115200,
-    //    .wordLength = USART_WORD_LENGTH_8BITS,
-    //    .stopBits = USART_STOP_BITS_1,
-    //    .parity = USART_PARITY_NONE,
-    //    .sampleRate = USART_SAMPLE_16_TIMES,
-    //    .sampleMethod = USART_SAMPLE_METHOD_THREE_BITS,
-    //    .mode = USART_MODE_TX_ONLY
-    // };
+    while (1) {
+        u8 percent = Battery_Level_Read();
 
-    // MUSART_Init(&myUsart);
-
-    u8 buffer[20];
-
-    // u8 WelcomeMsg[] = "IR Line Following Test\r\n";
-    // MUSART_u8WriteString(USART_PERIPH_1, WelcomeMsg);
-
-    u8 senVal[5] = {0};
-
-    while (1){
-        f32 position;
-        if (HIR_f32ReadSensors(&ir_cfg, &position, senVal) == IR_STATUS_LINE_AQUIRED) { // -2 --> 0 --> +2
-            // Use the position value for control
-            // for (u8 i = 0; i < 5; i++) {
-            //    u8 chr = senVal[i] ? '1' : '0'; // Convert to ASCII '1' or '0'
-            //     // send the usart value for each sensor
-            //     MUSART_u8WriteByte(USART_PERIPH_1, chr);
-            //     MUSART_u8WriteByte(USART_PERIPH_1, ' '); // Space between sensor values
-            // }   
-            // MUSART_u8WriteByte(USART_PERIPH_1, '\r'); // Carriage return
-            // MUSART_u8WriteByte(USART_PERIPH_1, '\n'); // New line
-            // ftoa(position, buffer);
-            // MUSART_u8WriteString(USART_PERIPH_1, buffer);
-            // const u8 newline[2] = "\n";
-            // MUSART_u8WriteString(USART_PERIPH_1, newline);
-            move(position * 25.0 ); // map -2 --> 2 to -Range --> Range
+        // Convert percent to string
+        int idx = 0;
+        u8 temp = percent;
+        if (temp == 0) {
+            buffer[idx++] = '0';
+        } else {
+            char rev[4];
+            int r = 0;
+            while (temp > 0) {
+                rev[r++] = (temp % 10) + '0';
+                temp /= 10;
+            }
+            while (r > 0) {
+                buffer[idx++] = rev[--r];
+            }
         }
-        else{
-            Motor_Stop();
-        }
+        buffer[idx++] = '%';
+        buffer[idx++] = '\r';
+        buffer[idx++] = '\n';
+        buffer[idx] = '\0';
+
+        MUSART_u8WriteString(USART_PERIPH_1, (u8*)buffer);
+
+        for (volatile int i = 0; i < 100000; i++); // Small delay
     }
-
-       
 }
 
