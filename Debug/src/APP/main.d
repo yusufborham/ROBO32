@@ -68,12 +68,10 @@ src/APP/main.o: ../src/APP/main.c ../src/APP/Includes_int.h \
  ../src/APP/../Robo_int/Motor_cmd.h \
  ../src/APP/../Robo_int/../lib/BIT_MATH.h \
  ../src/APP/../Robo_int/../lib/STD_TYPES.h \
- ../src/APP/../Robo_int/includes_int.h \
- ../src/APP/../Robo_int/Servos_cmd.h \
- ../src/APP/../HAL/IR_LineFollowing/IR_LineFollowing_int.h \
- ../src/APP/../HAL/IR_LineFollowing/../../LIB/STD_TYPES.h \
- ../src/APP/../HAL/IR_LineFollowing/../../MCAL/GPIO/GPIO_int.h \
- ../src/APP/../HAL/IR_LineFollowing/IR_LineFollowing_cfg.h
+ ../src/APP/../Robo_int/../APP/includes_int.h \
+ ../src/APP/../Robo_int/Battery_level.h \
+ ../src/APP/../Robo_int/includes_int.h ../src/APP/../Examples/Image.c \
+ ../src/APP/../Examples/../LIB/STD_TYPES.h
 
 ../src/APP/Includes_int.h:
 
@@ -229,14 +227,12 @@ src/APP/main.o: ../src/APP/main.c ../src/APP/Includes_int.h \
 
 ../src/APP/../Robo_int/../lib/STD_TYPES.h:
 
+../src/APP/../Robo_int/../APP/includes_int.h:
+
+../src/APP/../Robo_int/Battery_level.h:
+
 ../src/APP/../Robo_int/includes_int.h:
 
-../src/APP/../Robo_int/Servos_cmd.h:
+../src/APP/../Examples/Image.c:
 
-../src/APP/../HAL/IR_LineFollowing/IR_LineFollowing_int.h:
-
-../src/APP/../HAL/IR_LineFollowing/../../LIB/STD_TYPES.h:
-
-../src/APP/../HAL/IR_LineFollowing/../../MCAL/GPIO/GPIO_int.h:
-
-../src/APP/../HAL/IR_LineFollowing/IR_LineFollowing_cfg.h:
+../src/APP/../Examples/../LIB/STD_TYPES.h:

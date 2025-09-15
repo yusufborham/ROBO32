@@ -47,6 +47,11 @@
 #include "../Robo_int/Motor_cmd.h"
 #include "../Robo_int/Battery_level.h"
 
+#include "../Examples/Image.c"
+
+#include "../MCAL/ADC/ADC_int.h"
+
+
 
 
 

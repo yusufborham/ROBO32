@@ -105,6 +105,17 @@ void EXTI1_IRQHandler(void)
 	// clear pending flag
 	SET_BIT(EXTI->PR,EXTI_LINE1);
 }
+
+void EXTI4_IRQHandler(void)
+{
+	if(G_Fptr[EXTI_LINE4] != NULL)
+	{
+		G_Fptr[EXTI_LINE4]();
+	}
+	// clear pending flag
+	SET_BIT(EXTI->PR,EXTI_LINE4);
+}
+
 void EXTI9_5IRQHandler(void)
 {
 	if(GET_BIT(EXTI->PR, EXTI_LINE5))

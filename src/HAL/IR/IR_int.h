@@ -36,6 +36,9 @@
 #define IR_CODE_MODE	0x46
 #define IR_CODE_POWER	0x45
 
+#define IR_CODE_RPT	0x19
+#define IR_CODE_USD	0x0D
+
 
 typedef struct {
     u8 pin;

@@ -48,7 +48,7 @@ void Motor_Init(void) {
     };
     GPIOx_PinConfig_t Dir1 = {
         .port = GPIO_PORTA,
-        .pin = PIN7,
+        .pin = PIN10,
         .mode = GPIO_MODE_OUTPUT,
         .outputType = GPIO_PUSHPULL,
         .speed = GPIO_LOW_SPEED,
@@ -63,13 +63,13 @@ void Motor_Init(void) {
 }
 void Motor_FWD(u8 PWM) {
     MGPIO_vSetPinValue(GPIO_PORTA, PIN6, GPIO_LOW);
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN7, GPIO_LOW);
+    MGPIO_vSetPinValue(GPIO_PORTA, PIN10, GPIO_LOW);
     PWM_vSetDutyCycle_Channel(1, PWM);
     PWM_vSetDutyCycle_Channel(2, PWM);
 }
 void Motor_BWD(u8 PWM) {
     MGPIO_vSetPinValue(GPIO_PORTA, PIN6, GPIO_HIGH);
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN7, GPIO_HIGH);
+    MGPIO_vSetPinValue(GPIO_PORTA, PIN10, GPIO_HIGH);
     PWM_vSetDutyCycle_Channel(1, PWM);
     PWM_vSetDutyCycle_Channel(2, PWM);
 }
@@ -86,11 +86,11 @@ void Motor_Left_BWD(u8 PWM) {
     PWM_vSetDutyCycle_Channel(1, PWM);
 }
 void Motor_Right_FWD(u8 PWM) {
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN7, GPIO_LOW);
+    MGPIO_vSetPinValue(GPIO_PORTA, PIN10, GPIO_LOW);
     PWM_vSetDutyCycle_Channel(2, PWM);
 }
 void Motor_Right_BWD(u8 PWM) {
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN7, GPIO_HIGH);
+    MGPIO_vSetPinValue(GPIO_PORTA, PIN10, GPIO_HIGH);
     PWM_vSetDutyCycle_Channel(2, PWM);
 }
 void Motor_Stop_Left(void) {

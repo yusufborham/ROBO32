@@ -14,6 +14,7 @@
 #include "../Fonts/Fonts.h"
 #include <string.h>
 #include <stdio.h>
+#include "../../Robo_int/Battery_level.h"
 
 #define TFT_CHUNK TFT_TX_CHUNK_PIXELS
 
@@ -50,13 +51,13 @@ static u8 HTFT_SendDataWithTimeout(u8* data, u16 size) {
     u32 timeout_start = MSYSTICK_u32GetElapsedTime_SingleShot();
     u32 timeout_ticks = TFT_SPI_TIMEOUT_MS; // Convert to system ticks if needed
 
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_LOW);  // CS = 0
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_LOW);  // CS = 0
 
     // Send data with timeout monitoring
     for (u16 i = 0; i < size; i++) {
         // Check timeout
         if ((MSYSTICK_u32GetElapsedTime_SingleShot() - timeout_start) > timeout_ticks) {
-            MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_HIGH); // CS = 1
+            MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_HIGH); // CS = 1
             return 0; // Timeout error
         }
 
@@ -64,13 +65,13 @@ static u8 HTFT_SendDataWithTimeout(u8* data, u16 size) {
         MSPI_vTransmitBuffer(SPI1, &data[i], 1);
     }
 
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_HIGH); // CS = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_HIGH); // CS = 1
     return 1; // Success
 #else
     // Simple send without timeout
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_LOW);  // CS = 0
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_LOW);  // CS = 0
     MSPI_vTransmitBuffer(SPI1, data, size);
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_HIGH); // CS = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_HIGH); // CS = 1
     return 1;
 #endif
 }
@@ -80,16 +81,16 @@ void HTFT_GPIO_vInit(void) {
     GPIOx_PinConfig_t cfg;
 
     // RESET (PA6)
-    cfg.port = GPIO_PORTA; cfg.pin = PIN6;
+    cfg.port = GPIO_PORTB; cfg.pin = PIN14;
     cfg.mode = GPIO_MODE_OUTPUT; cfg.outputType = GPIO_PUSHPULL;
     cfg.speed = GPIO_HIGH_SPEED; cfg.pull = GPIO_NOPULL;
     MGPIO_vPinInit(&cfg);
 
     // DC (PA9)
-    cfg.pin = PIN9; MGPIO_vPinInit(&cfg);
+    cfg.pin = PIN15; MGPIO_vPinInit(&cfg);
 
     // CS (PB6)
-    cfg.port = GPIO_PORTB; cfg.pin = PIN6; MGPIO_vPinInit(&cfg);
+    cfg.port = GPIO_PORTB; cfg.pin = PIN13; MGPIO_vPinInit(&cfg);
 
     // SCK (PA5) AF5
     cfg.port = GPIO_PORTA; cfg.pin = PIN5; cfg.mode = GPIO_MODE_ALTFUNC;
@@ -103,20 +104,20 @@ void HTFT_GPIO_vInit(void) {
 
 // ---------------- Hardware Reset ----------------
 void HTFT_vReset(void) {
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN6, GPIO_LOW);
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN14, GPIO_LOW);
     MSYSTICK_vSetDelay_ms(100);
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN6, GPIO_HIGH);
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN14, GPIO_HIGH);
     MSYSTICK_vSetDelay_ms(200);
 }
 
 // ---------------- Low-level Command/Data with Configuration Support ----------------
 void HTFT_vSendCommand(u8 cmd) {
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN9, GPIO_LOW);  // DC = 0
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN15, GPIO_LOW);  // DC = 0
     HTFT_SendDataWithTimeout(&cmd, 1);
 }
 
 void HTFT_vSendData(u8 data) {
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN9, GPIO_HIGH); // DC = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN15, GPIO_HIGH); // DC = 1
     HTFT_SendDataWithTimeout(&data, 1);
 }
 
@@ -126,7 +127,7 @@ void HTFT_vSendColor(u16 color) {
     u8 high = swapped_color >> 8;
     u8 low = swapped_color & 0xFF;
 
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN9, GPIO_HIGH); // DC = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN15, GPIO_HIGH); // DC = 1
     u8 color_data[2] = {high, low};
     HTFT_SendDataWithTimeout(color_data, 2);
 }
@@ -135,8 +136,8 @@ void HTFT_vSendColor(u16 color) {
 static void HTFT_vSendColorBulk(u16* colors, u32 count) {
     if (count == 0) return;
 
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN9, GPIO_HIGH); // DC = 1
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_LOW);  // CS = 0
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN15, GPIO_HIGH); // DC = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_LOW);  // CS = 0
 
     // Process colors in chunks for better performance
     u32 remaining = count;
@@ -160,7 +161,7 @@ static void HTFT_vSendColorBulk(u16* colors, u32 count) {
         }
     }
 
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_HIGH); // CS = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_HIGH); // CS = 1
 }
 
 // ---------------- Address Window ----------------
@@ -190,8 +191,8 @@ void HTFT_vFillScreen(u16 color) {
 
     u32 total = (u32)TFT_WIDTH * (u32)TFT_HEIGHT;
 
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN9, GPIO_HIGH); // DC = 1
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_LOW);  // CS = 0
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN15, GPIO_HIGH); // DC = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_LOW);  // CS = 0
 
     while(total > 0) {
         u32 chunk = (total > TFT_CHUNK) ? TFT_CHUNK : total;
@@ -202,7 +203,7 @@ void HTFT_vFillScreen(u16 color) {
         total -= chunk;
     }
 
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_HIGH); // CS = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_HIGH); // CS = 1
 }
 
 // ---------------- Enhanced Fill Rectangle ----------------
@@ -224,8 +225,8 @@ void HTFT_vFillRectangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 color) {
         buf[i] = swapped_color;
     }
 
-    MGPIO_vSetPinValue(GPIO_PORTA, PIN9, GPIO_HIGH); // DC = 1
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_LOW);  // CS = 0
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN15, GPIO_HIGH); // DC = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_LOW);  // CS = 0
 
     while(total_pixels > 0) {
         u32 chunk = (total_pixels > TFT_CHUNK) ? TFT_CHUNK : total_pixels;
@@ -233,7 +234,7 @@ void HTFT_vFillRectangle(u16 x1, u16 y1, u16 x2, u16 y2, u16 color) {
         total_pixels -= chunk;
     }
 
-    MGPIO_vSetPinValue(GPIO_PORTB, PIN6, GPIO_HIGH); // CS = 1
+    MGPIO_vSetPinValue(GPIO_PORTB, PIN13, GPIO_HIGH); // CS = 1
 }
 
 // ---------------- Configuration-aware Initialization ----------------
@@ -470,18 +471,19 @@ void HTFT_vShowClockPage(void) {
 }
 
 void HTFT_vShowBatteryPage(void) {
+	Battery_Level_Init();
     CurrentPage = 2;
     HTFT_vFillScreen(TFT_COLOR_BLACK);
 
     HTFT_vDrawText(30, 20, "Battery", TFT_COLOR_CYAN, TFT_COLOR_BLACK, Font_8x13);
 
     // TODO: replace with actual ADC reading
-    u8 batteryPercent = 85; // Placeholder value
+    //u8 batteryPercent = 85; // Placeholder value
 
-    Draw_Battery(batteryPercent, 40, 60);
+    Draw_Battery(Battery_Level_Read(), 40, 60);
 
     char buffer[20];
-    sprintf(buffer, "%u%%", batteryPercent);
+    sprintf(buffer, "%u%%", Battery_Level_Read());
     HTFT_vDrawText(90, 60, buffer, TFT_COLOR_GREEN, TFT_COLOR_BLACK, Font_8x13);
 }
 

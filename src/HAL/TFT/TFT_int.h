@@ -23,12 +23,12 @@
 
 // Hardware pin definitions
 #define TFT_SPI_PORT MSPI_ID1
-#define TFT_RES_Pin       PIN6
-#define TFT_RES_GPIO_Port GPIO_PORTA
-#define TFT_CS_Pin        PIN6
+#define TFT_RES_Pin       PIN14
+#define TFT_RES_GPIO_Port GPIO_PORTB
+#define TFT_CS_Pin        PIN13
 #define TFT_CS_GPIO_Port  GPIO_PORTB
-#define TFT_DC_Pin        PIN9
-#define TFT_DC_GPIO_Port  GPIO_PORTA
+#define TFT_DC_Pin        PIN15
+#define TFT_DC_GPIO_Port  GPIO_PORTB
 
 // Display dimensions (1.8" 160x128 rotated)
 #define TFT_IS_160X128 1

@@ -14,10 +14,10 @@
 
 
 #define IR_GPIO_PORT     GPIO_PORTA
-#define IR_GPIO_PIN      PIN0
+#define IR_GPIO_PIN      PIN4
 
-#define IR_EXTI_LINE     EXTI_LINE0
-#define IR_NVIC_IRQ_NUM  6
+#define IR_EXTI_LINE     EXTI_LINE4
+#define IR_NVIC_IRQ_NUM  10
 
 #define IR_ENABLE_GPIO_CLK()   MRCC_vEnableClk(RCC_AHB1, IR_GPIO_PORT)
 #define IR_ENABLE_SYSCFG_CLK() MRCC_vEnableClk(RCC_APB2, 14)

@@ -11,7 +11,7 @@
  //with R1 = 30K and 7.5k which makes (12.6 to 11.1V) to (2.52V to 2.22V) on ADC pin
  //then battery level adc reading is from 3124 to 2756 (100 to 0%  respectively)
 
-#include "Includes_int.h"
+#include "../APP/Includes_int.h"
 #include "Battery_level.h"
 
 void Battery_Level_Init(void) {

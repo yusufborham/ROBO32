@@ -73,7 +73,8 @@ char uartBuffer[512];
     MUSART_u8WriteString(USART_PERIPH_1,  uartBuffer);
 }
 
-int main(void)
+
+/*int main(void)
 {
 	MRCC_vInit();
 	MRCC_vEnableClk(RCC_AHB1, RCC_GPIOA);
@@ -243,7 +244,6 @@ static void Ultrasonic_Measurement_Callback(void) {
 }
 
 //========== IR REMOTE HANDLER ==========
-
 static void onIrCode(u8 code) {
     switch(code) {
         case IR_CODE_POWER:
@@ -276,6 +276,20 @@ static void onIrCode(u8 code) {
         case IR_CODE_MODE:
             HTFT_vToggleMode();
             break;
+        case IR_CODE_LEFT:
+        	Motor_FWD(70);
+        	break;
+        case IR_CODE_EQ:
+        	Motor_Left_BWD(70);
+        	Motor_Right_FWD(70);
+             break;
+        case IR_CODE_PLUS:
+        	Motor_Left_FWD(70);
+        	Motor_Right_BWD(70);
+             break;
+        case IR_CODE_RPT:
+        	Motor_BWD(70);
+             break;
         default:
             break;
     }

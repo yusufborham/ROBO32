@@ -43,6 +43,8 @@ void IR_Init(IR_Callback_t cb)
     /* Enable NVIC */
     MNVIC_vEnableInterrupt(IR_NVIC_IRQ_NUM);
 
+    MSYSCFG_vSetEXTIPort(IR_EXTI_LINE,GPIO_PORTA);
+
     /* Save callback */
     s_callback = cb;
 
