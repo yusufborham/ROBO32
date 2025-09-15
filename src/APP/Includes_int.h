@@ -51,6 +51,9 @@
 
 #include "../MCAL/ADC/ADC_int.h"
 
+#include <stdio.h>
+
+
 
 
 

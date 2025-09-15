@@ -20,6 +20,70 @@ static void Ultrasonic_Measurement_Callback(void);
 
 
 
+int batteryLevel = 85;
+int batteryVoltage = 12;
+int batteryCurrent = 2;
+int batteryTemp = 35;
+
+int ultrasonicFront = 45;
+int ultrasonicLeft = 120;
+int ultrasonicRight = 89;
+int ultrasonicRear = 200;
+
+int irLineLeft = 1;
+int irLineLeftCenter = 0;
+int irLineCenter = 1;
+int irLineRightCenter = 1;
+int irLineRight = 0;
+
+int envTemp = 28;
+int envHumidity = 65;
+
+int motorLeftSpeed = 75;
+int motorRightSpeed = 78;
+int motorLeftCurrent = 1;
+int motorRightCurrent = 1;
+
+
+char uartBuffer[2048];
+void sendRobotData(void) {
+    // Clear buffer first
+    memset(uartBuffer, 0, sizeof(uartBuffer));
+
+    snprintf(uartBuffer, sizeof(uartBuffer),
+        "{"
+        "\"battery\":{\"level\":%d,\"voltage\":%d,\"current\":%d,\"temperature\":%d},"
+        "\"sensors\":{"
+            "\"ultrasonic\":{\"front\":%d,\"left\":%d,\"right\":%d,\"rear\":%d},"
+            "\"ir\":{"
+                "\"lineLeft\":%d,"
+                "\"lineLeftCenter\":%d,"
+                "\"lineCenter\":%d,"
+                "\"lineRightCenter\":%d,"
+                "\"lineRight\":%d"
+            "},"
+            "\"temperature\":%d,"
+            "\"humidity\":%d"
+        "},"
+        "\"motors\":{\"leftSpeed\":%d,\"rightSpeed\":%d,\"leftCurrent\":%d,\"rightCurrent\":%d},"
+        "\"wifi\":{\"connected\":1,\"signal\":-45,\"ip\":\"192.168.1.100\"},"
+        "\"mode\":\"autonomous\","
+        "\"alerts\":[]"
+        "}\r\n", // Add \r\n for proper line termination
+        batteryLevel, batteryVoltage, batteryCurrent, batteryTemp,
+        ultrasonicFront, ultrasonicLeft, ultrasonicRight, ultrasonicRear,
+        irLineLeft, irLineLeftCenter, irLineCenter, irLineRightCenter, irLineRight,
+        envTemp, envHumidity,
+        motorLeftSpeed, motorRightSpeed, motorLeftCurrent, motorRightCurrent
+    );
+
+    MUSART_u8WriteString(USART_PERIPH_6, uartBuffer);
+}
+
+void sendTestData(void) {
+    snprintf(uartBuffer, sizeof(uartBuffer), "{\"test\":\"hello\",\"value\":123}\n");
+    MUSART_u8WriteString(USART_PERIPH_6, uartBuffer);
+}
 //========== SYSTEM INITIALIZATION ==========
 
 static void SystemInit(void) {
@@ -28,22 +92,47 @@ static void SystemInit(void) {
     MRCC_vSetAHBPrescaler(AHB_PRESCALER_DIVIDE_1);
     MRCC_vEnableClk(RCC_AHB1, RCC_GPIOA);
     MRCC_vEnableClk(RCC_AHB1, RCC_GPIOB);
+    MRCC_vEnableClk(RCC_APB2, RCC_USART6);
     MRCC_vEnableClk(RCC_APB2, RCC_SPI1);
-    MRCC_vEnableClk(RCC_APB1, RCC_USART2);  // Enable USART2 clock on APB1
+
     Motor_Init();
 
 
+	 GPIOx_PinConfig_t USART2_TX_Pin = {
+	        .port = GPIO_PORTA,
+	        .pin = PIN11,
+	        .mode = GPIO_MODE_ALTFUNC,
+	        .speed = GPIO_VHIGH_SPEED,
+	        .altFunc = GPIO_AF8_USART6  // AF7 for USART1
+	     };
+	     MGPIO_vPinInit(&USART2_TX_Pin);
 
-    //---------- Ultrasonic Sensor ----------
-    //HCSR04_vInit(&ultrasonic_sensor);
+	     GPIOx_PinConfig_t USART2_RX_Pin = {
+	             .port = GPIO_PORTA,
+	             .pin = PIN12,
+	             .mode = GPIO_MODE_ALTFUNC,
+	             .speed = GPIO_VHIGH_SPEED,
+	             .altFunc = GPIO_AF8_USART6  // AF7 for USART1
+	          };
+	          MGPIO_vPinInit(&USART2_RX_Pin);
 
-    //---------- Warning LED (PA4) - Moved from PA3 to avoid conflict ----------
-    GPIOx_PinConfig_t led_cfg = {
-        .port = GPIO_PORTA, .pin = PIN15, .mode = GPIO_MODE_OUTPUT,
-        .outputType = GPIO_PUSHPULL, .speed = GPIO_LOW_SPEED,
-        .pull = GPIO_NOPULL, .altFunc = 0
-    };
-    MGPIO_vPinInit(&led_cfg);
+	    USART_Config_t myUsart = {
+	        .fclk = USART_CLK_25MHZ ,
+	        .peripheral = USART_PERIPH_6,
+	        .baudRate = USART_BAUDRATE_115200,
+	        .wordLength = USART_WORD_LENGTH_8BITS,
+	        .stopBits = USART_STOP_BITS_1,
+	        .parity = USART_PARITY_NONE,
+	        .sampleRate = USART_SAMPLE_16_TIMES,
+	        .sampleMethod = USART_SAMPLE_METHOD_THREE_BITS,
+	        .mode = USART_MODE_TX_RX
+	     };
+
+	     MUSART_Init(&myUsart);
+
+
+
+
 
     //---------- SysTick ----------
     MSYSTICK_Config_t stk = {
@@ -68,6 +157,8 @@ static void SystemInit(void) {
     HTFT_vSetESPStatus(0);  // Initially disconnected
 }
 
+
+
 //========== PERIODIC CALLBACK SETUP ==========
 
 static void PeriodicCallbacks_Init(void) {
@@ -76,6 +167,7 @@ static void PeriodicCallbacks_Init(void) {
     MSYSTICK_vSetInterval_Multi(2000, Battery_Tick_Callback);       // 2s for battery updates
     MSYSTICK_vSetInterval_Multi(500, Ultrasonic_Display_Callback);  // 0.5s for ultrasonic display updates
     MSYSTICK_vSetInterval_Multi(300, Ultrasonic_Measurement_Callback); // 0.3s for sensor measurements
+    MSYSTICK_vSetInterval_Multi(4000, sendRobotData);
 }
 
 //========== CALLBACK FUNCTIONS ==========
@@ -194,7 +286,7 @@ int main(void) {
     // Main application loop
     while(1) {
         // Main loop for non-time-critical tasks
-
+    	//sendTestData();
 
         // Optional: Add any additional background tasks here
         // - Process received WiFi data

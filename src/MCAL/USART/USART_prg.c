@@ -61,13 +61,13 @@ void MUSART_vBaudRateCalculations(u32 A_u32BaudRateValue ,u8 A_u8SampleRate ,u32
 static inline void MUSART_vEnableNVIC(USART_Peripheral_t peripheral){
     switch (peripheral) {
         case USART_PERIPH_1:
-            MNVIC_vEnableInterrupt(USART1_IRQn);
+            MNVIC_vEnableInterrupt(37);
             break;
         case USART_PERIPH_2:
-            MNVIC_vEnableInterrupt(USART2_IRQn);
+            MNVIC_vEnableInterrupt(38);
             break;
         case USART_PERIPH_6:
-            MNVIC_vEnableInterrupt(USART6_IRQn);
+            MNVIC_vEnableInterrupt(71);
             break;
         default:
             // Invalid peripheral, do nothing or handle error
@@ -78,13 +78,13 @@ static inline void MUSART_vEnableNVIC(USART_Peripheral_t peripheral){
 static inline void MUSART_vDisableNVIC(USART_Peripheral_t peripheral){
     switch (peripheral) {
         case USART_PERIPH_1:
-            MNVIC_vDisableInterrupt(USART1_IRQn);
+            MNVIC_vDisableInterrupt(37);
             break;
         case USART_PERIPH_2:
-            MNVIC_vDisableInterrupt(USART2_IRQn);
+            MNVIC_vDisableInterrupt(38);
             break;
         case USART_PERIPH_6:
-            MNVIC_vDisableInterrupt(USART6_IRQn);
+            MNVIC_vDisableInterrupt(71);
             break;
         default:
             // Invalid peripheral, do nothing or handle error

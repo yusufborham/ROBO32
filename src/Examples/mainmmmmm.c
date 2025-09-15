@@ -7,7 +7,7 @@
 
 
 
-
+/*
 
 #include "Includes_int.h"
 
@@ -70,11 +70,11 @@ char uartBuffer[512];
 
     // Send over UART (blocking for simplicity)
     //HAL_UART_Transmit(&huart1, (u8*)uartBuffer, strlen(uartBuffer), HAL_MAX_DELAY);
-    MUSART_u8WriteString(USART_PERIPH_1,  uartBuffer);
+    MUSART_u8WriteString(USART_PERIPH_6,  uartBuffer);
 }
 
-
-/*int main(void)
+/*
+int main(void)
 {
 	MRCC_vInit();
 	MRCC_vEnableClk(RCC_AHB1, RCC_GPIOA);
@@ -82,25 +82,25 @@ char uartBuffer[512];
 
 	 GPIOx_PinConfig_t USART2_TX_Pin = {
 	        .port = GPIO_PORTA,
-	        .pin = PIN9,
+	        .pin = PIN11,
 	        .mode = GPIO_MODE_ALTFUNC,
 	        .speed = GPIO_VHIGH_SPEED,
-	        .altFunc = GPIO_AF7_USART1_USART2  // AF7 for USART1
+	        .altFunc = GPIO_AF8_USART6  // AF7 for USART1
 	     };
 	     MGPIO_vPinInit(&USART2_TX_Pin);
 
 	     GPIOx_PinConfig_t USART2_RX_Pin = {
 	             .port = GPIO_PORTA,
-	             .pin = PIN10,
+	             .pin = PIN12,
 	             .mode = GPIO_MODE_ALTFUNC,
 	             .speed = GPIO_VHIGH_SPEED,
-	             .altFunc = GPIO_AF7_USART1_USART2  // AF7 for USART1
+	             .altFunc = GPIO_AF8_USART6  // AF7 for USART1
 	          };
 	          MGPIO_vPinInit(&USART2_RX_Pin);
 
 	    USART_Config_t myUsart = {
 	        .fclk = USART_CLK_25MHZ ,
-	        .peripheral = USART_PERIPH_1,
+	        .peripheral = USART_PERIPH_6,
 	        .baudRate = USART_BAUDRATE_115200,
 	        .wordLength = USART_WORD_LENGTH_8BITS,
 	        .stopBits = USART_STOP_BITS_1,
