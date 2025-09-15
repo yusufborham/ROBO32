@@ -2,6 +2,10 @@ Archive member included to satisfy reference by file (symbol)
 
 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
                               ./src/HAL/TFT/TFT_prg.o (__aeabi_f2d)
+c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
+                              ./src/APP/main.o (__aeabi_dmul)
+c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
+                              ./src/APP/main.o (__aeabi_d2iz)
 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
                               ./src/LIB/MATH_Fn.o (__aeabi_fsub)
 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
@@ -59,6 +63,7 @@ errno               0x4               ./system/src/newlib/_syscalls.o
 uwTick              0x4               ./system/src/stm32f4-hal/stm32f4xx_hal.o
 pFlash              0x20              ./system/src/stm32f4-hal/stm32f4xx_hal_flash.o
 ultrasonic_sensor   0x1               ./src/APP/main.o
+ir_cfg              0xc               ./src/APP/main.o
 uartBuffer          0x800             ./src/APP/main.o
 
 Discarded input sections
@@ -3035,6 +3040,7 @@ Discarded input sections
  .group         0x00000000        0xc ./src/Robo_int/Battery_level.o
  .group         0x00000000        0xc ./src/Robo_int/Battery_level.o
  .group         0x00000000        0xc ./src/Robo_int/Battery_level.o
+ .group         0x00000000        0xc ./src/Robo_int/Battery_level.o
  .text          0x00000000        0x0 ./src/Robo_int/Battery_level.o
  .data          0x00000000        0x0 ./src/Robo_int/Battery_level.o
  .bss           0x00000000        0x0 ./src/Robo_int/Battery_level.o
@@ -3120,6 +3126,7 @@ Discarded input sections
  .group         0x00000000        0xc ./src/Robo_int/Motor_cmd.o
  .group         0x00000000        0xc ./src/Robo_int/Motor_cmd.o
  .group         0x00000000        0xc ./src/Robo_int/Motor_cmd.o
+ .group         0x00000000        0xc ./src/Robo_int/Motor_cmd.o
  .text          0x00000000        0x0 ./src/Robo_int/Motor_cmd.o
  .data          0x00000000        0x0 ./src/Robo_int/Motor_cmd.o
  .bss           0x00000000        0x0 ./src/Robo_int/Motor_cmd.o
@@ -3149,6 +3156,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 ./src/Robo_int/Motor_cmd.o
  .debug_macro   0x00000000      0x34e ./src/Robo_int/Motor_cmd.o
  .debug_macro   0x00000000       0xe2 ./src/Robo_int/Motor_cmd.o
+ .debug_macro   0x00000000       0x10 ./src/Robo_int/Motor_cmd.o
  .debug_macro   0x00000000       0x22 ./src/Robo_int/Motor_cmd.o
  .debug_macro   0x00000000       0x52 ./src/Robo_int/Motor_cmd.o
  .debug_macro   0x00000000       0x17 ./src/Robo_int/Motor_cmd.o
@@ -3202,19 +3210,8 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/Robo_int/Servos_cmd.o
  .data          0x00000000        0x0 ./src/Robo_int/Servos_cmd.o
  .bss           0x00000000        0x0 ./src/Robo_int/Servos_cmd.o
- .text.Servo_Init
-                0x00000000       0x26 ./src/Robo_int/Servos_cmd.o
- .text.Servo_Steer
-                0x00000000        0xc ./src/Robo_int/Servos_cmd.o
  .text.Servo_Ultasonic
                 0x00000000        0xc ./src/Robo_int/Servos_cmd.o
- .debug_info    0x00000000      0x1f3 ./src/Robo_int/Servos_cmd.o
- .debug_abbrev  0x00000000       0xd7 ./src/Robo_int/Servos_cmd.o
- .debug_loc     0x00000000       0x42 ./src/Robo_int/Servos_cmd.o
- .debug_aranges
-                0x00000000       0x30 ./src/Robo_int/Servos_cmd.o
- .debug_ranges  0x00000000       0x20 ./src/Robo_int/Servos_cmd.o
- .debug_macro   0x00000000      0x253 ./src/Robo_int/Servos_cmd.o
  .debug_macro   0x00000000      0xa6c ./src/Robo_int/Servos_cmd.o
  .debug_macro   0x00000000       0x22 ./src/Robo_int/Servos_cmd.o
  .debug_macro   0x00000000       0x10 ./src/Robo_int/Servos_cmd.o
@@ -3236,12 +3233,6 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 ./src/Robo_int/Servos_cmd.o
  .debug_macro   0x00000000      0x1cb ./src/Robo_int/Servos_cmd.o
  .debug_macro   0x00000000       0x10 ./src/Robo_int/Servos_cmd.o
- .debug_line    0x00000000      0xc97 ./src/Robo_int/Servos_cmd.o
- .debug_str     0x00000000     0x50cb ./src/Robo_int/Servos_cmd.o
- .comment       0x00000000       0x7f ./src/Robo_int/Servos_cmd.o
- .debug_frame   0x00000000       0x58 ./src/Robo_int/Servos_cmd.o
- .ARM.attributes
-                0x00000000       0x33 ./src/Robo_int/Servos_cmd.o
  .group         0x00000000        0xc ./src/RTOS/scheduler/Scheduler_prg.o
  .group         0x00000000        0xc ./src/RTOS/scheduler/Scheduler_prg.o
  .group         0x00000000        0xc ./src/RTOS/scheduler/Scheduler_prg.o
@@ -3477,8 +3468,6 @@ Discarded input sections
  .bss           0x00000000        0x0 ./src/MCAL/GPIO/GPIO_prg.o
  .text.MGPIO_vTogPinValue
                 0x00000000       0x48 ./src/MCAL/GPIO/GPIO_prg.o
- .text.MGPIO_u8GetPinValue
-                0x00000000       0x6c ./src/MCAL/GPIO/GPIO_prg.o
  .text.MGPIO_vSetPinAtomic
                 0x00000000       0x74 ./src/MCAL/GPIO/GPIO_prg.o
  .debug_macro   0x00000000      0xa6c ./src/MCAL/GPIO/GPIO_prg.o
@@ -3547,25 +3536,11 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/LIB/MATH_Fn.o
  .data          0x00000000        0x0 ./src/LIB/MATH_Fn.o
  .bss           0x00000000        0x0 ./src/LIB/MATH_Fn.o
- .text.abs      0x00000000       0x16 ./src/LIB/MATH_Fn.o
  .text.atoi     0x00000000       0x3c ./src/LIB/MATH_Fn.o
  .text.itoa     0x00000000       0x68 ./src/LIB/MATH_Fn.o
  .text.ftoa     0x00000000       0x8c ./src/LIB/MATH_Fn.o
- .debug_info    0x00000000      0x230 ./src/LIB/MATH_Fn.o
- .debug_abbrev  0x00000000      0x131 ./src/LIB/MATH_Fn.o
- .debug_loc     0x00000000      0x2d2 ./src/LIB/MATH_Fn.o
- .debug_aranges
-                0x00000000       0x38 ./src/LIB/MATH_Fn.o
- .debug_ranges  0x00000000       0x40 ./src/LIB/MATH_Fn.o
- .debug_macro   0x00000000       0x24 ./src/LIB/MATH_Fn.o
  .debug_macro   0x00000000      0xa6c ./src/LIB/MATH_Fn.o
  .debug_macro   0x00000000       0x10 ./src/LIB/MATH_Fn.o
- .debug_line    0x00000000      0x10a ./src/LIB/MATH_Fn.o
- .debug_str     0x00000000     0x2e2a ./src/LIB/MATH_Fn.o
- .comment       0x00000000       0x7f ./src/LIB/MATH_Fn.o
- .debug_frame   0x00000000       0x84 ./src/LIB/MATH_Fn.o
- .ARM.attributes
-                0x00000000       0x33 ./src/LIB/MATH_Fn.o
  .group         0x00000000        0xc ./src/HAL/Ultasonic/Ultrasonic_prg.o
  .text          0x00000000        0x0 ./src/HAL/Ultasonic/Ultrasonic_prg.o
  .data          0x00000000        0x0 ./src/HAL/Ultasonic/Ultrasonic_prg.o
@@ -3754,14 +3729,8 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/HAL/SERMUX/SerMux_prg.o
  .data          0x00000000        0x0 ./src/HAL/SERMUX/SerMux_prg.o
  .bss           0x00000000        0x0 ./src/HAL/SERMUX/SerMux_prg.o
- .text.Timer2_Init_10usTick
-                0x00000000       0x44 ./src/HAL/SERMUX/SerMux_prg.o
- .text.SerMux_setAngle
-                0x00000000       0x1c ./src/HAL/SERMUX/SerMux_prg.o
  .text.SerMux_getAngle
                 0x00000000       0x1c ./src/HAL/SERMUX/SerMux_prg.o
- .text.SerMux_init
-                0x00000000       0xc8 ./src/HAL/SERMUX/SerMux_prg.o
  .text.SerMux_setMultipleAngles
                 0x00000000       0x28 ./src/HAL/SERMUX/SerMux_prg.o
  .text.SerMux_getServoCount
@@ -3887,27 +3856,10 @@ Discarded input sections
  .text          0x00000000        0x0 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .data          0x00000000        0x0 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .bss           0x00000000        0x0 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .text.HIR_vInit
-                0x00000000       0x44 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .text.HIR_f32ReadSensors
-                0x00000000       0x96 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_info    0x00000000      0x2cc ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_abbrev  0x00000000      0x16f ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_loc     0x00000000      0x1e1 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_aranges
-                0x00000000       0x28 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_ranges  0x00000000       0x30 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_macro   0x00000000       0x40 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .debug_macro   0x00000000      0xa6c ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .debug_macro   0x00000000       0x10 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .debug_macro   0x00000000      0x142 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .debug_macro   0x00000000       0x10 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_line    0x00000000      0x1cc ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_str     0x00000000     0x3375 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .comment       0x00000000       0x7f ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .debug_frame   0x00000000       0x7c ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
- .ARM.attributes
-                0x00000000       0x33 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .group         0x00000000        0xc ./src/HAL/IR/IR_prg.o
  .group         0x00000000        0xc ./src/HAL/IR/IR_prg.o
  .group         0x00000000        0xc ./src/HAL/IR/IR_prg.o
@@ -4346,13 +4298,13 @@ Discarded input sections
  .group         0x00000000        0xc ./src/APP/main.o
  .group         0x00000000        0xc ./src/APP/main.o
  .group         0x00000000        0xc ./src/APP/main.o
+ .group         0x00000000        0xc ./src/APP/main.o
  .text          0x00000000        0x0 ./src/APP/main.o
  .data          0x00000000        0x0 ./src/APP/main.o
  .bss           0x00000000        0x0 ./src/APP/main.o
- .text.sendTestData
-                0x00000000       0x24 ./src/APP/main.o
- .rodata.sendTestData.str1.4
-                0x00000000       0x1e ./src/APP/main.o
+ .text.Obstcal_Avoidance
+                0x00000000        0x2 ./src/APP/main.o
+ .data.Range    0x00000000        0x1 ./src/APP/main.o
  .debug_macro   0x00000000      0xa6c ./src/APP/main.o
  .debug_macro   0x00000000       0x10 ./src/APP/main.o
  .debug_macro   0x00000000       0x22 ./src/APP/main.o
@@ -4375,6 +4327,7 @@ Discarded input sections
  .debug_macro   0x00000000       0x10 ./src/APP/main.o
  .debug_macro   0x00000000      0x34e ./src/APP/main.o
  .debug_macro   0x00000000       0xe2 ./src/APP/main.o
+ .debug_macro   0x00000000       0x10 ./src/APP/main.o
  .debug_macro   0x00000000       0x22 ./src/APP/main.o
  .debug_macro   0x00000000       0x52 ./src/APP/main.o
  .debug_macro   0x00000000       0x17 ./src/APP/main.o
@@ -4754,6 +4707,10 @@ Discarded input sections
  .debug_macro   0x00000000      0x11e ./src/stm32f4xx_hal_msp.o
  .data          0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
  .bss           0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
+ .data          0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
+ .bss           0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
+ .data          0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
+ .bss           0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
  .data          0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
  .bss           0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
  .data          0x00000000        0x0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
@@ -4927,7 +4884,7 @@ END GROUP
                 0x2000fc00                __Main_Stack_Limit = (__stack - __Main_Stack_Size)
                 [!provide]                PROVIDE (_Main_Stack_Limit, __Main_Stack_Limit)
                 0x00000100                _Minimum_Stack_Size = 0x100
-                0x20003ab8                PROVIDE (_Heap_Begin, _end_noinit)
+                0x20003acc                PROVIDE (_Heap_Begin, _end_noinit)
                 0x2000fc00                PROVIDE (_Heap_Limit, (__stack - __Main_Stack_Size))
 
 .isr_vector     0x08000000      0x3f4
@@ -5011,16 +4968,16 @@ END GROUP
 
 .inits          0x080003f4       0x28
                 0x080003f4                __data_regions_array_start = .
-                0x080003f4        0x4 LONG 0x800df64 LOADADDR (.data)
+                0x080003f4        0x4 LONG 0x800e884 LOADADDR (.data)
                 0x080003f8        0x4 LONG 0x20000000 ADDR (.data)
                 0x080003fc        0x4 LONG 0x200000c4 (ADDR (.data) + SIZEOF (.data))
-                0x08000400        0x4 LONG 0x800df64 LOADADDR (.data_CCMRAM)
+                0x08000400        0x4 LONG 0x800e884 LOADADDR (.data_CCMRAM)
                 0x08000404        0x4 LONG 0x10000000 ADDR (.data_CCMRAM)
                 0x08000408        0x4 LONG 0x10000000 (ADDR (.data_CCMRAM) + SIZEOF (.data_CCMRAM))
                 0x0800040c                __data_regions_array_end = .
                 0x0800040c                __bss_regions_array_start = .
                 0x0800040c        0x4 LONG 0x200000c4 ADDR (.bss)
-                0x08000410        0x4 LONG 0x20003ab8 (ADDR (.bss) + SIZEOF (.bss))
+                0x08000410        0x4 LONG 0x20003acc (ADDR (.bss) + SIZEOF (.bss))
                 0x08000414        0x4 LONG 0x10000000 ADDR (.bss_CCMRAM)
                 0x08000418        0x4 LONG 0x10000000 (ADDR (.bss_CCMRAM) + SIZEOF (.bss_CCMRAM))
                 0x0800041c                __bss_regions_array_end = .
@@ -5046,7 +5003,7 @@ END GROUP
 .flashtext
  *(.flashtext .flashtext.*)
 
-.text           0x08000420     0xdb43
+.text           0x08000420     0xe463
  *(.text .text.*)
  .text.HAL_InitTick
                 0x08000420       0x2c ./system/src/stm32f4-hal/stm32f4xx_hal.o
@@ -5150,538 +5107,585 @@ END GROUP
  .text.Motor_Right_BWD
                 0x08001220       0x18 ./src/Robo_int/Motor_cmd.o
                 0x08001220                Motor_Right_BWD
+ .text.Servo_Init
+                0x08001238       0x26 ./src/Robo_int/Servos_cmd.o
+                0x08001238                Servo_Init
+ .text.Servo_Steer
+                0x0800125e        0xc ./src/Robo_int/Servos_cmd.o
+                0x0800125e                Servo_Steer
  .text.MUSART_vBaudRateCalculations
-                0x08001238       0x2a ./src/MCAL/USART/USART_prg.o
-                0x08001238                MUSART_vBaudRateCalculations
- *fill*         0x08001262        0x2 
+                0x0800126a       0x2a ./src/MCAL/USART/USART_prg.o
+                0x0800126a                MUSART_vBaudRateCalculations
  .text.MUSART_Init
-                0x08001264      0x210 ./src/MCAL/USART/USART_prg.o
-                0x08001264                MUSART_Init
+                0x08001294      0x210 ./src/MCAL/USART/USART_prg.o
+                0x08001294                MUSART_Init
  .text.MUSART_u8WriteByte
-                0x08001474       0xe0 ./src/MCAL/USART/USART_prg.o
-                0x08001474                MUSART_u8WriteByte
+                0x080014a4       0xe0 ./src/MCAL/USART/USART_prg.o
+                0x080014a4                MUSART_u8WriteByte
  .text.MUSART_u8WriteString
-                0x08001554       0x24 ./src/MCAL/USART/USART_prg.o
-                0x08001554                MUSART_u8WriteString
+                0x08001584       0x24 ./src/MCAL/USART/USART_prg.o
+                0x08001584                MUSART_u8WriteString
  .text.USART_vHandlerRoutine
-                0x08001578      0x100 ./src/MCAL/USART/USART_prg.o
-                0x08001578                USART_vHandlerRoutine
+                0x080015a8      0x100 ./src/MCAL/USART/USART_prg.o
+                0x080015a8                USART_vHandlerRoutine
  .text.USART1_IRQHandler
-                0x08001678        0xa ./src/MCAL/USART/USART_prg.o
-                0x08001678                USART1_IRQHandler
+                0x080016a8        0xa ./src/MCAL/USART/USART_prg.o
+                0x080016a8                USART1_IRQHandler
  .text.USART2_IRQHandler
-                0x08001682        0xa ./src/MCAL/USART/USART_prg.o
-                0x08001682                USART2_IRQHandler
+                0x080016b2        0xa ./src/MCAL/USART/USART_prg.o
+                0x080016b2                USART2_IRQHandler
  .text.USART6_IRQHandler
-                0x0800168c        0xa ./src/MCAL/USART/USART_prg.o
-                0x0800168c                USART6_IRQHandler
- *fill*         0x08001696        0x2 
+                0x080016bc        0xa ./src/MCAL/USART/USART_prg.o
+                0x080016bc                USART6_IRQHandler
+ *fill*         0x080016c6        0x2 
  .text.MSYSTICK_vInit
-                0x08001698       0x4c ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x08001698                MSYSTICK_vInit
+                0x080016c8       0x4c ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x080016c8                MSYSTICK_vInit
  .text.MSYSTICK_vStartTimer
-                0x080016e4       0x18 ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x080016e4                MSYSTICK_vStartTimer
+                0x08001714       0x18 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x08001714                MSYSTICK_vStartTimer
  .text.MSYSTICK_vStopTimer
-                0x080016fc       0x10 ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x080016fc                MSYSTICK_vStopTimer
+                0x0800172c       0x10 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x0800172c                MSYSTICK_vStopTimer
  .text.MSYSTICK_vSetDelay_ms
-                0x0800170c       0x38 ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x0800170c                MSYSTICK_vSetDelay_ms
+                0x0800173c       0x38 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x0800173c                MSYSTICK_vSetDelay_ms
  .text.MSYSTICK_u32GetElapsedTime_SingleShot
-                0x08001744       0x10 ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x08001744                MSYSTICK_u32GetElapsedTime_SingleShot
+                0x08001774       0x10 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x08001774                MSYSTICK_u32GetElapsedTime_SingleShot
  .text.MSYSTICK_vSetInterval_Single
-                0x08001754       0x3c ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x08001754                MSYSTICK_vSetInterval_Single
+                0x08001784       0x3c ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x08001784                MSYSTICK_vSetInterval_Single
  .text.MSYSTICK_vSetInterval_Multi
-                0x08001790       0x38 ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x08001790                MSYSTICK_vSetInterval_Multi
+                0x080017c0       0x38 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x080017c0                MSYSTICK_vSetInterval_Multi
  .text.SysTick_Handler
-                0x080017c8       0x24 ./src/MCAL/SYSTICK/SYSTICK_prg.o
-                0x080017c8                SysTick_Handler
+                0x080017f8       0x24 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x080017f8                SysTick_Handler
  .text.MSYSCFG_vSetEXTIPort
-                0x080017ec       0x34 ./src/MCAL/SYSCFG/SYSCFG_prg.o
-                0x080017ec                MSYSCFG_vSetEXTIPort
+                0x0800181c       0x34 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+                0x0800181c                MSYSCFG_vSetEXTIPort
  .text.MSPI_vInit
-                0x08001820       0x52 ./src/MCAL/SPI/SPI_prg.o
-                0x08001820                MSPI_vInit
- *fill*         0x08001872        0x2 
+                0x08001850       0x52 ./src/MCAL/SPI/SPI_prg.o
+                0x08001850                MSPI_vInit
+ *fill*         0x080018a2        0x2 
  .text.MSPI_u8Transceive
-                0x08001874       0x44 ./src/MCAL/SPI/SPI_prg.o
-                0x08001874                MSPI_u8Transceive
+                0x080018a4       0x44 ./src/MCAL/SPI/SPI_prg.o
+                0x080018a4                MSPI_u8Transceive
  .text.MSPI_vTransmitBuffer
-                0x080018b8       0x1c ./src/MCAL/SPI/SPI_prg.o
-                0x080018b8                MSPI_vTransmitBuffer
+                0x080018e8       0x1c ./src/MCAL/SPI/SPI_prg.o
+                0x080018e8                MSPI_vTransmitBuffer
  .text.bcd_to_dec
-                0x080018d4       0x12 ./src/MCAL/RTC/RTC_prg.o
- *fill*         0x080018e6        0x2 
+                0x08001904       0x12 ./src/MCAL/RTC/RTC_prg.o
+ *fill*         0x08001916        0x2 
  .text.HRTC_vInit
-                0x080018e8      0x100 ./src/MCAL/RTC/RTC_prg.o
-                0x080018e8                HRTC_vInit
+                0x08001918      0x100 ./src/MCAL/RTC/RTC_prg.o
+                0x08001918                HRTC_vInit
  .text.HRTC_vGetNow
-                0x080019e8       0x54 ./src/MCAL/RTC/RTC_prg.o
-                0x080019e8                HRTC_vGetNow
+                0x08001a18       0x54 ./src/MCAL/RTC/RTC_prg.o
+                0x08001a18                HRTC_vGetNow
  .text.HRTC_vGetNowWithOffset
-                0x08001a3c       0x22 ./src/MCAL/RTC/RTC_prg.o
-                0x08001a3c                HRTC_vGetNowWithOffset
- *fill*         0x08001a5e        0x2 
+                0x08001a6c       0x22 ./src/MCAL/RTC/RTC_prg.o
+                0x08001a6c                HRTC_vGetNowWithOffset
+ *fill*         0x08001a8e        0x2 
  .text.MRCC_vInit
-                0x08001a60       0x34 ./src/MCAL/RCC/RCC_prg.o
-                0x08001a60                MRCC_vInit
+                0x08001a90       0x34 ./src/MCAL/RCC/RCC_prg.o
+                0x08001a90                MRCC_vInit
  .text.MRCC_vEnableClk
-                0x08001a94      0x250 ./src/MCAL/RCC/RCC_prg.o
-                0x08001a94                MRCC_vEnableClk
+                0x08001ac4      0x250 ./src/MCAL/RCC/RCC_prg.o
+                0x08001ac4                MRCC_vEnableClk
  .text.MRCC_vSetAHBPrescaler
-                0x08001ce4       0x18 ./src/MCAL/RCC/RCC_prg.o
-                0x08001ce4                MRCC_vSetAHBPrescaler
+                0x08001d14       0x18 ./src/MCAL/RCC/RCC_prg.o
+                0x08001d14                MRCC_vSetAHBPrescaler
  .text.PWM_vInit
-                0x08001cfc       0xb4 ./src/MCAL/PWM/PWM_prg.o
-                0x08001cfc                PWM_vInit
+                0x08001d2c       0xb4 ./src/MCAL/PWM/PWM_prg.o
+                0x08001d2c                PWM_vInit
  .text.PWM_vSetDutyCycle_Channel
-                0x08001db0       0x4c ./src/MCAL/PWM/PWM_prg.o
-                0x08001db0                PWM_vSetDutyCycle_Channel
+                0x08001de0       0x4c ./src/MCAL/PWM/PWM_prg.o
+                0x08001de0                PWM_vSetDutyCycle_Channel
  .text.MNVIC_vEnableInterrupt
-                0x08001dfc       0x24 ./src/MCAL/NVIC/NVIC_prg.o
-                0x08001dfc                MNVIC_vEnableInterrupt
+                0x08001e2c       0x24 ./src/MCAL/NVIC/NVIC_prg.o
+                0x08001e2c                MNVIC_vEnableInterrupt
  .text.MNVIC_vDisableInterrupt
-                0x08001e20       0x28 ./src/MCAL/NVIC/NVIC_prg.o
-                0x08001e20                MNVIC_vDisableInterrupt
+                0x08001e50       0x28 ./src/MCAL/NVIC/NVIC_prg.o
+                0x08001e50                MNVIC_vDisableInterrupt
  .text.MGPIO_vSetPinMode
-                0x08001e48       0x78 ./src/MCAL/GPIO/GPIO_prg.o
-                0x08001e48                MGPIO_vSetPinMode
+                0x08001e78       0x78 ./src/MCAL/GPIO/GPIO_prg.o
+                0x08001e78                MGPIO_vSetPinMode
  .text.MGPIO_vSetPinOutputType
-                0x08001ec0       0x80 ./src/MCAL/GPIO/GPIO_prg.o
-                0x08001ec0                MGPIO_vSetPinOutputType
+                0x08001ef0       0x80 ./src/MCAL/GPIO/GPIO_prg.o
+                0x08001ef0                MGPIO_vSetPinOutputType
  .text.MGPIO_vSetPinOutputSpeed
-                0x08001f40       0x78 ./src/MCAL/GPIO/GPIO_prg.o
-                0x08001f40                MGPIO_vSetPinOutputSpeed
+                0x08001f70       0x78 ./src/MCAL/GPIO/GPIO_prg.o
+                0x08001f70                MGPIO_vSetPinOutputSpeed
  .text.MGPIO_vSetPinPull
-                0x08001fb8       0x78 ./src/MCAL/GPIO/GPIO_prg.o
-                0x08001fb8                MGPIO_vSetPinPull
+                0x08001fe8       0x78 ./src/MCAL/GPIO/GPIO_prg.o
+                0x08001fe8                MGPIO_vSetPinPull
  .text.MGPIO_vSetPinValue
-                0x08002030       0x7c ./src/MCAL/GPIO/GPIO_prg.o
-                0x08002030                MGPIO_vSetPinValue
+                0x08002060       0x7c ./src/MCAL/GPIO/GPIO_prg.o
+                0x08002060                MGPIO_vSetPinValue
+ .text.MGPIO_u8GetPinValue
+                0x080020dc       0x6c ./src/MCAL/GPIO/GPIO_prg.o
+                0x080020dc                MGPIO_u8GetPinValue
  .text.MGPIO_vSetAlt
-                0x080020ac       0xa8 ./src/MCAL/GPIO/GPIO_prg.o
-                0x080020ac                MGPIO_vSetAlt
+                0x08002148       0xa8 ./src/MCAL/GPIO/GPIO_prg.o
+                0x08002148                MGPIO_vSetAlt
  .text.MGPIO_vPinInit
-                0x08002154       0x40 ./src/MCAL/GPIO/GPIO_prg.o
-                0x08002154                MGPIO_vPinInit
+                0x080021f0       0x40 ./src/MCAL/GPIO/GPIO_prg.o
+                0x080021f0                MGPIO_vPinInit
  .text.MEXTI_vInit
-                0x08002194       0x10 ./src/MCAL/EXTI/EXTI_prg.o
-                0x08002194                MEXTI_vInit
+                0x08002230       0x10 ./src/MCAL/EXTI/EXTI_prg.o
+                0x08002230                MEXTI_vInit
  .text.MEXTI_vEnableINT
-                0x080021a4       0x5c ./src/MCAL/EXTI/EXTI_prg.o
-                0x080021a4                MEXTI_vEnableINT
+                0x08002240       0x5c ./src/MCAL/EXTI/EXTI_prg.o
+                0x08002240                MEXTI_vEnableINT
  .text.MEXTI_vSetCallBack
-                0x08002200       0x10 ./src/MCAL/EXTI/EXTI_prg.o
-                0x08002200                MEXTI_vSetCallBack
+                0x0800229c       0x10 ./src/MCAL/EXTI/EXTI_prg.o
+                0x0800229c                MEXTI_vSetCallBack
  .text.EXTI0_IRQHandler
-                0x08002210       0x20 ./src/MCAL/EXTI/EXTI_prg.o
-                0x08002210                EXTI0_IRQHandler
+                0x080022ac       0x20 ./src/MCAL/EXTI/EXTI_prg.o
+                0x080022ac                EXTI0_IRQHandler
  .text.EXTI1_IRQHandler
-                0x08002230       0x20 ./src/MCAL/EXTI/EXTI_prg.o
-                0x08002230                EXTI1_IRQHandler
+                0x080022cc       0x20 ./src/MCAL/EXTI/EXTI_prg.o
+                0x080022cc                EXTI1_IRQHandler
  .text.EXTI4_IRQHandler
-                0x08002250       0x20 ./src/MCAL/EXTI/EXTI_prg.o
-                0x08002250                EXTI4_IRQHandler
+                0x080022ec       0x20 ./src/MCAL/EXTI/EXTI_prg.o
+                0x080022ec                EXTI4_IRQHandler
  .text.ADC_SetSampleTime
-                0x08002270       0x50 ./src/MCAL/ADC/ADC_prg.o
+                0x0800230c       0x50 ./src/MCAL/ADC/ADC_prg.o
  .text.ADC_SetSequence
-                0x080022c0       0x84 ./src/MCAL/ADC/ADC_prg.o
+                0x0800235c       0x84 ./src/MCAL/ADC/ADC_prg.o
  .text.HADC_vInit
-                0x08002344       0x80 ./src/MCAL/ADC/ADC_prg.o
-                0x08002344                HADC_vInit
+                0x080023e0       0x80 ./src/MCAL/ADC/ADC_prg.o
+                0x080023e0                HADC_vInit
  .text.HADC_vConfigureChannel
-                0x080023c4       0x30 ./src/MCAL/ADC/ADC_prg.o
-                0x080023c4                HADC_vConfigureChannel
+                0x08002460       0x30 ./src/MCAL/ADC/ADC_prg.o
+                0x08002460                HADC_vConfigureChannel
  .text.HADC_u16GetConversion
-                0x080023f4       0x40 ./src/MCAL/ADC/ADC_prg.o
-                0x080023f4                HADC_u16GetConversion
+                0x08002490       0x40 ./src/MCAL/ADC/ADC_prg.o
+                0x08002490                HADC_u16GetConversion
+ .text.abs      0x080024d0       0x16 ./src/LIB/MATH_Fn.o
+                0x080024d0                abs
  .text.HTFT_SwapBytes
-                0x08002434        0x2 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08002436        0x2 
+                0x080024e6        0x2 ./src/HAL/TFT/TFT_prg.o
  .text.HTFT_SendDataWithTimeout
-                0x08002438       0x58 ./src/HAL/TFT/TFT_prg.o
+                0x080024e8       0x58 ./src/HAL/TFT/TFT_prg.o
  .text.HTFT_GPIO_vInit
-                0x08002490       0x7e ./src/HAL/TFT/TFT_prg.o
-                0x08002490                HTFT_GPIO_vInit
+                0x08002540       0x7e ./src/HAL/TFT/TFT_prg.o
+                0x08002540                HTFT_GPIO_vInit
  .text.HTFT_vReset
-                0x0800250e       0x24 ./src/HAL/TFT/TFT_prg.o
-                0x0800250e                HTFT_vReset
+                0x080025be       0x24 ./src/HAL/TFT/TFT_prg.o
+                0x080025be                HTFT_vReset
  .text.HTFT_vSendCommand
-                0x08002532       0x20 ./src/HAL/TFT/TFT_prg.o
-                0x08002532                HTFT_vSendCommand
+                0x080025e2       0x20 ./src/HAL/TFT/TFT_prg.o
+                0x080025e2                HTFT_vSendCommand
  .text.HTFT_vSendData
-                0x08002552       0x20 ./src/HAL/TFT/TFT_prg.o
-                0x08002552                HTFT_vSendData
+                0x08002602       0x20 ./src/HAL/TFT/TFT_prg.o
+                0x08002602                HTFT_vSendData
  .text.HTFT_vSendColor
-                0x08002572       0x2c ./src/HAL/TFT/TFT_prg.o
-                0x08002572                HTFT_vSendColor
+                0x08002622       0x2c ./src/HAL/TFT/TFT_prg.o
+                0x08002622                HTFT_vSendColor
  .text.HTFT_vSetAddressWindow
-                0x0800259e       0x4e ./src/HAL/TFT/TFT_prg.o
-                0x0800259e                HTFT_vSetAddressWindow
+                0x0800264e       0x4e ./src/HAL/TFT/TFT_prg.o
+                0x0800264e                HTFT_vSetAddressWindow
  .text.HTFT_vFillScreen
-                0x080025ec       0x74 ./src/HAL/TFT/TFT_prg.o
-                0x080025ec                HTFT_vFillScreen
+                0x0800269c       0x74 ./src/HAL/TFT/TFT_prg.o
+                0x0800269c                HTFT_vFillScreen
  .text.HTFT_vFillRectangle
-                0x08002660       0x94 ./src/HAL/TFT/TFT_prg.o
-                0x08002660                HTFT_vFillRectangle
+                0x08002710       0x94 ./src/HAL/TFT/TFT_prg.o
+                0x08002710                HTFT_vFillRectangle
  .text.HTFT_vSetRotation
-                0x080026f4       0x36 ./src/HAL/TFT/TFT_prg.o
-                0x080026f4                HTFT_vSetRotation
+                0x080027a4       0x36 ./src/HAL/TFT/TFT_prg.o
+                0x080027a4                HTFT_vSetRotation
  .text.HTFT_vInit
-                0x0800272a       0x4e ./src/HAL/TFT/TFT_prg.o
-                0x0800272a                HTFT_vInit
+                0x080027da       0x4e ./src/HAL/TFT/TFT_prg.o
+                0x080027da                HTFT_vInit
  .text.HTFT_vDrawPixel
-                0x08002778       0x1e ./src/HAL/TFT/TFT_prg.o
-                0x08002778                HTFT_vDrawPixel
+                0x08002828       0x1e ./src/HAL/TFT/TFT_prg.o
+                0x08002828                HTFT_vDrawPixel
  .text.DrawLineCore
-                0x08002796       0x84 ./src/HAL/TFT/TFT_prg.o
+                0x08002846       0x84 ./src/HAL/TFT/TFT_prg.o
  .text.HTFT_vDrawRectangle
-                0x0800281a       0x4a ./src/HAL/TFT/TFT_prg.o
-                0x0800281a                HTFT_vDrawRectangle
+                0x080028ca       0x4a ./src/HAL/TFT/TFT_prg.o
+                0x080028ca                HTFT_vDrawRectangle
  .text.HTFT_vDrawChar
-                0x08002864       0x74 ./src/HAL/TFT/TFT_prg.o
-                0x08002864                HTFT_vDrawChar
+                0x08002914       0x74 ./src/HAL/TFT/TFT_prg.o
+                0x08002914                HTFT_vDrawChar
  .text.HTFT_vDrawText
-                0x080028d8       0x42 ./src/HAL/TFT/TFT_prg.o
-                0x080028d8                HTFT_vDrawText
- *fill*         0x0800291a        0x2 
+                0x08002988       0x42 ./src/HAL/TFT/TFT_prg.o
+                0x08002988                HTFT_vDrawText
+ *fill*         0x080029ca        0x2 
  .text.DisplayStatus
-                0x0800291c       0x54 ./src/HAL/TFT/TFT_prg.o
+                0x080029cc       0x54 ./src/HAL/TFT/TFT_prg.o
  .text.HTFT_vDrawImage
-                0x08002970       0x68 ./src/HAL/TFT/TFT_prg.o
-                0x08002970                HTFT_vDrawImage
+                0x08002a20       0x68 ./src/HAL/TFT/TFT_prg.o
+                0x08002a20                HTFT_vDrawImage
  .text.Draw_Battery
-                0x080029d8       0x90 ./src/HAL/TFT/TFT_prg.o
-                0x080029d8                Draw_Battery
+                0x08002a88       0x90 ./src/HAL/TFT/TFT_prg.o
+                0x08002a88                Draw_Battery
  .text.HTFT_vSetCurrentDistance
-                0x08002a68        0xc ./src/HAL/TFT/TFT_prg.o
-                0x08002a68                HTFT_vSetCurrentDistance
+                0x08002b18        0xc ./src/HAL/TFT/TFT_prg.o
+                0x08002b18                HTFT_vSetCurrentDistance
  .text.HTFT_vGetCurrentDistance
-                0x08002a74        0xc ./src/HAL/TFT/TFT_prg.o
-                0x08002a74                HTFT_vGetCurrentDistance
+                0x08002b24        0xc ./src/HAL/TFT/TFT_prg.o
+                0x08002b24                HTFT_vGetCurrentDistance
  .text.HTFT_vSetESPStatus
-                0x08002a80        0xc ./src/HAL/TFT/TFT_prg.o
-                0x08002a80                HTFT_vSetESPStatus
+                0x08002b30        0xc ./src/HAL/TFT/TFT_prg.o
+                0x08002b30                HTFT_vSetESPStatus
  .text.HTFT_vGetCurrentPage
-                0x08002a8c        0xc ./src/HAL/TFT/TFT_prg.o
-                0x08002a8c                HTFT_vGetCurrentPage
+                0x08002b3c        0xc ./src/HAL/TFT/TFT_prg.o
+                0x08002b3c                HTFT_vGetCurrentPage
  .text.HTFT_vShowFirstPage
-                0x08002a98       0x54 ./src/HAL/TFT/TFT_prg.o
-                0x08002a98                HTFT_vShowFirstPage
+                0x08002b48       0x54 ./src/HAL/TFT/TFT_prg.o
+                0x08002b48                HTFT_vShowFirstPage
  .text.HTFT_vShowBatteryPage
-                0x08002aec       0x78 ./src/HAL/TFT/TFT_prg.o
-                0x08002aec                HTFT_vShowBatteryPage
+                0x08002b9c       0x78 ./src/HAL/TFT/TFT_prg.o
+                0x08002b9c                HTFT_vShowBatteryPage
  .text.HTFT_vShowModePage
-                0x08002b64       0xc4 ./src/HAL/TFT/TFT_prg.o
-                0x08002b64                HTFT_vShowModePage
+                0x08002c14       0xc4 ./src/HAL/TFT/TFT_prg.o
+                0x08002c14                HTFT_vShowModePage
  .text.HTFT_vShowUltrasonicPage
-                0x08002c28      0x12c ./src/HAL/TFT/TFT_prg.o
-                0x08002c28                HTFT_vShowUltrasonicPage
+                0x08002cd8      0x12c ./src/HAL/TFT/TFT_prg.o
+                0x08002cd8                HTFT_vShowUltrasonicPage
  .text.HTFT_vShowESPPage
-                0x08002d54       0x6c ./src/HAL/TFT/TFT_prg.o
-                0x08002d54                HTFT_vShowESPPage
+                0x08002e04       0x6c ./src/HAL/TFT/TFT_prg.o
+                0x08002e04                HTFT_vShowESPPage
  .text.HTFT_vShowIRSensorsPage
-                0x08002dc0       0x6c ./src/HAL/TFT/TFT_prg.o
-                0x08002dc0                HTFT_vShowIRSensorsPage
+                0x08002e70       0x6c ./src/HAL/TFT/TFT_prg.o
+                0x08002e70                HTFT_vShowIRSensorsPage
  .text.HTFT_vShowSensorsPage
-                0x08002e2c       0xa8 ./src/HAL/TFT/TFT_prg.o
-                0x08002e2c                HTFT_vShowSensorsPage
+                0x08002edc       0xa8 ./src/HAL/TFT/TFT_prg.o
+                0x08002edc                HTFT_vShowSensorsPage
  .text.HTFT_vToggleMode
-                0x08002ed4       0x28 ./src/HAL/TFT/TFT_prg.o
-                0x08002ed4                HTFT_vToggleMode
+                0x08002f84       0x28 ./src/HAL/TFT/TFT_prg.o
+                0x08002f84                HTFT_vToggleMode
  .text.HTFT_vUpdateTime
-                0x08002efc       0x7c ./src/HAL/TFT/TFT_prg.o
-                0x08002efc                HTFT_vUpdateTime
+                0x08002fac       0x7c ./src/HAL/TFT/TFT_prg.o
+                0x08002fac                HTFT_vUpdateTime
  .text.HTFT_vShowClockPage
-                0x08002f78       0x44 ./src/HAL/TFT/TFT_prg.o
-                0x08002f78                HTFT_vShowClockPage
+                0x08003028       0x44 ./src/HAL/TFT/TFT_prg.o
+                0x08003028                HTFT_vShowClockPage
  .text.HTFT_vUpdateBatteryDisplay
-                0x08002fbc       0x18 ./src/HAL/TFT/TFT_prg.o
-                0x08002fbc                HTFT_vUpdateBatteryDisplay
+                0x0800306c       0x18 ./src/HAL/TFT/TFT_prg.o
+                0x0800306c                HTFT_vUpdateBatteryDisplay
  .text.HTFT_vUpdateUltrasonicDisplay
-                0x08002fd4       0x18 ./src/HAL/TFT/TFT_prg.o
-                0x08002fd4                HTFT_vUpdateUltrasonicDisplay
+                0x08003084       0x18 ./src/HAL/TFT/TFT_prg.o
+                0x08003084                HTFT_vUpdateUltrasonicDisplay
  .text.HTFT_vNavigateToPage
-                0x08002fec       0x54 ./src/HAL/TFT/TFT_prg.o
-                0x08002fec                HTFT_vNavigateToPage
+                0x0800309c       0x54 ./src/HAL/TFT/TFT_prg.o
+                0x0800309c                HTFT_vNavigateToPage
  .text.angle_to_us
-                0x08003040       0x24 ./src/HAL/SERMUX/SerMux_prg.o
+                0x080030f0       0x24 ./src/HAL/SERMUX/SerMux_prg.o
+ .text.Timer2_Init_10usTick
+                0x08003114       0x44 ./src/HAL/SERMUX/SerMux_prg.o
+ .text.SerMux_setAngle
+                0x08003158       0x1c ./src/HAL/SERMUX/SerMux_prg.o
+                0x08003158                SerMux_setAngle
+ .text.SerMux_init
+                0x08003174       0xc8 ./src/HAL/SERMUX/SerMux_prg.o
+                0x08003174                SerMux_init
  .text.SerMux_stop
-                0x08003064       0x34 ./src/HAL/SERMUX/SerMux_prg.o
-                0x08003064                SerMux_stop
+                0x0800323c       0x34 ./src/HAL/SERMUX/SerMux_prg.o
+                0x0800323c                SerMux_stop
  .text.TIM2_IRQHandler
-                0x08003098      0x10c ./src/HAL/SERMUX/SerMux_prg.o
-                0x08003098                TIM2_IRQHandler
+                0x08003270      0x10c ./src/HAL/SERMUX/SerMux_prg.o
+                0x08003270                TIM2_IRQHandler
+ .text.HIR_vInit
+                0x0800337c       0x44 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+                0x0800337c                HIR_vInit
+ .text.HIR_f32ReadSensors
+                0x080033c0       0x96 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+                0x080033c0                HIR_f32ReadSensors
+ *fill*         0x08003456        0x2 
  .text.IR_DecodeFrame
-                0x080031a4       0x70 ./src/HAL/IR/IR_prg.o
+                0x08003458       0x70 ./src/HAL/IR/IR_prg.o
  .text.IR_EXTI_Handler
-                0x08003214       0x60 ./src/HAL/IR/IR_prg.o
- .text.IR_Init  0x08003274       0x74 ./src/HAL/IR/IR_prg.o
-                0x08003274                IR_Init
+                0x080034c8       0x60 ./src/HAL/IR/IR_prg.o
+ .text.IR_Init  0x08003528       0x74 ./src/HAL/IR/IR_prg.o
+                0x08003528                IR_Init
  .text.sendRobotData
-                0x080032e8       0xf0 ./src/APP/main.o
-                0x080032e8                sendRobotData
- .text.onIrCode
-                0x080033d8       0xf0 ./src/APP/main.o
+                0x0800359c       0xf0 ./src/APP/main.o
+                0x0800359c                sendRobotData
  .text.SystemInit
-                0x080034c8       0xc0 ./src/APP/main.o
+                0x0800368c      0x108 ./src/APP/main.o
  .text.PeriodicCallbacks_Init
-                0x08003588       0x4c ./src/APP/main.o
+                0x08003794       0x4c ./src/APP/main.o
  .text.Ultrasonic_Measurement_Callback
-                0x080035d4        0xa ./src/APP/main.o
+                0x080037e0        0xa ./src/APP/main.o
  .text.Ultrasonic_Display_Callback
-                0x080035de       0x12 ./src/APP/main.o
+                0x080037ea       0x12 ./src/APP/main.o
  .text.Battery_Tick_Callback
-                0x080035f0       0x12 ./src/APP/main.o
+                0x080037fc       0x12 ./src/APP/main.o
  .text.Clock_Tick_Callback
-                0x08003602       0x12 ./src/APP/main.o
- .text.main     0x08003614       0x60 ./src/APP/main.o
-                0x08003614                main
+                0x0800380e       0x12 ./src/APP/main.o
+ .text.moveLeft
+                0x08003820       0x34 ./src/APP/main.o
+                0x08003820                moveLeft
+ .text.moveRight
+                0x08003854       0x34 ./src/APP/main.o
+                0x08003854                moveRight
+ .text.move     0x08003888       0x1a ./src/APP/main.o
+                0x08003888                move
+ *fill*         0x080038a2        0x2 
+ .text.line_Follower
+                0x080038a4       0x44 ./src/APP/main.o
+                0x080038a4                line_Follower
+ .text.Move_Sequence
+                0x080038e8       0xe4 ./src/APP/main.o
+                0x080038e8                Move_Sequence
+ .text.onIrCode
+                0x080039cc       0xfc ./src/APP/main.o
+ .text.main     0x08003ac8       0x60 ./src/APP/main.o
+                0x08003ac8                main
  .text.SystemClock_Config
-                0x08003674       0x98 ./src/_initialize_hardware.o
-                0x08003674                SystemClock_Config
+                0x08003b28       0x98 ./src/_initialize_hardware.o
+                0x08003b28                SystemClock_Config
  .text.__initialize_hardware
-                0x0800370c       0x10 ./src/_initialize_hardware.o
-                0x0800370c                __initialize_hardware
+                0x08003bc0       0x10 ./src/_initialize_hardware.o
+                0x08003bc0                __initialize_hardware
  .text.HAL_MspInit
-                0x0800371c        0x2 ./src/stm32f4xx_hal_msp.o
-                0x0800371c                HAL_MspInit
- *fill*         0x0800371e        0x2 
- .text          0x08003720      0x378 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
-                0x08003720                __aeabi_drsub
-                0x08003728                __aeabi_dsub
-                0x08003728                __subdf3
-                0x0800372c                __aeabi_dadd
-                0x0800372c                __adddf3
-                0x080039a4                __floatunsidf
-                0x080039a4                __aeabi_ui2d
-                0x080039c4                __floatsidf
-                0x080039c4                __aeabi_i2d
-                0x080039e8                __aeabi_f2d
-                0x080039e8                __extendsfdf2
-                0x08003a2c                __floatundidf
-                0x08003a2c                __aeabi_ul2d
-                0x08003a3c                __floatdidf
-                0x08003a3c                __aeabi_l2d
- .text          0x08003a98      0x21c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
-                0x08003a98                __aeabi_frsub
-                0x08003aa0                __subsf3
-                0x08003aa0                __aeabi_fsub
-                0x08003aa4                __aeabi_fadd
-                0x08003aa4                __addsf3
-                0x08003c04                __aeabi_ui2f
-                0x08003c04                __floatunsisf
-                0x08003c0c                __aeabi_i2f
-                0x08003c0c                __floatsisf
-                0x08003c28                __aeabi_ul2f
-                0x08003c28                __floatundisf
-                0x08003c38                __aeabi_l2f
-                0x08003c38                __floatdisf
- .text          0x08003cb4      0x2a0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
-                0x08003cb4                __mulsf3
-                0x08003cb4                __aeabi_fmul
-                0x08003e1c                __aeabi_fdiv
-                0x08003e1c                __divsf3
- .text          0x08003f54       0xec c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_cmpsf2.o)
-                0x08003f54                __gesf2
-                0x08003f54                __gtsf2
-                0x08003f5c                __lesf2
-                0x08003f5c                __ltsf2
-                0x08003f64                __nesf2
-                0x08003f64                __eqsf2
-                0x08003f64                __cmpsf2
-                0x08003fc4                __aeabi_cfrcmple
-                0x08003fcc                __aeabi_cfcmpeq
-                0x08003fcc                __aeabi_cfcmple
-                0x08003fdc                __aeabi_fcmpeq
-                0x08003ff0                __aeabi_fcmplt
-                0x08004004                __aeabi_fcmple
-                0x08004018                __aeabi_fcmpge
-                0x0800402c                __aeabi_fcmpgt
- .text          0x08004040       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixsfsi.o)
-                0x08004040                __aeabi_f2iz
-                0x08004040                __fixsfsi
- .text          0x0800408c       0x40 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixunssfsi.o)
-                0x0800408c                __fixunssfsi
-                0x0800408c                __aeabi_f2uiz
- .text.__errno  0x080040cc        0xc c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-errno.o)
-                0x080040cc                __errno
- .text.memset   0x080040d8       0x10 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memset.o)
-                0x080040d8                memset
+                0x08003bd0        0x2 ./src/stm32f4xx_hal_msp.o
+                0x08003bd0                HAL_MspInit
+ *fill*         0x08003bd2        0x2 
+ .text          0x08003bd4      0x378 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
+                0x08003bd4                __aeabi_drsub
+                0x08003bdc                __aeabi_dsub
+                0x08003bdc                __subdf3
+                0x08003be0                __aeabi_dadd
+                0x08003be0                __adddf3
+                0x08003e58                __floatunsidf
+                0x08003e58                __aeabi_ui2d
+                0x08003e78                __floatsidf
+                0x08003e78                __aeabi_i2d
+                0x08003e9c                __aeabi_f2d
+                0x08003e9c                __extendsfdf2
+                0x08003ee0                __floatundidf
+                0x08003ee0                __aeabi_ul2d
+                0x08003ef0                __floatdidf
+                0x08003ef0                __aeabi_l2d
+ .text          0x08003f4c      0x424 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
+                0x08003f4c                __aeabi_dmul
+                0x08003f4c                __muldf3
+                0x080041a0                __divdf3
+                0x080041a0                __aeabi_ddiv
+ .text          0x08004370       0x50 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
+                0x08004370                __aeabi_d2iz
+                0x08004370                __fixdfsi
+ .text          0x080043c0      0x21c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
+                0x080043c0                __aeabi_frsub
+                0x080043c8                __subsf3
+                0x080043c8                __aeabi_fsub
+                0x080043cc                __aeabi_fadd
+                0x080043cc                __addsf3
+                0x0800452c                __aeabi_ui2f
+                0x0800452c                __floatunsisf
+                0x08004534                __aeabi_i2f
+                0x08004534                __floatsisf
+                0x08004550                __aeabi_ul2f
+                0x08004550                __floatundisf
+                0x08004560                __aeabi_l2f
+                0x08004560                __floatdisf
+ .text          0x080045dc      0x2a0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
+                0x080045dc                __mulsf3
+                0x080045dc                __aeabi_fmul
+                0x08004744                __aeabi_fdiv
+                0x08004744                __divsf3
+ .text          0x0800487c       0xec c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_cmpsf2.o)
+                0x0800487c                __gesf2
+                0x0800487c                __gtsf2
+                0x08004884                __lesf2
+                0x08004884                __ltsf2
+                0x0800488c                __nesf2
+                0x0800488c                __eqsf2
+                0x0800488c                __cmpsf2
+                0x080048ec                __aeabi_cfrcmple
+                0x080048f4                __aeabi_cfcmpeq
+                0x080048f4                __aeabi_cfcmple
+                0x08004904                __aeabi_fcmpeq
+                0x08004918                __aeabi_fcmplt
+                0x0800492c                __aeabi_fcmple
+                0x08004940                __aeabi_fcmpge
+                0x08004954                __aeabi_fcmpgt
+ .text          0x08004968       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixsfsi.o)
+                0x08004968                __aeabi_f2iz
+                0x08004968                __fixsfsi
+ .text          0x080049b4       0x40 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixunssfsi.o)
+                0x080049b4                __fixunssfsi
+                0x080049b4                __aeabi_f2uiz
+ .text.__errno  0x080049f4        0xc c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-errno.o)
+                0x080049f4                __errno
+ .text.memset   0x08004a00       0x10 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memset.o)
+                0x08004a00                memset
  .text.snprintf
-                0x080040e8       0x68 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-snprintf.o)
-                0x080040e8                sniprintf
-                0x080040e8                snprintf
- .text.sprintf  0x08004150       0x40 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sprintf.o)
-                0x08004150                siprintf
-                0x08004150                sprintf
- .text          0x08004190       0x10 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-strlen.o)
-                0x08004190                strlen
+                0x08004a10       0x68 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-snprintf.o)
+                0x08004a10                sniprintf
+                0x08004a10                snprintf
+ .text.sprintf  0x08004a78       0x40 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sprintf.o)
+                0x08004a78                siprintf
+                0x08004a78                sprintf
+ .text          0x08004ab8       0x10 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-strlen.o)
+                0x08004ab8                strlen
  .text._vsnprintf_r
-                0x080041a0       0x58 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
-                0x080041a0                _vsniprintf_r
-                0x080041a0                _vsnprintf_r
+                0x08004ac8       0x58 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
+                0x08004ac8                _vsniprintf_r
+                0x08004ac8                _vsnprintf_r
  .text.vsnprintf
-                0x080041f8       0x1c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
-                0x080041f8                vsniprintf
-                0x080041f8                vsnprintf
+                0x08004b20       0x1c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
+                0x08004b20                vsniprintf
+                0x08004b20                vsnprintf
  .text.__ssputs_r
-                0x08004214       0xb4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
-                0x08004214                __ssputs_r
+                0x08004b3c       0xb4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x08004b3c                __ssputs_r
  .text._svfprintf_r
-                0x080042c8      0x1ec c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
-                0x080042c8                _svfiprintf_r
-                0x080042c8                _svfprintf_r
+                0x08004bf0      0x1ec c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x08004bf0                _svfiprintf_r
+                0x08004bf0                _svfprintf_r
  .text._printf_common
-                0x080044b4       0xea c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x080044b4                _printf_common
- *fill*         0x0800459e        0x2 
+                0x08004ddc       0xea c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x08004ddc                _printf_common
+ *fill*         0x08004ec6        0x2 
  .text._printf_i
-                0x080045a0      0x224 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
-                0x080045a0                _printf_i
- *fill*         0x080047c4        0xc 
- .text          0x080047d0       0xa0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memchr.o)
-                0x080047d0                memchr
- .text.memcpy   0x08004870       0x16 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memcpy-stub.o)
-                0x08004870                memcpy
- .text.memmove  0x08004886       0x32 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memmove.o)
-                0x08004886                memmove
- .text._free_r  0x080048b8       0x9c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-freer.o)
-                0x080048b8                _free_r
+                0x08004ec8      0x224 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x08004ec8                _printf_i
+ *fill*         0x080050ec        0x4 
+ .text          0x080050f0       0xa0 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memchr.o)
+                0x080050f0                memchr
+ .text.memcpy   0x08005190       0x16 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x08005190                memcpy
+ .text.memmove  0x080051a6       0x32 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memmove.o)
+                0x080051a6                memmove
+ .text._free_r  0x080051d8       0x9c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-freer.o)
+                0x080051d8                _free_r
  .text._malloc_r
-                0x08004954       0xb4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
-                0x08004954                _malloc_r
+                0x08005274       0xb4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x08005274                _malloc_r
  .text._realloc_r
-                0x08004a08       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-reallocr.o)
-                0x08004a08                _realloc_r
- .text._sbrk_r  0x08004a54       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sbrkr.o)
-                0x08004a54                _sbrk_r
+                0x08005328       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-reallocr.o)
+                0x08005328                _realloc_r
+ .text._sbrk_r  0x08005374       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sbrkr.o)
+                0x08005374                _sbrk_r
  .text.__malloc_lock
-                0x08004a74        0x2 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
-                0x08004a74                __malloc_lock
+                0x08005394        0x2 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
+                0x08005394                __malloc_lock
  .text.__malloc_unlock
-                0x08004a76        0x2 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
-                0x08004a76                __malloc_unlock
+                0x08005396        0x2 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
+                0x08005396                __malloc_unlock
  .text._malloc_usable_size_r
-                0x08004a78       0x10 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-msizer.o)
-                0x08004a78                _malloc_usable_size_r
+                0x08005398       0x10 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-msizer.o)
+                0x08005398                _malloc_usable_size_r
  *(.rodata .rodata.* .constdata .constdata.*)
  .rodata.HAL_NVIC_SetPriorityGrouping.str1.4
-                0x08004a88       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
- *fill*         0x08004ab9        0x3 
+                0x080053a8       0x31 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
+ *fill*         0x080053d9        0x3 
  .rodata.APBAHBPrescTable
-                0x08004abc       0x10 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
-                0x08004abc                APBAHBPrescTable
+                0x080053dc       0x10 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
+                0x080053dc                APBAHBPrescTable
  .rodata.HAL_RCC_OscConfig.str1.4
-                0x08004acc       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
- *fill*         0x08004afa        0x2 
+                0x080053ec       0x2e ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
+ *fill*         0x0800541a        0x2 
  .rodata.abort.str1.4
-                0x08004afc       0x14 ./system/src/newlib/_exit.o
+                0x0800541c       0x14 ./system/src/newlib/_exit.o
  .rodata.assert_failed.str1.4
-                0x08004b10       0x2b ./system/src/newlib/assert.o
+                0x08005430       0x2b ./system/src/newlib/assert.o
  .rodata.trace_puts.str1.4
-                0x08004b3b       0x2b ./system/src/diag/Trace.o
+                0x0800545b       0x2b ./system/src/diag/Trace.o
                                   0x2 (size before relaxing)
- *fill*         0x08004b3b        0x1 
+ *fill*         0x0800545b        0x1 
  .rodata.dumpExceptionStack.str1.4
-                0x08004b3c      0x11a ./system/src/cortexm/exception_handlers.o
- *fill*         0x08004c56        0x2 
+                0x0800545c      0x11a ./system/src/cortexm/exception_handlers.o
+ *fill*         0x08005576        0x2 
  .rodata.str1.4
-                0x08004c58       0x2a ./system/src/cortexm/exception_handlers.o
- *fill*         0x08004c82        0x2 
+                0x08005578       0x2a ./system/src/cortexm/exception_handlers.o
+ *fill*         0x080055a2        0x2 
  .rodata.AHBPrescTable
-                0x08004c84       0x10 ./system/src/cmsis/system_stm32f4xx.o
-                0x08004c84                AHBPrescTable
- .rodata        0x08004c94        0x3 ./src/Robo_int/Battery_level.o
- *fill*         0x08004c97        0x1 
- .rodata        0x08004c98       0x20 ./src/Robo_int/Motor_cmd.o
+                0x080055a4       0x10 ./system/src/cmsis/system_stm32f4xx.o
+                0x080055a4                AHBPrescTable
+ .rodata        0x080055b4        0x3 ./src/Robo_int/Battery_level.o
+ *fill*         0x080055b7        0x1 
+ .rodata        0x080055b8       0x20 ./src/Robo_int/Motor_cmd.o
  .rodata.HTFT_vShowBatteryPage.str1.4
-                0x08004cb8        0xd ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004cc5        0x3 
+                0x080055d8        0xd ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x080055e5        0x3 
  .rodata.HTFT_vShowClockPage.str1.4
-                0x08004cc8        0x6 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004cce        0x2 
+                0x080055e8        0x6 ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x080055ee        0x2 
  .rodata.HTFT_vShowESPPage.str1.4
-                0x08004cd0       0x32 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004d02        0x2 
+                0x080055f0       0x32 ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x08005622        0x2 
  .rodata.HTFT_vShowFirstPage.str1.4
-                0x08004d04        0x9 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004d0d        0x3 
+                0x08005624        0x9 ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x0800562d        0x3 
  .rodata.HTFT_vShowIRSensorsPage.str1.4
-                0x08004d10       0x23 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004d33        0x1 
+                0x08005630       0x23 ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x08005653        0x1 
  .rodata.HTFT_vShowModePage.str1.4
-                0x08004d34       0x21 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004d55        0x3 
+                0x08005654       0x21 ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x08005675        0x3 
  .rodata.HTFT_vShowSensorsPage.str1.4
-                0x08004d58       0x27 ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004d7f        0x1 
+                0x08005678       0x27 ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x0800569f        0x1 
  .rodata.HTFT_vShowUltrasonicPage.str1.4
-                0x08004d80       0x5b ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004ddb        0x1 
+                0x080056a0       0x5b ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x080056fb        0x1 
  .rodata.HTFT_vUpdateTime.str1.4
-                0x08004ddc        0xf ./src/HAL/TFT/TFT_prg.o
- *fill*         0x08004deb        0x1 
+                0x080056fc        0xf ./src/HAL/TFT/TFT_prg.o
+ *fill*         0x0800570b        0x1 
  .rodata.Font8x13_Table
-                0x08004dec      0x9a6 ./src/HAL/Fonts/Fonts.o
-                0x08004dec                Font8x13_Table
- *fill*         0x08005792        0x2 
- .rodata        0x08005794       0x12 ./src/APP/main.o
- *fill*         0x080057a6        0x2 
+                0x0800570c      0x9a6 ./src/HAL/Fonts/Fonts.o
+                0x0800570c                Font8x13_Table
+ *fill*         0x080060b2        0x2 
+ .rodata        0x080060b4       0x12 ./src/APP/main.o
+ *fill*         0x080060c6        0x2 
  .rodata.image_data_Image
-                0x080057a8     0x85c0 ./src/APP/main.o
+                0x080060c8     0x85c0 ./src/APP/main.o
  .rodata.main.str1.4
-                0x0800dd68       0x15 ./src/APP/main.o
- *fill*         0x0800dd7d        0x3 
+                0x0800e688       0x15 ./src/APP/main.o
+ *fill*         0x0800e69d        0x3 
  .rodata.sendRobotData.str1.4
-                0x0800dd80      0x1b0 ./src/APP/main.o
+                0x0800e6a0      0x1b0 ./src/APP/main.o
                                 0x1ad (size before relaxing)
  .rodata._svfprintf_r.str1.1
-                0x0800df30       0x11 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x0800e850       0x11 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
  .rodata._printf_i.str1.1
-                0x0800df41       0x22 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x0800e861       0x22 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
  *(vtable)
  *(.eh_frame*)
  *(.glue_7)
- .glue_7        0x0800df63        0x0 linker stubs
+ .glue_7        0x0800e883        0x0 linker stubs
  *(.glue_7t)
- .glue_7t       0x0800df63        0x0 linker stubs
+ .glue_7t       0x0800e883        0x0 linker stubs
 
-.vfp11_veneer   0x0800df64        0x0
- .vfp11_veneer  0x0800df64        0x0 linker stubs
+.vfp11_veneer   0x0800e884        0x0
+ .vfp11_veneer  0x0800e884        0x0 linker stubs
 
-.v4_bx          0x0800df64        0x0
- .v4_bx         0x0800df64        0x0 linker stubs
+.v4_bx          0x0800e884        0x0
+ .v4_bx         0x0800e884        0x0 linker stubs
 
-.iplt           0x0800df64        0x0
- .iplt          0x0800df64        0x0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
+.iplt           0x0800e884        0x0
+ .iplt          0x0800e884        0x0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
 
-.rel.dyn        0x0800df64        0x0
- .rel.iplt      0x0800df64        0x0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
+.rel.dyn        0x0800e884        0x0
+ .rel.iplt      0x0800e884        0x0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800df64                . = ALIGN (0x4)
-                0x0800df64                __exidx_start = .
+                0x0800e884                . = ALIGN (0x4)
+                0x0800e884                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0800df64                __exidx_end = .
-                0x0800df64                . = ALIGN (0x4)
-                0x0800df64                _etext = .
-                0x0800df64                __etext = .
+                0x0800e884                __exidx_end = .
+                0x0800e884                . = ALIGN (0x4)
+                0x0800e884                _etext = .
+                0x0800e884                __etext = .
 
-.data_CCMRAM    0x10000000        0x0 load address 0x0800df64
+.data_CCMRAM    0x10000000        0x0 load address 0x0800e884
  FILL mask 0xff
  *(.data.CCMRAM .data.CCMRAM.*)
                 0x10000000                . = ALIGN (0x4)
-                0x0800df64                _sidata = LOADADDR (.data)
+                0x0800e884                _sidata = LOADADDR (.data)
 
-.data           0x20000000       0xc4 load address 0x0800df64
+.data           0x20000000       0xc4 load address 0x0800e884
  FILL mask 0xff
                 0x20000000                _sdata = .
                 0x20000000                __data_start__ = .
@@ -5757,13 +5761,13 @@ END GROUP
                 0x200000c4                _edata = .
                 0x200000c4                __data_end__ = .
 
-.igot.plt       0x200000c4        0x0 load address 0x0800e028
+.igot.plt       0x200000c4        0x0 load address 0x0800e948
  .igot.plt      0x200000c4        0x0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
 
 .bss_CCMRAM     0x10000000        0x0
  *(.bss.CCMRAM .bss.CCMRAM.*)
 
-.bss            0x200000c4     0x39f4
+.bss            0x200000c4     0x3a08
                 0x200000c4                __bss_start__ = .
                 0x200000c4                _sbss = .
  *(.bss_begin .bss_begin.*)
@@ -5827,42 +5831,46 @@ END GROUP
  .bss.irLineRight
                 0x2000329c        0x4 ./src/APP/main.o
                 0x2000329c                irLineRight
+ .bss.senVal    0x200032a0        0x5 ./src/APP/main.o
+                0x200032a0                senVal
+ *fill*         0x200032a5        0x3 
  .bss.__malloc_free_list
-                0x200032a0        0x4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
-                0x200032a0                __malloc_free_list
+                0x200032a8        0x4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x200032a8                __malloc_free_list
  .bss.__malloc_sbrk_start
-                0x200032a4        0x4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
-                0x200032a4                __malloc_sbrk_start
+                0x200032ac        0x4 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x200032ac                __malloc_sbrk_start
  *(COMMON)
- COMMON         0x200032a8        0x4 ./system/src/stm32f4-hal/stm32f4xx_hal.o
-                0x200032a8                uwTick
- COMMON         0x200032ac        0x4 ./system/src/newlib/_syscalls.o
-                0x200032ac                errno
- COMMON         0x200032b0      0x804 ./src/APP/main.o
-                0x200032b0                ultrasonic_sensor
-                0x200032b4                uartBuffer
+ COMMON         0x200032b0        0x4 ./system/src/stm32f4-hal/stm32f4xx_hal.o
+                0x200032b0                uwTick
+ COMMON         0x200032b4        0x4 ./system/src/newlib/_syscalls.o
+                0x200032b4                errno
+ COMMON         0x200032b8      0x810 ./src/APP/main.o
+                0x200032b8                ultrasonic_sensor
+                0x200032bc                ir_cfg
+                0x200032c8                uartBuffer
  *(.bss_end .bss_end.*)
- .bss_end       0x20003ab4        0x4 ./system/src/newlib/_startup.o
-                0x20003ab8                . = ALIGN (0x4)
-                0x20003ab8                __bss_end__ = .
-                0x20003ab8                _ebss = .
+ .bss_end       0x20003ac8        0x4 ./system/src/newlib/_startup.o
+                0x20003acc                . = ALIGN (0x4)
+                0x20003acc                __bss_end__ = .
+                0x20003acc                _ebss = .
 
 .noinit_CCMRAM
  *(.noinit.CCMRAM .noinit.CCMRAM.*)
 
-.noinit         0x20003ab8        0x0
-                0x20003ab8                _noinit = .
+.noinit         0x20003acc        0x0
+                0x20003acc                _noinit = .
  *(.noinit .noinit.*)
-                0x20003ab8                . = ALIGN (0x4)
-                0x20003ab8                _end_noinit = .
+                0x20003acc                . = ALIGN (0x4)
+                0x20003acc                _end_noinit = .
                 [!provide]                PROVIDE (end, _end_noinit)
                 [!provide]                PROVIDE (_end, _end_noinit)
                 [!provide]                PROVIDE (__end, _end_noinit)
                 [!provide]                PROVIDE (__end__, _end_noinit)
 
-._check_stack   0x20003ab8      0x100
-                0x20003bb8                . = (. + _Minimum_Stack_Size)
- *fill*         0x20003ab8      0x100 
+._check_stack   0x20003acc      0x100
+                0x20003bcc                . = (. + _Minimum_Stack_Size)
+ *fill*         0x20003acc      0x100 
 
 .b1text
  *(.b1text)
@@ -5926,6 +5934,7 @@ END GROUP
  .comment       0x0000007e       0x7f ./system/src/cmsis/vectors_stm32f401xc.o
  .comment       0x0000007e       0x7f ./src/Robo_int/Battery_level.o
  .comment       0x0000007e       0x7f ./src/Robo_int/Motor_cmd.o
+ .comment       0x0000007e       0x7f ./src/Robo_int/Servos_cmd.o
  .comment       0x0000007e       0x7f ./src/MCAL/USART/USART_prg.o
  .comment       0x0000007e       0x7f ./src/MCAL/SYSTICK/SYSTICK_prg.o
  .comment       0x0000007e       0x7f ./src/MCAL/SYSCFG/SYSCFG_prg.o
@@ -5937,8 +5946,10 @@ END GROUP
  .comment       0x0000007e       0x7f ./src/MCAL/GPIO/GPIO_prg.o
  .comment       0x0000007e       0x7f ./src/MCAL/EXTI/EXTI_prg.o
  .comment       0x0000007e       0x7f ./src/MCAL/ADC/ADC_prg.o
+ .comment       0x0000007e       0x7f ./src/LIB/MATH_Fn.o
  .comment       0x0000007e       0x7f ./src/HAL/TFT/TFT_prg.o
  .comment       0x0000007e       0x7f ./src/HAL/SERMUX/SerMux_prg.o
+ .comment       0x0000007e       0x7f ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .comment       0x0000007e       0x7f ./src/HAL/IR/IR_prg.o
  .comment       0x0000007e       0x7f ./src/HAL/Fonts/Fonts.o
  .comment       0x0000007e       0x7f ./src/APP/main.o
@@ -5980,89 +5991,99 @@ END GROUP
  .ARM.attributes
                 0x000002fd       0x33 ./src/Robo_int/Motor_cmd.o
  .ARM.attributes
-                0x00000330       0x33 ./src/MCAL/USART/USART_prg.o
+                0x00000330       0x33 ./src/Robo_int/Servos_cmd.o
  .ARM.attributes
-                0x00000363       0x33 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x00000363       0x33 ./src/MCAL/USART/USART_prg.o
  .ARM.attributes
-                0x00000396       0x33 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+                0x00000396       0x33 ./src/MCAL/SYSTICK/SYSTICK_prg.o
  .ARM.attributes
-                0x000003c9       0x33 ./src/MCAL/SPI/SPI_prg.o
+                0x000003c9       0x33 ./src/MCAL/SYSCFG/SYSCFG_prg.o
  .ARM.attributes
-                0x000003fc       0x33 ./src/MCAL/RTC/RTC_prg.o
+                0x000003fc       0x33 ./src/MCAL/SPI/SPI_prg.o
  .ARM.attributes
-                0x0000042f       0x33 ./src/MCAL/RCC/RCC_prg.o
+                0x0000042f       0x33 ./src/MCAL/RTC/RTC_prg.o
  .ARM.attributes
-                0x00000462       0x33 ./src/MCAL/PWM/PWM_prg.o
+                0x00000462       0x33 ./src/MCAL/RCC/RCC_prg.o
  .ARM.attributes
-                0x00000495       0x33 ./src/MCAL/NVIC/NVIC_prg.o
+                0x00000495       0x33 ./src/MCAL/PWM/PWM_prg.o
  .ARM.attributes
-                0x000004c8       0x33 ./src/MCAL/GPIO/GPIO_prg.o
+                0x000004c8       0x33 ./src/MCAL/NVIC/NVIC_prg.o
  .ARM.attributes
-                0x000004fb       0x33 ./src/MCAL/EXTI/EXTI_prg.o
+                0x000004fb       0x33 ./src/MCAL/GPIO/GPIO_prg.o
  .ARM.attributes
-                0x0000052e       0x33 ./src/MCAL/ADC/ADC_prg.o
+                0x0000052e       0x33 ./src/MCAL/EXTI/EXTI_prg.o
  .ARM.attributes
-                0x00000561       0x33 ./src/HAL/TFT/TFT_prg.o
+                0x00000561       0x33 ./src/MCAL/ADC/ADC_prg.o
  .ARM.attributes
-                0x00000594       0x33 ./src/HAL/SERMUX/SerMux_prg.o
+                0x00000594       0x33 ./src/LIB/MATH_Fn.o
  .ARM.attributes
-                0x000005c7       0x33 ./src/HAL/IR/IR_prg.o
+                0x000005c7       0x33 ./src/HAL/TFT/TFT_prg.o
  .ARM.attributes
-                0x000005fa       0x33 ./src/HAL/Fonts/Fonts.o
+                0x000005fa       0x33 ./src/HAL/SERMUX/SerMux_prg.o
  .ARM.attributes
-                0x0000062d       0x33 ./src/APP/main.o
+                0x0000062d       0x33 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .ARM.attributes
-                0x00000660       0x33 ./src/_initialize_hardware.o
+                0x00000660       0x33 ./src/HAL/IR/IR_prg.o
  .ARM.attributes
-                0x00000693       0x33 ./src/stm32f4xx_hal_msp.o
+                0x00000693       0x33 ./src/HAL/Fonts/Fonts.o
  .ARM.attributes
-                0x000006c6       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
+                0x000006c6       0x33 ./src/APP/main.o
  .ARM.attributes
-                0x000006e4       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
+                0x000006f9       0x33 ./src/_initialize_hardware.o
  .ARM.attributes
-                0x00000702       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
+                0x0000072c       0x33 ./src/stm32f4xx_hal_msp.o
  .ARM.attributes
-                0x00000720       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_cmpsf2.o)
+                0x0000075f       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
  .ARM.attributes
-                0x0000073e       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixsfsi.o)
+                0x0000077d       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
  .ARM.attributes
-                0x0000075c       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixunssfsi.o)
+                0x0000079b       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
  .ARM.attributes
-                0x0000077a       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-errno.o)
+                0x000007b9       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
  .ARM.attributes
-                0x000007a8       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-impure.o)
+                0x000007d7       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
  .ARM.attributes
-                0x000007d6       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memset.o)
+                0x000007f5       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_cmpsf2.o)
  .ARM.attributes
-                0x00000804       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-snprintf.o)
+                0x00000813       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixsfsi.o)
  .ARM.attributes
-                0x00000832       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sprintf.o)
+                0x00000831       0x1e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixunssfsi.o)
  .ARM.attributes
-                0x00000860       0x17 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-strlen.o)
+                0x0000084f       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-errno.o)
  .ARM.attributes
-                0x00000877       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
+                0x0000087d       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-impure.o)
  .ARM.attributes
-                0x000008a5       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
+                0x000008ab       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memset.o)
  .ARM.attributes
-                0x000008d3       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+                0x000008d9       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-snprintf.o)
  .ARM.attributes
-                0x00000901       0x1c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memchr.o)
+                0x00000907       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sprintf.o)
  .ARM.attributes
-                0x0000091d       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memcpy-stub.o)
+                0x00000935       0x17 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-strlen.o)
  .ARM.attributes
-                0x0000094b       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memmove.o)
+                0x0000094c       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
  .ARM.attributes
-                0x00000979       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-freer.o)
+                0x0000097a       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
  .ARM.attributes
-                0x000009a7       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
+                0x000009a8       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
  .ARM.attributes
-                0x000009d5       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-reallocr.o)
+                0x000009d6       0x1c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memchr.o)
  .ARM.attributes
-                0x00000a03       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sbrkr.o)
+                0x000009f2       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memcpy-stub.o)
  .ARM.attributes
-                0x00000a31       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
+                0x00000a20       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memmove.o)
  .ARM.attributes
-                0x00000a5f       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-msizer.o)
+                0x00000a4e       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-freer.o)
+ .ARM.attributes
+                0x00000a7c       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
+ .ARM.attributes
+                0x00000aaa       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-reallocr.o)
+ .ARM.attributes
+                0x00000ad8       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sbrkr.o)
+ .ARM.attributes
+                0x00000b06       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
+ .ARM.attributes
+                0x00000b34       0x2e c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-msizer.o)
 
 .debug
  *(.debug)
@@ -6076,7 +6097,7 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0xb98
+.debug_aranges  0x00000000      0xc50
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0xc0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
@@ -6111,46 +6132,52 @@ END GROUP
  .debug_aranges
                 0x00000450       0x68 ./src/Robo_int/Motor_cmd.o
  .debug_aranges
-                0x000004b8       0x88 ./src/MCAL/USART/USART_prg.o
+                0x000004b8       0x30 ./src/Robo_int/Servos_cmd.o
  .debug_aranges
-                0x00000540       0x90 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+                0x000004e8       0x88 ./src/MCAL/USART/USART_prg.o
  .debug_aranges
-                0x000005d0       0x20 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+                0x00000570       0x90 ./src/MCAL/SYSTICK/SYSTICK_prg.o
  .debug_aranges
-                0x000005f0       0x30 ./src/MCAL/SPI/SPI_prg.o
+                0x00000600       0x20 ./src/MCAL/SYSCFG/SYSCFG_prg.o
  .debug_aranges
-                0x00000620       0x60 ./src/MCAL/RTC/RTC_prg.o
+                0x00000620       0x30 ./src/MCAL/SPI/SPI_prg.o
  .debug_aranges
-                0x00000680       0x50 ./src/MCAL/RCC/RCC_prg.o
+                0x00000650       0x60 ./src/MCAL/RTC/RTC_prg.o
  .debug_aranges
-                0x000006d0       0x38 ./src/MCAL/PWM/PWM_prg.o
+                0x000006b0       0x50 ./src/MCAL/RCC/RCC_prg.o
  .debug_aranges
-                0x00000708       0x50 ./src/MCAL/NVIC/NVIC_prg.o
+                0x00000700       0x38 ./src/MCAL/PWM/PWM_prg.o
  .debug_aranges
-                0x00000758       0x68 ./src/MCAL/GPIO/GPIO_prg.o
+                0x00000738       0x50 ./src/MCAL/NVIC/NVIC_prg.o
  .debug_aranges
-                0x000007c0       0x70 ./src/MCAL/EXTI/EXTI_prg.o
+                0x00000788       0x68 ./src/MCAL/GPIO/GPIO_prg.o
  .debug_aranges
-                0x00000830       0x40 ./src/MCAL/ADC/ADC_prg.o
+                0x000007f0       0x70 ./src/MCAL/EXTI/EXTI_prg.o
  .debug_aranges
-                0x00000870      0x1a0 ./src/HAL/TFT/TFT_prg.o
+                0x00000860       0x40 ./src/MCAL/ADC/ADC_prg.o
  .debug_aranges
-                0x00000a10       0x68 ./src/HAL/SERMUX/SerMux_prg.o
+                0x000008a0       0x38 ./src/LIB/MATH_Fn.o
  .debug_aranges
-                0x00000a78       0x40 ./src/HAL/IR/IR_prg.o
+                0x000008d8      0x1a0 ./src/HAL/TFT/TFT_prg.o
  .debug_aranges
-                0x00000ab8       0x18 ./src/HAL/Fonts/Fonts.o
+                0x00000a78       0x68 ./src/HAL/SERMUX/SerMux_prg.o
  .debug_aranges
-                0x00000ad0       0x68 ./src/APP/main.o
+                0x00000ae0       0x28 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
  .debug_aranges
-                0x00000b38       0x28 ./src/_initialize_hardware.o
+                0x00000b08       0x40 ./src/HAL/IR/IR_prg.o
  .debug_aranges
-                0x00000b60       0x38 ./src/stm32f4xx_hal_msp.o
+                0x00000b48       0x18 ./src/HAL/Fonts/Fonts.o
+ .debug_aranges
+                0x00000b60       0x90 ./src/APP/main.o
+ .debug_aranges
+                0x00000bf0       0x28 ./src/_initialize_hardware.o
+ .debug_aranges
+                0x00000c18       0x38 ./src/stm32f4xx_hal_msp.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000    0x264b2
+.debug_info     0x00000000    0x27058
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000     0x107e ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_info    0x0000107e     0x1863 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -6168,26 +6195,29 @@ END GROUP
  .debug_info    0x0000ab99       0xca ./system/src/cmsis/vectors_stm32f401xc.o
  .debug_info    0x0000ac63     0x9143 ./src/Robo_int/Battery_level.o
  .debug_info    0x00013da6     0x93e9 ./src/Robo_int/Motor_cmd.o
- .debug_info    0x0001d18f      0xffe ./src/MCAL/USART/USART_prg.o
- .debug_info    0x0001e18d      0x42a ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_info    0x0001e5b7      0x11e ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_info    0x0001e6d5      0x1d9 ./src/MCAL/SPI/SPI_prg.o
- .debug_info    0x0001e8ae      0x711 ./src/MCAL/RTC/RTC_prg.o
- .debug_info    0x0001efbf      0x31a ./src/MCAL/RCC/RCC_prg.o
- .debug_info    0x0001f2d9      0x27d ./src/MCAL/PWM/PWM_prg.o
- .debug_info    0x0001f556      0x313 ./src/MCAL/NVIC/NVIC_prg.o
- .debug_info    0x0001f869      0x481 ./src/MCAL/GPIO/GPIO_prg.o
- .debug_info    0x0001fcea      0x29f ./src/MCAL/EXTI/EXTI_prg.o
- .debug_info    0x0001ff89      0x390 ./src/MCAL/ADC/ADC_prg.o
- .debug_info    0x00020319     0x2ac9 ./src/HAL/TFT/TFT_prg.o
- .debug_info    0x00022de2      0x492 ./src/HAL/SERMUX/SerMux_prg.o
- .debug_info    0x00023274      0x45d ./src/HAL/IR/IR_prg.o
- .debug_info    0x000236d1      0x1bd ./src/HAL/Fonts/Fonts.o
- .debug_info    0x0002388e     0x15e1 ./src/APP/main.o
- .debug_info    0x00024e6f      0xd34 ./src/_initialize_hardware.o
- .debug_info    0x00025ba3      0x90f ./src/stm32f4xx_hal_msp.o
+ .debug_info    0x0001d18f      0x1f3 ./src/Robo_int/Servos_cmd.o
+ .debug_info    0x0001d382      0xffe ./src/MCAL/USART/USART_prg.o
+ .debug_info    0x0001e380      0x42a ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_info    0x0001e7aa      0x11e ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_info    0x0001e8c8      0x1d9 ./src/MCAL/SPI/SPI_prg.o
+ .debug_info    0x0001eaa1      0x711 ./src/MCAL/RTC/RTC_prg.o
+ .debug_info    0x0001f1b2      0x31a ./src/MCAL/RCC/RCC_prg.o
+ .debug_info    0x0001f4cc      0x27d ./src/MCAL/PWM/PWM_prg.o
+ .debug_info    0x0001f749      0x313 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_info    0x0001fa5c      0x481 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_info    0x0001fedd      0x29f ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_info    0x0002017c      0x390 ./src/MCAL/ADC/ADC_prg.o
+ .debug_info    0x0002050c      0x230 ./src/LIB/MATH_Fn.o
+ .debug_info    0x0002073c     0x2ac9 ./src/HAL/TFT/TFT_prg.o
+ .debug_info    0x00023205      0x492 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_info    0x00023697      0x2cc ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_info    0x00023963      0x45d ./src/HAL/IR/IR_prg.o
+ .debug_info    0x00023dc0      0x1bd ./src/HAL/Fonts/Fonts.o
+ .debug_info    0x00023f7d     0x1a98 ./src/APP/main.o
+ .debug_info    0x00025a15      0xd34 ./src/_initialize_hardware.o
+ .debug_info    0x00026749      0x90f ./src/stm32f4xx_hal_msp.o
 
-.debug_abbrev   0x00000000     0x42d1
+.debug_abbrev   0x00000000     0x46db
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0x32b ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_abbrev  0x0000032b      0x3f1 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -6205,26 +6235,29 @@ END GROUP
  .debug_abbrev  0x00002115       0x9d ./system/src/cmsis/vectors_stm32f401xc.o
  .debug_abbrev  0x000021b2      0x240 ./src/Robo_int/Battery_level.o
  .debug_abbrev  0x000023f2      0x245 ./src/Robo_int/Motor_cmd.o
- .debug_abbrev  0x00002637      0x2ad ./src/MCAL/USART/USART_prg.o
- .debug_abbrev  0x000028e4      0x1f1 ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_abbrev  0x00002ad5       0xbe ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_abbrev  0x00002b93      0x128 ./src/MCAL/SPI/SPI_prg.o
- .debug_abbrev  0x00002cbb      0x176 ./src/MCAL/RTC/RTC_prg.o
- .debug_abbrev  0x00002e31       0xd0 ./src/MCAL/RCC/RCC_prg.o
- .debug_abbrev  0x00002f01       0xe8 ./src/MCAL/PWM/PWM_prg.o
- .debug_abbrev  0x00002fe9      0x120 ./src/MCAL/NVIC/NVIC_prg.o
- .debug_abbrev  0x00003109      0x11f ./src/MCAL/GPIO/GPIO_prg.o
- .debug_abbrev  0x00003228       0xe8 ./src/MCAL/EXTI/EXTI_prg.o
- .debug_abbrev  0x00003310      0x132 ./src/MCAL/ADC/ADC_prg.o
- .debug_abbrev  0x00003442      0x3b0 ./src/HAL/TFT/TFT_prg.o
- .debug_abbrev  0x000037f2      0x17c ./src/HAL/SERMUX/SerMux_prg.o
- .debug_abbrev  0x0000396e      0x1ef ./src/HAL/IR/IR_prg.o
- .debug_abbrev  0x00003b5d       0xc3 ./src/HAL/Fonts/Fonts.o
- .debug_abbrev  0x00003c20      0x2d3 ./src/APP/main.o
- .debug_abbrev  0x00003ef3      0x22d ./src/_initialize_hardware.o
- .debug_abbrev  0x00004120      0x1b1 ./src/stm32f4xx_hal_msp.o
+ .debug_abbrev  0x00002637       0xd7 ./src/Robo_int/Servos_cmd.o
+ .debug_abbrev  0x0000270e      0x2ad ./src/MCAL/USART/USART_prg.o
+ .debug_abbrev  0x000029bb      0x1f1 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_abbrev  0x00002bac       0xbe ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_abbrev  0x00002c6a      0x128 ./src/MCAL/SPI/SPI_prg.o
+ .debug_abbrev  0x00002d92      0x176 ./src/MCAL/RTC/RTC_prg.o
+ .debug_abbrev  0x00002f08       0xd0 ./src/MCAL/RCC/RCC_prg.o
+ .debug_abbrev  0x00002fd8       0xe8 ./src/MCAL/PWM/PWM_prg.o
+ .debug_abbrev  0x000030c0      0x120 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_abbrev  0x000031e0      0x11f ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_abbrev  0x000032ff       0xe8 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_abbrev  0x000033e7      0x132 ./src/MCAL/ADC/ADC_prg.o
+ .debug_abbrev  0x00003519      0x131 ./src/LIB/MATH_Fn.o
+ .debug_abbrev  0x0000364a      0x3b0 ./src/HAL/TFT/TFT_prg.o
+ .debug_abbrev  0x000039fa      0x17c ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_abbrev  0x00003b76      0x16f ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_abbrev  0x00003ce5      0x1ef ./src/HAL/IR/IR_prg.o
+ .debug_abbrev  0x00003ed4       0xc3 ./src/HAL/Fonts/Fonts.o
+ .debug_abbrev  0x00003f97      0x366 ./src/APP/main.o
+ .debug_abbrev  0x000042fd      0x22d ./src/_initialize_hardware.o
+ .debug_abbrev  0x0000452a      0x1b1 ./src/stm32f4xx_hal_msp.o
 
-.debug_line     0x00000000     0xf3f2
+.debug_line     0x00000000    0x10711
  *(.debug_line)
  .debug_line    0x00000000      0xc84 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_line    0x00000c84      0xd7b ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -6240,28 +6273,31 @@ END GROUP
  .debug_line    0x00005b75      0xc6e ./system/src/cortexm/exception_handlers.o
  .debug_line    0x000067e3      0xb26 ./system/src/cmsis/system_stm32f4xx.o
  .debug_line    0x00007309      0x140 ./system/src/cmsis/vectors_stm32f401xc.o
- .debug_line    0x00007449     0x131e ./src/Robo_int/Battery_level.o
- .debug_line    0x00008767     0x1373 ./src/Robo_int/Motor_cmd.o
- .debug_line    0x00009ada      0x4b2 ./src/MCAL/USART/USART_prg.o
- .debug_line    0x00009f8c      0x20d ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_line    0x0000a199       0xbe ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_line    0x0000a257      0x171 ./src/MCAL/SPI/SPI_prg.o
- .debug_line    0x0000a3c8      0x1d9 ./src/MCAL/RTC/RTC_prg.o
- .debug_line    0x0000a5a1      0x17d ./src/MCAL/RCC/RCC_prg.o
- .debug_line    0x0000a71e      0x1f9 ./src/MCAL/PWM/PWM_prg.o
- .debug_line    0x0000a917      0x11f ./src/MCAL/NVIC/NVIC_prg.o
- .debug_line    0x0000aa36      0x236 ./src/MCAL/GPIO/GPIO_prg.o
- .debug_line    0x0000ac6c      0x189 ./src/MCAL/EXTI/EXTI_prg.o
- .debug_line    0x0000adf5      0x17f ./src/MCAL/ADC/ADC_prg.o
- .debug_line    0x0000af74     0x1779 ./src/HAL/TFT/TFT_prg.o
- .debug_line    0x0000c6ed      0x2e6 ./src/HAL/SERMUX/SerMux_prg.o
- .debug_line    0x0000c9d3      0x28b ./src/HAL/IR/IR_prg.o
- .debug_line    0x0000cc5e       0x6e ./src/HAL/Fonts/Fonts.o
- .debug_line    0x0000cccc     0x10f3 ./src/APP/main.o
- .debug_line    0x0000ddbf      0xb19 ./src/_initialize_hardware.o
- .debug_line    0x0000e8d8      0xb1a ./src/stm32f4xx_hal_msp.o
+ .debug_line    0x00007449     0x13dd ./src/Robo_int/Battery_level.o
+ .debug_line    0x00008826     0x1479 ./src/Robo_int/Motor_cmd.o
+ .debug_line    0x00009c9f      0xc97 ./src/Robo_int/Servos_cmd.o
+ .debug_line    0x0000a936      0x4b2 ./src/MCAL/USART/USART_prg.o
+ .debug_line    0x0000ade8      0x20d ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_line    0x0000aff5       0xbe ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_line    0x0000b0b3      0x171 ./src/MCAL/SPI/SPI_prg.o
+ .debug_line    0x0000b224      0x1d9 ./src/MCAL/RTC/RTC_prg.o
+ .debug_line    0x0000b3fd      0x17d ./src/MCAL/RCC/RCC_prg.o
+ .debug_line    0x0000b57a      0x1f9 ./src/MCAL/PWM/PWM_prg.o
+ .debug_line    0x0000b773      0x11f ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_line    0x0000b892      0x236 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_line    0x0000bac8      0x189 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_line    0x0000bc51      0x17f ./src/MCAL/ADC/ADC_prg.o
+ .debug_line    0x0000bdd0      0x10a ./src/LIB/MATH_Fn.o
+ .debug_line    0x0000beda     0x1779 ./src/HAL/TFT/TFT_prg.o
+ .debug_line    0x0000d653      0x2e6 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_line    0x0000d939      0x1cc ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_line    0x0000db05      0x28b ./src/HAL/IR/IR_prg.o
+ .debug_line    0x0000dd90       0x6e ./src/HAL/Fonts/Fonts.o
+ .debug_line    0x0000ddfe     0x12e0 ./src/APP/main.o
+ .debug_line    0x0000f0de      0xb19 ./src/_initialize_hardware.o
+ .debug_line    0x0000fbf7      0xb1a ./src/stm32f4xx_hal_msp.o
 
-.debug_frame    0x00000000     0x21a4
+.debug_frame    0x00000000     0x23ec
  *(.debug_frame)
  .debug_frame   0x00000000      0x188 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_frame   0x00000188      0x17c ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -6279,46 +6315,51 @@ END GROUP
  .debug_frame   0x00000870       0x20 ./system/src/cmsis/vectors_stm32f401xc.o
  .debug_frame   0x00000890       0x4c ./src/Robo_int/Battery_level.o
  .debug_frame   0x000008dc      0x10c ./src/Robo_int/Motor_cmd.o
- .debug_frame   0x000009e8      0x228 ./src/MCAL/USART/USART_prg.o
- .debug_frame   0x00000c10      0x148 ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_frame   0x00000d58       0x2c ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_frame   0x00000d84       0x50 ./src/MCAL/SPI/SPI_prg.o
- .debug_frame   0x00000dd4       0xe8 ./src/MCAL/RTC/RTC_prg.o
- .debug_frame   0x00000ebc       0x80 ./src/MCAL/RCC/RCC_prg.o
- .debug_frame   0x00000f3c       0x58 ./src/MCAL/PWM/PWM_prg.o
- .debug_frame   0x00000f94       0xb0 ./src/MCAL/NVIC/NVIC_prg.o
- .debug_frame   0x00001044       0xe8 ./src/MCAL/GPIO/GPIO_prg.o
- .debug_frame   0x0000112c       0xf0 ./src/MCAL/EXTI/EXTI_prg.o
- .debug_frame   0x0000121c       0x98 ./src/MCAL/ADC/ADC_prg.o
- .debug_frame   0x000012b4      0x5b4 ./src/HAL/TFT/TFT_prg.o
- .debug_frame   0x00001868       0xf8 ./src/HAL/SERMUX/SerMux_prg.o
- .debug_frame   0x00001960       0x84 ./src/HAL/IR/IR_prg.o
- .debug_frame   0x000019e4      0x114 ./src/APP/main.o
- .debug_frame   0x00001af8       0x4c ./src/_initialize_hardware.o
- .debug_frame   0x00001b44       0x50 ./src/stm32f4xx_hal_msp.o
- .debug_frame   0x00001b94       0xac c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
- .debug_frame   0x00001c40       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
- .debug_frame   0x00001c8c       0x38 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
- .debug_frame   0x00001cc4       0xc8 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_cmpsf2.o)
- .debug_frame   0x00001d8c       0x24 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixsfsi.o)
- .debug_frame   0x00001db0       0x24 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixunssfsi.o)
- .debug_frame   0x00001dd4       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-errno.o)
- .debug_frame   0x00001df4       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memset.o)
- .debug_frame   0x00001e14       0x7c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-snprintf.o)
- .debug_frame   0x00001e90       0x6c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sprintf.o)
- .debug_frame   0x00001efc       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
- .debug_frame   0x00001f48       0x90 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
- .debug_frame   0x00001fd8       0x60 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
- .debug_frame   0x00002038       0x28 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memcpy-stub.o)
- .debug_frame   0x00002060       0x28 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memmove.o)
- .debug_frame   0x00002088       0x38 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-freer.o)
- .debug_frame   0x000020c0       0x2c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
- .debug_frame   0x000020ec       0x3c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-reallocr.o)
- .debug_frame   0x00002128       0x2c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sbrkr.o)
- .debug_frame   0x00002154       0x30 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
- .debug_frame   0x00002184       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-msizer.o)
+ .debug_frame   0x000009e8       0x58 ./src/Robo_int/Servos_cmd.o
+ .debug_frame   0x00000a40      0x228 ./src/MCAL/USART/USART_prg.o
+ .debug_frame   0x00000c68      0x148 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_frame   0x00000db0       0x2c ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_frame   0x00000ddc       0x50 ./src/MCAL/SPI/SPI_prg.o
+ .debug_frame   0x00000e2c       0xe8 ./src/MCAL/RTC/RTC_prg.o
+ .debug_frame   0x00000f14       0x80 ./src/MCAL/RCC/RCC_prg.o
+ .debug_frame   0x00000f94       0x58 ./src/MCAL/PWM/PWM_prg.o
+ .debug_frame   0x00000fec       0xb0 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_frame   0x0000109c       0xe8 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_frame   0x00001184       0xf0 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_frame   0x00001274       0x98 ./src/MCAL/ADC/ADC_prg.o
+ .debug_frame   0x0000130c       0x84 ./src/LIB/MATH_Fn.o
+ .debug_frame   0x00001390      0x5b4 ./src/HAL/TFT/TFT_prg.o
+ .debug_frame   0x00001944       0xf8 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_frame   0x00001a3c       0x7c ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_frame   0x00001ab8       0x84 ./src/HAL/IR/IR_prg.o
+ .debug_frame   0x00001b3c      0x190 ./src/APP/main.o
+ .debug_frame   0x00001ccc       0x4c ./src/_initialize_hardware.o
+ .debug_frame   0x00001d18       0x50 ./src/stm32f4xx_hal_msp.o
+ .debug_frame   0x00001d68       0xac c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubdf3.o)
+ .debug_frame   0x00001e14       0x50 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivdf3.o)
+ .debug_frame   0x00001e64       0x24 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixdfsi.o)
+ .debug_frame   0x00001e88       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_addsubsf3.o)
+ .debug_frame   0x00001ed4       0x38 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_muldivsf3.o)
+ .debug_frame   0x00001f0c       0xc8 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_cmpsf2.o)
+ .debug_frame   0x00001fd4       0x24 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixsfsi.o)
+ .debug_frame   0x00001ff8       0x24 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/thumb/v7e-m\libgcc.a(_arm_fixunssfsi.o)
+ .debug_frame   0x0000201c       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-errno.o)
+ .debug_frame   0x0000203c       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memset.o)
+ .debug_frame   0x0000205c       0x7c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-snprintf.o)
+ .debug_frame   0x000020d8       0x6c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sprintf.o)
+ .debug_frame   0x00002144       0x4c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-vsnprintf.o)
+ .debug_frame   0x00002190       0x90 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-svfprintf.o)
+ .debug_frame   0x00002220       0x60 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-vfprintf_i.o)
+ .debug_frame   0x00002280       0x28 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memcpy-stub.o)
+ .debug_frame   0x000022a8       0x28 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-memmove.o)
+ .debug_frame   0x000022d0       0x38 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-freer.o)
+ .debug_frame   0x00002308       0x2c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-mallocr.o)
+ .debug_frame   0x00002334       0x3c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-reallocr.o)
+ .debug_frame   0x00002370       0x2c c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-sbrkr.o)
+ .debug_frame   0x0000239c       0x30 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-mlock.o)
+ .debug_frame   0x000023cc       0x20 c:/users/drago/downloads/drive-download-20250812t024751z-1-001/03- imt sdk/03- imt sdk/imt_sdk_win_64/winarm/armgcc/bin/../lib/gcc/arm-none-eabi/7.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m\libg_nano.a(lib_a-nano-msizer.o)
 
-.debug_str      0x00000000    0x78780
+.debug_str      0x00000000    0x78a81
  *(.debug_str)
  .debug_str     0x00000000    0x6fc5f ./system/src/stm32f4-hal/stm32f4xx_hal.o
                               0x70093 (size before relaxing)
@@ -6348,48 +6389,54 @@ END GROUP
                               0x6f805 (size before relaxing)
  .debug_str     0x00073321       0x59 ./system/src/cmsis/vectors_stm32f401xc.o
                                0x3884 (size before relaxing)
- .debug_str     0x0007337a     0x2457 ./src/Robo_int/Battery_level.o
-                               0xa336 (size before relaxing)
- .debug_str     0x000757d1      0x12e ./src/Robo_int/Motor_cmd.o
-                               0xa33e (size before relaxing)
- .debug_str     0x000758ff      0xa63 ./src/MCAL/USART/USART_prg.o
+ .debug_str     0x0007337a     0x24b0 ./src/Robo_int/Battery_level.o
+                               0xa38f (size before relaxing)
+ .debug_str     0x0007582a      0x12e ./src/Robo_int/Motor_cmd.o
+                               0xa397 (size before relaxing)
+ .debug_str     0x00075958       0x60 ./src/Robo_int/Servos_cmd.o
+                               0x50cb (size before relaxing)
+ .debug_str     0x000759b8      0xa63 ./src/MCAL/USART/USART_prg.o
                                0x3e26 (size before relaxing)
- .debug_str     0x00076362      0x361 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_str     0x0007641b      0x361 ./src/MCAL/SYSTICK/SYSTICK_prg.o
                                0x324a (size before relaxing)
- .debug_str     0x000766c3      0x121 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_str     0x0007677c      0x121 ./src/MCAL/SYSCFG/SYSCFG_prg.o
                                0x2ff2 (size before relaxing)
- .debug_str     0x000767e4       0xb8 ./src/MCAL/SPI/SPI_prg.o
+ .debug_str     0x0007689d       0xb8 ./src/MCAL/SPI/SPI_prg.o
                                0x350a (size before relaxing)
- .debug_str     0x0007689c      0x464 ./src/MCAL/RTC/RTC_prg.o
+ .debug_str     0x00076955      0x464 ./src/MCAL/RTC/RTC_prg.o
                                0x3b5e (size before relaxing)
- .debug_str     0x00076d00      0x126 ./src/MCAL/RCC/RCC_prg.o
+ .debug_str     0x00076db9      0x126 ./src/MCAL/RCC/RCC_prg.o
                                0x37b3 (size before relaxing)
- .debug_str     0x00076e26       0x52 ./src/MCAL/PWM/PWM_prg.o
+ .debug_str     0x00076edf       0x52 ./src/MCAL/PWM/PWM_prg.o
                                0x3abf (size before relaxing)
- .debug_str     0x00076e78      0x2e6 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_str     0x00076f31      0x2e6 ./src/MCAL/NVIC/NVIC_prg.o
                                0x3197 (size before relaxing)
- .debug_str     0x0007715e      0x358 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_str     0x00077217      0x358 ./src/MCAL/GPIO/GPIO_prg.o
                                0x35a9 (size before relaxing)
- .debug_str     0x000774b6      0x1a0 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_str     0x0007756f      0x1a0 ./src/MCAL/EXTI/EXTI_prg.o
                                0x3174 (size before relaxing)
- .debug_str     0x00077656       0xef ./src/MCAL/ADC/ADC_prg.o
+ .debug_str     0x0007770f       0xef ./src/MCAL/ADC/ADC_prg.o
                                0x3c17 (size before relaxing)
- .debug_str     0x00077745      0x62c ./src/HAL/TFT/TFT_prg.o
+ .debug_str     0x000777fe       0x54 ./src/LIB/MATH_Fn.o
+                               0x2e2a (size before relaxing)
+ .debug_str     0x00077852      0x62c ./src/HAL/TFT/TFT_prg.o
                                0x9f80 (size before relaxing)
- .debug_str     0x00077d71      0x357 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_str     0x00077e7e      0x33b ./src/HAL/SERMUX/SerMux_prg.o
                                0x383a (size before relaxing)
- .debug_str     0x000780c8      0x255 ./src/HAL/IR/IR_prg.o
+ .debug_str     0x000781b9      0x1b5 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+                               0x3375 (size before relaxing)
+ .debug_str     0x0007836e      0x255 ./src/HAL/IR/IR_prg.o
                                0x3a38 (size before relaxing)
- .debug_str     0x0007831d       0x58 ./src/HAL/Fonts/Fonts.o
+ .debug_str     0x000785c3       0x58 ./src/HAL/Fonts/Fonts.o
                                0x2e6c (size before relaxing)
- .debug_str     0x00078375      0x39d ./src/APP/main.o
-                               0xab41 (size before relaxing)
- .debug_str     0x00078712       0x31 ./src/_initialize_hardware.o
+ .debug_str     0x0007861b      0x3f8 ./src/APP/main.o
+                               0xad1e (size before relaxing)
+ .debug_str     0x00078a13       0x31 ./src/_initialize_hardware.o
                               0x6f91b (size before relaxing)
- .debug_str     0x00078743       0x3d ./src/stm32f4xx_hal_msp.o
+ .debug_str     0x00078a44       0x3d ./src/stm32f4xx_hal_msp.o
                               0x6f66c (size before relaxing)
 
-.debug_loc      0x00000000     0x4f6a
+.debug_loc      0x00000000     0x55d6
  *(.debug_loc)
  .debug_loc     0x00000000       0x92 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_loc     0x00000092      0x73b ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
@@ -6404,21 +6451,24 @@ END GROUP
  .debug_loc     0x00001666      0x13e ./system/src/cmsis/system_stm32f4xx.o
  .debug_loc     0x000017a4       0x35 ./src/Robo_int/Battery_level.o
  .debug_loc     0x000017d9       0xc6 ./src/Robo_int/Motor_cmd.o
- .debug_loc     0x0000189f     0x1219 ./src/MCAL/USART/USART_prg.o
- .debug_loc     0x00002ab8      0x2ae ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_loc     0x00002d66       0x62 ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_loc     0x00002dc8      0x14c ./src/MCAL/SPI/SPI_prg.o
- .debug_loc     0x00002f14      0x1e1 ./src/MCAL/RTC/RTC_prg.o
- .debug_loc     0x000030f5       0xfd ./src/MCAL/RCC/RCC_prg.o
- .debug_loc     0x000031f2       0xb4 ./src/MCAL/PWM/PWM_prg.o
- .debug_loc     0x000032a6      0x1df ./src/MCAL/NVIC/NVIC_prg.o
- .debug_loc     0x00003485      0x7ae ./src/MCAL/GPIO/GPIO_prg.o
- .debug_loc     0x00003c33      0x135 ./src/MCAL/EXTI/EXTI_prg.o
- .debug_loc     0x00003d68      0x116 ./src/MCAL/ADC/ADC_prg.o
- .debug_loc     0x00003e7e      0xd79 ./src/HAL/TFT/TFT_prg.o
- .debug_loc     0x00004bf7      0x1ff ./src/HAL/SERMUX/SerMux_prg.o
- .debug_loc     0x00004df6      0x153 ./src/HAL/IR/IR_prg.o
- .debug_loc     0x00004f49       0x21 ./src/APP/main.o
+ .debug_loc     0x0000189f       0x42 ./src/Robo_int/Servos_cmd.o
+ .debug_loc     0x000018e1     0x1219 ./src/MCAL/USART/USART_prg.o
+ .debug_loc     0x00002afa      0x2ae ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_loc     0x00002da8       0x62 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_loc     0x00002e0a      0x14c ./src/MCAL/SPI/SPI_prg.o
+ .debug_loc     0x00002f56      0x1e1 ./src/MCAL/RTC/RTC_prg.o
+ .debug_loc     0x00003137       0xfd ./src/MCAL/RCC/RCC_prg.o
+ .debug_loc     0x00003234       0xb4 ./src/MCAL/PWM/PWM_prg.o
+ .debug_loc     0x000032e8      0x1df ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_loc     0x000034c7      0x7ae ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_loc     0x00003c75      0x135 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_loc     0x00003daa      0x116 ./src/MCAL/ADC/ADC_prg.o
+ .debug_loc     0x00003ec0      0x2d2 ./src/LIB/MATH_Fn.o
+ .debug_loc     0x00004192      0xd79 ./src/HAL/TFT/TFT_prg.o
+ .debug_loc     0x00004f0b      0x1ff ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_loc     0x0000510a      0x1e1 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_loc     0x000052eb      0x153 ./src/HAL/IR/IR_prg.o
+ .debug_loc     0x0000543e      0x198 ./src/APP/main.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -6436,7 +6486,7 @@ END GROUP
  *(.debug_varnames)
 OUTPUT(ROBO32.elf elf32-littlearm)
 
-.debug_ranges   0x00000000      0xc90
+.debug_ranges   0x00000000      0xd48
  .debug_ranges  0x00000000       0xb0 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_ranges  0x000000b0       0xe8 ./system/src/stm32f4-hal/stm32f4xx_hal_cortex.o
  .debug_ranges  0x00000198       0x78 ./system/src/stm32f4-hal/stm32f4xx_hal_rcc.o
@@ -6453,25 +6503,28 @@ OUTPUT(ROBO32.elf elf32-littlearm)
  .debug_ranges  0x00000428       0x10 ./system/src/cmsis/vectors_stm32f401xc.o
  .debug_ranges  0x00000438       0x18 ./src/Robo_int/Battery_level.o
  .debug_ranges  0x00000450       0x58 ./src/Robo_int/Motor_cmd.o
- .debug_ranges  0x000004a8      0x218 ./src/MCAL/USART/USART_prg.o
- .debug_ranges  0x000006c0       0x80 ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_ranges  0x00000740       0x10 ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_ranges  0x00000750       0x20 ./src/MCAL/SPI/SPI_prg.o
- .debug_ranges  0x00000770       0x50 ./src/MCAL/RTC/RTC_prg.o
- .debug_ranges  0x000007c0       0x40 ./src/MCAL/RCC/RCC_prg.o
- .debug_ranges  0x00000800       0x28 ./src/MCAL/PWM/PWM_prg.o
- .debug_ranges  0x00000828       0x40 ./src/MCAL/NVIC/NVIC_prg.o
- .debug_ranges  0x00000868       0x58 ./src/MCAL/GPIO/GPIO_prg.o
- .debug_ranges  0x000008c0       0x60 ./src/MCAL/EXTI/EXTI_prg.o
- .debug_ranges  0x00000920       0x30 ./src/MCAL/ADC/ADC_prg.o
- .debug_ranges  0x00000950      0x1f0 ./src/HAL/TFT/TFT_prg.o
- .debug_ranges  0x00000b40       0x58 ./src/HAL/SERMUX/SerMux_prg.o
- .debug_ranges  0x00000b98       0x60 ./src/HAL/IR/IR_prg.o
- .debug_ranges  0x00000bf8       0x58 ./src/APP/main.o
- .debug_ranges  0x00000c50       0x18 ./src/_initialize_hardware.o
- .debug_ranges  0x00000c68       0x28 ./src/stm32f4xx_hal_msp.o
+ .debug_ranges  0x000004a8       0x20 ./src/Robo_int/Servos_cmd.o
+ .debug_ranges  0x000004c8      0x218 ./src/MCAL/USART/USART_prg.o
+ .debug_ranges  0x000006e0       0x80 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_ranges  0x00000760       0x10 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_ranges  0x00000770       0x20 ./src/MCAL/SPI/SPI_prg.o
+ .debug_ranges  0x00000790       0x50 ./src/MCAL/RTC/RTC_prg.o
+ .debug_ranges  0x000007e0       0x40 ./src/MCAL/RCC/RCC_prg.o
+ .debug_ranges  0x00000820       0x28 ./src/MCAL/PWM/PWM_prg.o
+ .debug_ranges  0x00000848       0x40 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_ranges  0x00000888       0x58 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_ranges  0x000008e0       0x60 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_ranges  0x00000940       0x30 ./src/MCAL/ADC/ADC_prg.o
+ .debug_ranges  0x00000970       0x40 ./src/LIB/MATH_Fn.o
+ .debug_ranges  0x000009b0      0x1f0 ./src/HAL/TFT/TFT_prg.o
+ .debug_ranges  0x00000ba0       0x58 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_ranges  0x00000bf8       0x30 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_ranges  0x00000c28       0x60 ./src/HAL/IR/IR_prg.o
+ .debug_ranges  0x00000c88       0x80 ./src/APP/main.o
+ .debug_ranges  0x00000d08       0x18 ./src/_initialize_hardware.o
+ .debug_ranges  0x00000d20       0x28 ./src/stm32f4xx_hal_msp.o
 
-.debug_macro    0x00000000    0x1730e
+.debug_macro    0x00000000    0x17652
  .debug_macro   0x00000000      0x532 ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_macro   0x00000532      0xa6c ./system/src/stm32f4-hal/stm32f4xx_hal.o
  .debug_macro   0x00000f9e      0x289 ./system/src/stm32f4-hal/stm32f4xx_hal.o
@@ -6593,62 +6646,66 @@ OUTPUT(ROBO32.elf elf32-littlearm)
  .debug_macro   0x00013f49       0x3b ./system/src/cortexm/exception_handlers.o
  .debug_macro   0x00013f84      0x4ea ./system/src/cmsis/system_stm32f4xx.o
  .debug_macro   0x0001446e       0x34 ./system/src/cmsis/vectors_stm32f401xc.o
- .debug_macro   0x000144a2      0x405 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000148a7       0x10 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000148b7       0x22 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000148d9       0xf4 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000149cd      0x142 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014b0f       0x16 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014b25       0x7c ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014ba1       0x1c ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014bbd       0x22 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014bdf       0x82 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014c61       0x16 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014c77       0xfa ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014d71      0x19c ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014f0d       0x34 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00014f41      0x185 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000150c6       0x1c ./src/Robo_int/Battery_level.o
- .debug_macro   0x000150e2       0x10 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000150f2       0x10 ./src/Robo_int/Battery_level.o
- .debug_macro   0x00015102      0x1cb ./src/Robo_int/Battery_level.o
- .debug_macro   0x000152cd       0x10 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000152dd       0xe2 ./src/Robo_int/Battery_level.o
- .debug_macro   0x000153bf      0x401 ./src/Robo_int/Motor_cmd.o
- .debug_macro   0x000157c0       0x7c ./src/MCAL/USART/USART_prg.o
- .debug_macro   0x0001583c       0x3e ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_macro   0x0001587a       0x2e ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_macro   0x000158a8       0x10 ./src/MCAL/SYSTICK/SYSTICK_prg.o
- .debug_macro   0x000158b8       0x3f ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_macro   0x000158f7       0x16 ./src/MCAL/SYSCFG/SYSCFG_prg.o
- .debug_macro   0x0001590d       0x52 ./src/MCAL/SPI/SPI_prg.o
- .debug_macro   0x0001595f       0x10 ./src/MCAL/SPI/SPI_prg.o
- .debug_macro   0x0001596f       0x51 ./src/MCAL/RTC/RTC_prg.o
- .debug_macro   0x000159c0       0x4c ./src/MCAL/RTC/RTC_prg.o
- .debug_macro   0x00015a0c       0x6a ./src/MCAL/RTC/RTC_prg.o
- .debug_macro   0x00015a76       0x3e ./src/MCAL/RCC/RCC_prg.o
- .debug_macro   0x00015ab4       0x16 ./src/MCAL/RCC/RCC_prg.o
- .debug_macro   0x00015aca       0x7c ./src/MCAL/PWM/PWM_prg.o
- .debug_macro   0x00015b46       0x16 ./src/MCAL/PWM/PWM_prg.o
- .debug_macro   0x00015b5c       0x40 ./src/MCAL/NVIC/NVIC_prg.o
- .debug_macro   0x00015b9c       0x28 ./src/MCAL/NVIC/NVIC_prg.o
- .debug_macro   0x00015bc4       0x3f ./src/MCAL/GPIO/GPIO_prg.o
- .debug_macro   0x00015c03      0x148 ./src/MCAL/GPIO/GPIO_prg.o
- .debug_macro   0x00015d4b       0x52 ./src/MCAL/GPIO/GPIO_prg.o
- .debug_macro   0x00015d9d       0x3f ./src/MCAL/EXTI/EXTI_prg.o
- .debug_macro   0x00015ddc       0x16 ./src/MCAL/EXTI/EXTI_prg.o
- .debug_macro   0x00015df2       0x50 ./src/MCAL/ADC/ADC_prg.o
- .debug_macro   0x00015e42      0x429 ./src/HAL/TFT/TFT_prg.o
- .debug_macro   0x0001626b       0x16 ./src/HAL/TFT/TFT_prg.o
- .debug_macro   0x00016281       0x3a ./src/HAL/TFT/TFT_prg.o
- .debug_macro   0x000162bb       0x10 ./src/HAL/TFT/TFT_prg.o
- .debug_macro   0x000162cb       0x1c ./src/HAL/TFT/TFT_prg.o
- .debug_macro   0x000162e7       0x89 ./src/HAL/SERMUX/SerMux_prg.o
- .debug_macro   0x00016370       0x52 ./src/HAL/SERMUX/SerMux_prg.o
- .debug_macro   0x000163c2       0x85 ./src/HAL/IR/IR_prg.o
- .debug_macro   0x00016447       0x52 ./src/HAL/IR/IR_prg.o
- .debug_macro   0x00016499       0x88 ./src/HAL/IR/IR_prg.o
- .debug_macro   0x00016521       0x24 ./src/HAL/Fonts/Fonts.o
- .debug_macro   0x00016545      0x401 ./src/APP/main.o
- .debug_macro   0x00016946      0x4e4 ./src/_initialize_hardware.o
- .debug_macro   0x00016e2a      0x4e4 ./src/stm32f4xx_hal_msp.o
+ .debug_macro   0x000144a2      0x42a ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000148cc       0x10 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000148dc       0x22 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000148fe       0xf4 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000149f2      0x142 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014b34       0x16 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014b4a       0x7c ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014bc6       0x1c ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014be2       0x22 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014c04       0x82 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014c86       0x16 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014c9c       0xfa ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014d96      0x19c ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014f32       0x34 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00014f66      0x185 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000150eb       0x1c ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00015107       0x10 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00015117       0x10 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00015127      0x1cb ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000152f2       0x10 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x00015302       0xe2 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000153e4       0x10 ./src/Robo_int/Battery_level.o
+ .debug_macro   0x000153f4      0x42e ./src/Robo_int/Motor_cmd.o
+ .debug_macro   0x00015822      0x253 ./src/Robo_int/Servos_cmd.o
+ .debug_macro   0x00015a75       0x7c ./src/MCAL/USART/USART_prg.o
+ .debug_macro   0x00015af1       0x3e ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_macro   0x00015b2f       0x2e ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_macro   0x00015b5d       0x10 ./src/MCAL/SYSTICK/SYSTICK_prg.o
+ .debug_macro   0x00015b6d       0x3f ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_macro   0x00015bac       0x16 ./src/MCAL/SYSCFG/SYSCFG_prg.o
+ .debug_macro   0x00015bc2       0x52 ./src/MCAL/SPI/SPI_prg.o
+ .debug_macro   0x00015c14       0x10 ./src/MCAL/SPI/SPI_prg.o
+ .debug_macro   0x00015c24       0x51 ./src/MCAL/RTC/RTC_prg.o
+ .debug_macro   0x00015c75       0x4c ./src/MCAL/RTC/RTC_prg.o
+ .debug_macro   0x00015cc1       0x6a ./src/MCAL/RTC/RTC_prg.o
+ .debug_macro   0x00015d2b       0x3e ./src/MCAL/RCC/RCC_prg.o
+ .debug_macro   0x00015d69       0x16 ./src/MCAL/RCC/RCC_prg.o
+ .debug_macro   0x00015d7f       0x7c ./src/MCAL/PWM/PWM_prg.o
+ .debug_macro   0x00015dfb       0x16 ./src/MCAL/PWM/PWM_prg.o
+ .debug_macro   0x00015e11       0x40 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_macro   0x00015e51       0x28 ./src/MCAL/NVIC/NVIC_prg.o
+ .debug_macro   0x00015e79       0x3f ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_macro   0x00015eb8      0x148 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_macro   0x00016000       0x52 ./src/MCAL/GPIO/GPIO_prg.o
+ .debug_macro   0x00016052       0x3f ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_macro   0x00016091       0x16 ./src/MCAL/EXTI/EXTI_prg.o
+ .debug_macro   0x000160a7       0x50 ./src/MCAL/ADC/ADC_prg.o
+ .debug_macro   0x000160f7       0x24 ./src/LIB/MATH_Fn.o
+ .debug_macro   0x0001611b      0x429 ./src/HAL/TFT/TFT_prg.o
+ .debug_macro   0x00016544       0x16 ./src/HAL/TFT/TFT_prg.o
+ .debug_macro   0x0001655a       0x3a ./src/HAL/TFT/TFT_prg.o
+ .debug_macro   0x00016594       0x10 ./src/HAL/TFT/TFT_prg.o
+ .debug_macro   0x000165a4       0x1c ./src/HAL/TFT/TFT_prg.o
+ .debug_macro   0x000165c0       0x89 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_macro   0x00016649       0x52 ./src/HAL/SERMUX/SerMux_prg.o
+ .debug_macro   0x0001669b       0x40 ./src/HAL/IR_LineFollowing/IR_LineFollowing_prg.o
+ .debug_macro   0x000166db       0x85 ./src/HAL/IR/IR_prg.o
+ .debug_macro   0x00016760       0x52 ./src/HAL/IR/IR_prg.o
+ .debug_macro   0x000167b2       0x88 ./src/HAL/IR/IR_prg.o
+ .debug_macro   0x0001683a       0x24 ./src/HAL/Fonts/Fonts.o
+ .debug_macro   0x0001685e      0x42c ./src/APP/main.o
+ .debug_macro   0x00016c8a      0x4e4 ./src/_initialize_hardware.o
+ .debug_macro   0x0001716e      0x4e4 ./src/stm32f4xx_hal_msp.o

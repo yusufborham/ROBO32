@@ -45,11 +45,14 @@
 #include "../MCAL/PWM/PWM_int.h"
 
 #include "../Robo_int/Motor_cmd.h"
+#include "../Robo_int/Servos_cmd.h"
 #include "../Robo_int/Battery_level.h"
 
 #include "../Examples/Image.c"
 
 #include "../MCAL/ADC/ADC_int.h"
+
+#include "../HAL/IR_LineFollowing/IR_LineFollowing_int.h"
 
 #include <stdio.h>
 

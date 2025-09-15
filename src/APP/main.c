@@ -2,6 +2,9 @@
 
 u8 ultrasonic_sensor;
 
+IR_LineFollowing_cfg_t ir_cfg;
+u8 senVal[5] = {0};
+
 // WiFi connection status
 static u8 wifi_connected = 0;
 static u8 wifi_init_done = 0;
@@ -44,6 +47,28 @@ int motorRightSpeed = 78;
 int motorLeftCurrent = 1;
 int motorRightCurrent = 1;
 
+#define BASE_SPEED 28
+
+u8 Range = 100 - BASE_SPEED ;
+
+void move(s8 dir);
+void moveLeft(s8 vel);
+void moveRight(s8 vel);
+
+void move(s8 dir){
+
+    moveLeft((s8)BASE_SPEED + dir);
+    moveRight((s8)BASE_SPEED - dir);
+}
+
+void moveLeft(s8 vel){
+    vel >= 0 ?  Motor_Left_FWD((u8)abs(vel)) : Motor_Left_BWD((u8)2.5*abs(vel)) ;
+}
+
+void moveRight(s8 vel){
+    vel >= 0 ?  Motor_Right_FWD((u8)abs(vel)) : Motor_Right_BWD((u8)2.5*abs(vel)) ;
+}
+
 
 char uartBuffer[2048];
 void sendRobotData(void) {
@@ -80,10 +105,6 @@ void sendRobotData(void) {
     MUSART_u8WriteString(USART_PERIPH_6, uartBuffer);
 }
 
-void sendTestData(void) {
-    snprintf(uartBuffer, sizeof(uartBuffer), "{\"test\":\"hello\",\"value\":123}\n");
-    MUSART_u8WriteString(USART_PERIPH_6, uartBuffer);
-}
 //========== SYSTEM INITIALIZATION ==========
 
 static void SystemInit(void) {
@@ -97,13 +118,32 @@ static void SystemInit(void) {
 
     Motor_Init();
 
+    Servo_Init();
+
+    Servo_Steer(90);
+
+
+    IR_LineFollowing_cfg_t ir_cfg = {
+        .IR_ports = {GPIO_PORTB, GPIO_PORTB, GPIO_PORTB, GPIO_PORTB, GPIO_PORTB},
+        .IR_pins = {PIN0, PIN6, PIN7, PIN8, PIN9},
+        .sensorType = HIGH_WHEN_LINE_DETECTED
+    };
+
+
+    HIR_vInit(&ir_cfg);
+
+    u8 buffer[20];
+    u8 senVal[5] = {0};
+
+
+
 
 	 GPIOx_PinConfig_t USART2_TX_Pin = {
 	        .port = GPIO_PORTA,
 	        .pin = PIN11,
 	        .mode = GPIO_MODE_ALTFUNC,
 	        .speed = GPIO_VHIGH_SPEED,
-	        .altFunc = GPIO_AF8_USART6  // AF7 for USART1
+	        .altFunc = GPIO_AF8_USART6
 	     };
 	     MGPIO_vPinInit(&USART2_TX_Pin);
 
@@ -112,7 +152,7 @@ static void SystemInit(void) {
 	             .pin = PIN12,
 	             .mode = GPIO_MODE_ALTFUNC,
 	             .speed = GPIO_VHIGH_SPEED,
-	             .altFunc = GPIO_AF8_USART6  // AF7 for USART1
+	             .altFunc = GPIO_AF8_USART6
 	          };
 	          MGPIO_vPinInit(&USART2_RX_Pin);
 
@@ -154,7 +194,7 @@ static void SystemInit(void) {
     wifi_connected = 0;
     wifi_init_done = 0;
     connection_attempts = 0;
-    HTFT_vSetESPStatus(0);  // Initially disconnected
+    HTFT_vSetESPStatus(0);
 }
 
 
@@ -192,18 +232,59 @@ static void Ultrasonic_Display_Callback(void) {
 
 
 static void Ultrasonic_Measurement_Callback(void) {
-    // Measure distance and update the TFT state
+
     float distance = 0; //HCSR04_f32GetDistance_cm(&ultrasonic_sensor);
     HTFT_vSetCurrentDistance(distance);
+}
 
-    // Control warning LED based on distance (using PA4 now)
-    //if (distance >= 2.0f && distance <= 400.0f) {
-      //  if (distance < 10.0f) {
-           // MGPIO_vSetPinValue(GPIO_PORTA, PIN4, GPIO_HIGH); // Warning LED ON
-       // } else {
-            //MGPIO_vSetPinValue(GPIO_PORTA, PIN4, GPIO_LOW);  // Warning LED OFF
-       // }
-    //}
+void line_Follower(void){
+	f32 position;
+	        if (HIR_f32ReadSensors(&ir_cfg, &position, senVal) == IR_STATUS_LINE_AQUIRED) { move(position * 25.0 ); // map -2 --> 2 to -Range --> Range
+	        }
+	        else{
+	            Motor_Stop();
+	        }
+}
+//========== PREDEFINED MOVEMENT SEQUENCE ==========
+
+void Move_Sequence(void) {
+
+    Motor_FWD(40);
+    DELAY_MS(4000);
+
+    Motor_Left_BWD(30);
+    Motor_Right_FWD(30);
+    DELAY_MS(800);
+
+    Motor_FWD(40);
+    DELAY_MS(2000);
+
+    Motor_Left_BWD(30);
+    Motor_Right_FWD(30);
+    DELAY_MS(800);
+
+    Motor_FWD(40);
+    DELAY_MS(4000);
+
+    Motor_Left_FWD(30);
+    Motor_Right_BWD(30);
+    DELAY_MS(800);
+
+    Motor_FWD(40);
+    DELAY_MS(2000);
+
+    Motor_Left_FWD(30);
+    Motor_Right_BWD(30);
+    DELAY_MS(800);
+
+    Motor_FWD(40);
+    DELAY_MS(3000);
+
+    Motor_Stop();
+}
+
+void Obstcal_Avoidance(void){
+
 }
 
 //========== IR REMOTE HANDLER ==========
@@ -256,6 +337,15 @@ static void onIrCode(u8 code) {
         case IR_CODE_RPT:
         	Motor_BWD(40);
              break;
+        case IR_CODE_USD:
+            Move_Sequence();
+            break;
+        case IR_CODE_PAUSE:
+        	line_Follower();
+        	break;
+        case IR_CODE_MUTE:
+        	Obstcal_Avoidance();
+        	break;
         default:
             break;
     }
@@ -264,34 +354,24 @@ static void onIrCode(u8 code) {
 //========== MAIN FUNCTION ==========
 
 int main(void) {
-    // Initialize all system components
+
     SystemInit();
 
-    // Set up periodic callbacks
     PeriodicCallbacks_Init();
 
-    // Initialize IR remote control
     IR_Init(onIrCode);
 
-    // Show initial screen
     HTFT_vShowFirstPage();
 
-    // Show startup message
     HTFT_vFillRectangle(10, 80, 200, 95, TFT_COLOR_BLACK);
     HTFT_vDrawText(10, 80, "Initializing WiFi...", TFT_COLOR_YELLOW, TFT_COLOR_BLACK, Font_8x13);
 
 
     HTFT_vFillRectangle(10, 80, 200, 95, TFT_COLOR_BLACK);
 
-    // Main application loop
-    while(1) {
-        // Main loop for non-time-critical tasks
-    	//sendTestData();
 
-        // Optional: Add any additional background tasks here
-        // - Process received WiFi data
-        // - Handle other communication protocols
-        // - Non-critical sensor readings
+    while(1) {
+
     }
 
     return 0;
